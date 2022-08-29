@@ -79,90 +79,6 @@ const {
   Couples,
   Darkjokes
 } = require("dhn-api")
-//rpg function\\
-   const { 
-     addInventoriDarah, 
-      cekDuluJoinAdaApaKagaDiJson, 
-      addDarah, 
-      kurangDarah, 
-     getDarah 
-   }  = require('./storage/user/darah.js')
-   const { 
-     cekInventoryAdaAtauGak, 
-      addInventori,  
-       addBesi, 
-       addEmas, 
-       addEmerald,
-       addUmpan,
-       addPotion,
-       kurangBesi, 
-       kurangEmas, 
-       kurangEmerald, 
-       kurangUmpan,
-       kurangPotion,
-       getBesi, 
-      getEmas, 
-     getEmerald,
-     getUmpan,
-    getPotion
-   } = require('./storage/user/alat_tukar.js')
-   const { 
-    addInventoriMonay, 
-    cekDuluJoinAdaApaKagaMonaynyaDiJson, 
-    addMonay, 
-    kurangMonay, 
-   getMonay 
-   } = require('./storage/user/monay.js')
-   const { 
-    addInventoriLimit, 
-    cekDuluJoinAdaApaKagaLimitnyaDiJson, 
-    addLimit, 
-    kurangLimit, 
-    getLimit 
-   } = require('./storage/user/limit.js')
-   const { 
-    cekDuluHasilBuruanNya, 
-     addInventoriBuruan, 
-     addIkan,
-      addAyam, 
-      addKelinci, 
-      addDomba, 
-      addSapi,
-      addGajah,
-      kurangIkan,
-      kurangAyam, 
-      kurangKelinci, 
-      kurangDomba, 
-      kurangSapi,
-      kurangGajah,
-      getIkan,
-      getAyam, 
-      getKelinci, 
-      getDomba,
-     getSapi,
-    getGajah
-   } = require('./storage/user/buruan.js')
-   let DarahAwal =  global.rpg.darahawal
-   const isDarah = cekDuluJoinAdaApaKagaDiJson(m.sender)   
-   const isCekDarah = getDarah(m.sender)
-   const isUmpan = getUmpan(m.sender)
-   const isPotion = getPotion(m.sender)
-   const isIkan = getIkan(m.sender)
-   const isAyam = getAyam(m.sender)
-   const isKelinci = getKelinci(m.sender)
-   const isDomba = getDomba(m.sender)
-   const isSapi = getSapi(m.sender)
-   const isGajah = getGajah(m.sender)
-   const isMonay = getMonay(m.sender)
-   const isLimit = getLimit(m.sender)
-   const isBesi = getBesi(m.sender)
-   const isEmas = getEmas(m.sender)
-   const isEmerald = getEmerald(m.sender)
-   const isInventory = cekInventoryAdaAtauGak(m.sender)
-   const isInventoriBuruan = cekDuluHasilBuruanNya(m.sender)
-   const isInventoryLimit = cekDuluJoinAdaApaKagaLimitnyaDiJson(m.sender)
-   const isInventoryMonay = cekDuluJoinAdaApaKagaMonaynyaDiJson(m.sender)
-   const ikan = ['🐟','🐠','🐡']   
 
 //rpg database\\
  let _limit = JSON.parse(fs.readFileSync('./storage/user/limit.json'));
@@ -170,10 +86,10 @@ const {
  let _darahOrg = JSON.parse(fs.readFileSync('./storage/user/darah.json'))
 
 //Database omther\\
-let xeonysticker = JSON.parse(fs.readFileSync('./XeonMedia/theme/Media-Store-Karne-Ke-Liye/sticker.json'));
-let xeonyaudio = JSON.parse(fs.readFileSync('./XeonMedia/theme/Media-Store-Karne-Ke-Liye/audio.json'));
-let xeonyimage = JSON.parse(fs.readFileSync('./XeonMedia/theme/Media-Store-Karne-Ke-Liye/image.json'));
-let xeonyvideo = JSON.parse(fs.readFileSync('./XeonMedia/theme/Media-Store-Karne-Ke-Liye/video.json'));
+let xeonysticker = JSON.parse(fs.readFileSync('./media/theme/Media-Store-Karne-Ke-Liye/sticker.json'));
+let xeonyaudio = JSON.parse(fs.readFileSync('./media/theme/Media-Store-Karne-Ke-Liye/audio.json'));
+let xeonyimage = JSON.parse(fs.readFileSync('./media/theme/Media-Store-Karne-Ke-Liye/image.json'));
+let xeonyvideo = JSON.parse(fs.readFileSync('./media/theme/Media-Store-Karne-Ke-Liye/video.json'));
 let autosticker = JSON.parse(fs.readFileSync('./database/autosticker.json'));
 const autostick = JSON.parse(fs.readFileSync('./database/autostickpc.json'));
 let banUser = JSON.parse(fs.readFileSync('./database/banUser.json'));
@@ -198,7 +114,7 @@ module.exports = hanbotz = async (hanbotz, m, chatUpdate, store) => {
     try {
         var body = (m.mtype === 'conversation') ? m.message.conversation : (m.mtype == 'imageMessage') ? m.message.imageMessage.caption : (m.mtype == 'videoMessage') ? m.message.videoMessage.caption : (m.mtype == 'extendedTextMessage') ? m.message.extendedTextMessage.text : (m.mtype == 'buttonsResponseMessage') ? m.message.buttonsResponseMessage.selectedButtonId : (m.mtype == 'listResponseMessage') ? m.message.listResponseMessage.singleSelectReply.selectedRowId : (m.mtype == 'templateButtonReplyMessage') ? m.message.templateButtonReplyMessage.selectedId : (m.mtype === 'messageContextInfo') ? (m.message.buttonsResponseMessage?.selectedButtonId || m.message.listResponseMessage?.singleSelectReply.selectedRowId || m.text) : ''
         var budy = (typeof m.text == 'string' ? m.text : '')
-        var prefix = prefa ? /^[°•π÷×¶∆£¢€¥®™+✓_=|~!?@#$%^&.©^]/gi.test(body) ? body.match(/^[°•π÷×¶∆£¢€¥®™+✓_=|~!?@#$%^&.©^]/gi)[0] : "" : prefa ?? global.prefix
+        var prefix = prefa ? /^[°•π÷×¶∆£¢€¥®™+✓_=|~!?@#$%^&.©^]/gi.test(body) ? body.match(/^[°•π÷×¶∆£¢€¥®™+✓_=|~!?@#$%^&.©^]/gi)[0] : "#" : prefa ?? global.prefix
         const isCmd = body.startsWith(prefix)
         const command = body.replace(prefix, '').trim().split(/ +/).shift().toLowerCase()
         const args = body.trim().split(/ +/).slice(1)
@@ -299,10 +215,14 @@ if (!('templateVideo' in setting)) setting.templateVideo = false
         } catch (err) {
             console.error(err)
         }
-	
+        
+
 	let reply = m.reply
 	let replay = m.reply
+
 	
+	const redd = `͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏`
+
 	// FAKE TEXT IMG
 const textImg = (teks) => {
 hanbotz.sendMessage(m.chat, { text :teks, }, {quoted: m, thumbnail: thum}) 
@@ -458,18 +378,6 @@ message: {
 }
 } 
 }
-const sendButDocument = async(id, text1, desc1, media, doc1, but = [], options = {}) => {
-kma = doc1
-mhan = await denz.prepareMessage(from, media, document, kma)
-const buttonMessages = {
-documentMessage: mhan.message.documentMessage,
-contentText: text1,
-footerText: desc1,
-buttons: but,
-headerType: "DOCUMENT"
-}
-hanbotz.sendMessage(id, buttonMessages, MessageType.buttonsMessage, options)
-}
 
 	
 	
@@ -485,15 +393,6 @@ hanbotz.sendMessage(id, buttonMessages, MessageType.buttonsMessage, options)
 	
 	//reset limit every 12 hours\\
         let cron = require('node-cron')
-        cron.schedule('00 12 * * *', () => {
-            let user = Object.keys(global.db.data.users)
-            let limitUser = isPremium ? global.limitawal.premium : global.limitawal.free
-            for (let jid of user) global.db.data.users[jid].limit = limitUser
-            console.log('Limit Reseted')
-        }, {
-            scheduled: true,
-            timezone: "Asia/Kolkata"
-        })
         cron.schedule('00 23 * * *', () => {
             let user = Object.keys(global.db.data.users)
             let limitUser = isPremium ? global.limitawal.premium : global.limitawal.free
@@ -529,34 +428,6 @@ jumlahharian = `${dataa.value}`
 //console.log(`${global.themeemoji}[SPAM]`, color(moment(m.messageTimestamp * 1000).format('DD/MM/YYYY HH:mm:ss'), 'yellow'), color(`${command} [${args.length}]`), 'from', color(m.pushName))
 //return hanbotz.sendMessage(from, { react: { text: `${global.themeemoji}`, key: m.key }})
 //}
-	
-//auto read whatsapp status
-if (autoreadsw) {
-		if (from === 'status@broadcast') {
-		hanbotz.chatRead(from)
-	}
-	}
-	
-if (m.message) {
-            hanbotz.sendReadReceipt(m.chat, m.sender, [m.key.id])
-            }
-//autoreader gc and pm
-if (command) {
-hanbotz.sendReadReceipt(from, m.sender, [m.key.id])
-}
-  //autoread gc only
-  if (m.isGroup) { 
-hanbotz.sendReadReceipt(m.chat, m.sender, [m.key.id])
-}
-  //auto recording all
-    if (global.autoRecord) { if (m.chat) { hanbotz.sendPresenceUpdate('recording', m.chat) }
-}
-//autotyper all
-  if (global.autoTyping) { if (command) { hanbotz.sendPresenceUpdate('composing', m.chat) }
-}
-//auto available all
-  if (global.available) { if (m.chat) { hanbotz.sendPresenceUpdate('available', m.chat) }
-  }
 
 // Autosticker gc
         if (isAutoSticker) {
@@ -571,17 +442,19 @@ hanbotz.sendReadReceipt(m.chat, m.sender, [m.key.id])
             }
         }
         
-
+if (budy.startsWith('212','92','91')) {
+	await hanbotz.updateBlockStatus(m.sender, 'block')
+	}
 	
 //antivirtex by xeon
-  if (budy.length > 3500) {
+  if (budy.length > 4000) {
+  	reply(`ㅤ\n`.repeat(300))
   	if (!isBotAdmins) return
   hanbotz.groupParticipantsUpdate(m.chat, [m.sender], 'remove')
-  reply(`ㅤ\n`.repeat(300))
   }
 
 
-// UCAPAN WAKTU ( MyMans APIs)
+//  WAKTU ( MyMans APIs)
 const time2 = moment().tz('Asia/Jakarta').format('HH:mm:ss')
 if(time2 < "23:59:00"){
 var ucapanWaktu = 'Good night'
@@ -598,16 +471,6 @@ var ucapanWaktu = 'Good morning'
 if(time2 < "05:00:00"){
 var ucapanWaktu = 'Good night' 
                                          }
-
-if(isAdmins){
-var stty = 'Admin Group'
-                         }
-if(isPremium){
-var stty = 'Premium'
-                         }
-if(!isCreator && !isPremium && !isAdmins){
-var stty = 'Free'
-                          }
                           
 if(isPremium){
 var sttw = 'Premium User'
@@ -615,7 +478,7 @@ var sttw = 'Premium User'
 if(!isCreator && !isPremium){
 var sttw = 'Free User'
                           }
-            
+                          
 
 //emoji 
 const emote = (satu, dua) => {
@@ -624,12 +487,10 @@ const { EmojiAPI } = require("emoji-api");
 const emoji = new EmojiAPI();
 emoji.get(satu)
 .then(emoji => {
-const buttons = [{buttonId: "y", buttonText: {displayText:satu}, type: 1}]
-const buttonMessage = {image: {url: emoji.images[dua].url},caption: "donw banh",footerText: `${botname}`,buttons: buttons,headerType: 4}
-hanbotz.sendMessage(from, buttonMessage, {quoted:m})
+hanbotz.sendMessage(m.chat, { image: { url: emoji.images[dua].url }, caption: `HanBotz` }, { quoted: m })
 })
 } catch (e) {
-reply("Emoji error, please enter another emoji\nNOTE : Just enter 1 emoji")
+reply("Emoji error, masukkan emoji lain\nCATATAN : Cukup masukkan 1 emoji")
 }
 }
 
@@ -968,10 +829,10 @@ let docs = pickRandom(documents)
 
 switch(command) {
 	
- case 'hmz': {
+ case 'banchat': {
  if (isBan) return reply(mess.ban)	 			
 if (!isCreator) return
-if (args[0] === ":(") {
+if (args[0] === "ban") {
 banchat.push(from)
 var groupe = await hanbotz.groupMetadata(from)
 var members = groupe['participants']
@@ -979,7 +840,7 @@ var mems = []
 members.map(async adm => {
 mems.push(adm.id.replace('c.us', 's.whatsapp.net'))
 })
-} else if (args[0] === "nyimak") {
+} else if (args[0] === "unban") {
 let off = banchat.indexOf(from)
 banchat.splice(off, 1)
 } else {
@@ -994,7 +855,7 @@ banchat.splice(off, 1)
 
 case 'ban': {
 if (!isCreator) return
-if (!args[0]) return replay(`Select add or del(add to ban, del to unban), For Example: Reply *${prefix}ban add* to the user u want to ban`)
+if (!args[0]) return replay(`Select add or del(add to ban, del to unban), For Contoh: Reply *${prefix}ban add* to the user u want to ban`)
 if (args[1]) {
 orgnye = args[1] + "@s.whatsapp.net"
 } else if (m.quoted) {
@@ -1011,18 +872,6 @@ replay("Error")
 }
 }
 break
-	
-        case 'userlimit': 
-        if (isBan) return reply(mess.ban)	 			
-if (isBanChat) return reply(mess.banChat)
-{      
-   let txt = `「 *ALL LIMIT USER* 」\n\n`
-     for (let i of _limit){
-     txt += `➸ *ID :* @${i.id.split("@")[0]}\n➸ *Limit* : ${i.limit}\n`
-     }
-    reply(txt)       
-  }
- break
 
 case 'resetlinkgc':
 case 'resetlinkgroup':
@@ -1142,28 +991,6 @@ Silahkan @${m.mentionedJid[0].split`@`[0]} untuk ketik terima/tolak`
             }
             break
             
-            case 'chat': {
-            	if (isBan) return reply(mess.ban)	 			
-if (isBanChat) return reply(mess.banChat)
-                if (!isCreator) return replay(`${mess.owner}`)
-                if (!q) return replay(`Option : 1. mute\n2. unmute\n3. archive\n4. unarchive\n5. read\n6. unread\n7. delete`)
-                if (args[0] === 'mute') {
-                    hanbotz.chatModify({ mute: 'Infinity' }, m.chat, []).then((res) => reply(mess.success)).catch((err) => reply(jsonformat(err)))
-                } else if (args[0] === 'unmute') {
-                    hanbotz.chatModify({ mute: null }, m.chat, []).then((res) => reply(mess.success)).catch((err) => reply(jsonformat(err)))
-                } else if (args[0] === 'archive') {
-                    hanbotz.chatModify({  archive: true }, m.chat, []).then((res) => reply(mess.success)).catch((err) => reply(jsonformat(err)))
-                } else if (args[0] === 'unarchive') {
-                    hanbotz.chatModify({ archive: false }, m.chat, []).then((res) => reply(mess.success)).catch((err) => reply(jsonformat(err)))
-                } else if (args[0] === 'read') {
-                    hanbotz.chatModify({ markRead: true }, m.chat, []).then((res) => reply(mess.success)).catch((err) => reply(jsonformat(err)))
-                } else if (args[0] === 'unread') {
-                    hanbotz.chatModify({ markRead: false }, m.chat, []).then((res) => reply(mess.success)).catch((err) => reply(jsonformat(err)))
-                } else if (args[0] === 'delete') {
-                    hanbotz.chatModify({ clear: { message: { id: m.quoted.id, fromMe: true }} }, m.chat, []).then((res) => reply(mess.success)).catch((err) => reply(jsonformat(err)))
-                }
-            }
-            break
 case 'family100':
 m.reply(`_Maintenance_`)
 break
@@ -1195,7 +1022,7 @@ if (isBanChat) return reply(mess.banChat)
             reply(tex.replace(/[aiueo]/g, ter).replace(/[AIUEO]/g, ter.toUpperCase()))
             break
 case 'tebak': {
-                if (!text) throw `Example : ${prefix + command} lagu\n\nOption : \n1. lagu\n2. gambar\n3. kata\n4. kalimat\n5. lirik`
+                if (!text) throw `Contoh : ${prefix + command} lagu\n\nOption : \n1. lagu\n2. gambar\n3. kata\n4. kalimat\n5. lirik`
                 if (!isPremium && global.db.data.users[m.sender].game < 1) return m.reply('Limit Game Anda Telah Habis') 
                 if (args[0] === "lagu") {
                     if (tebaklagu.hasOwnProperty(m.sender.split('@')[0])) throw "Masih Ada Sesi Yang Belum Diselesaikan!"
@@ -1307,7 +1134,7 @@ case 'caklontong': {
                     caklontong[m.sender.split('@')[0]] = result.jawaban.toLowerCase()
 		    caklontong_desk[m.sender.split('@')[0]] = result.deskripsi
                     })
-                    db.data.users[m.sender].game -= 1 
+                    
                     await sleep(60000)
                     if (caklontong.hasOwnProperty(m.sender.split('@')[0])) {
                     console.log("Jawaban: " + result.jawaban)
@@ -1320,11 +1147,11 @@ case 'caklontong': {
             case 'kuismath': case 'math': {
             	if (!isPremium && global.db.data.users[m.sender].game < 1) return m.reply('Limit Game Anda Telah Habis') 
                 if (kuismath.hasOwnProperty(m.sender.split('@')[0])) throw "Masih Ada Sesi Yang Belum Diselesaikan!"
-                let { genMath, modes } = require('./src/math')
+                let { genMath, modes } = require('./lib/math')
                 if (!text) throw `Mode: ${Object.keys(modes).join(' | ')}\nContoh penggunaan: ${prefix}math medium`
                 let result = await genMath(text.toLowerCase())
-                db.data.users[m.sender].game -= 1 
-                hanbotz.sendText(m.chat, `*Berapa hasil dari: ${result.soal.toLowerCase()}*?\n\nWaktu: ${(result.waktu / 1000).toFixed(2)} detik`, m).then(() => {
+                
+                hanbotz.sendText(m.chat, `Berapa hasil dari: *${result.soal.toLowerCase()}*?\n\nWaktu: ${(result.waktu / 1000).toFixed(2)} detik`, m).then(() => {
                     kuismath[m.sender.split('@')[0]] = result.jawaban
                 })
                 await sleep(result.waktu)
@@ -1380,7 +1207,7 @@ Cieeee, What's Going On❤️💖👀`
             case 'is':
             if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
-				if (!text) return replay(`Use Text, Example : ${prefix + command} he married `)
+				if (!text) return replay(`Gunakan Teks, Contoh : ${prefix + command} he married `)
 					const apa = [`Yes`, `No`, `It Could Be`, `Thats right`]
 					const kah = apa[Math.floor(Math.random() * apa.length)]
 hanbotz.sendMessage(from, { text: `Question : Is ${q}\nAnswer : ${kah}` }, { quoted: m })
@@ -1389,7 +1216,7 @@ hanbotz.sendMessage(from, { text: `Question : Is ${q}\nAnswer : ${kah}` }, { quo
 					            case 'what':
 					if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
-				if (!text) return replay(`Use Text, Example : ${prefix + command} he married `)
+				if (!text) return replay(`Gunakan Teks, Contoh : ${prefix + command} he married `)
 					const lel = [`Ask Your Gf`, `I Dont Know`, `I Don't Know, Ask Your Father`]
 					const kahk = lel[Math.floor(Math.random() * lel.length)]
 hanbotz.sendMessage(from, { text: `Question : What ${q}\nAnswer : ${kahk}` }, { quoted: m })
@@ -1398,7 +1225,7 @@ hanbotz.sendMessage(from, { text: `Question : What ${q}\nAnswer : ${kahk}` }, { 
 case 'can':
 if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
-				if (!text) return replay(`Use Text, Example : ${prefix + command} you fuck her lol `)
+				if (!text) return replay(`Gunakan Teks, Contoh : ${prefix + command} you fuck her lol `)
 					const bisa = [`Can`,`Can't`,`Cannot`,`Of Course You Can!!!`]
 					const ga = bisa[Math.floor(Math.random() * bisa.length)]
 hanbotz.sendMessage(from, { text: `Question : Can ${q}\nAnswer : ${ga}` }, { quoted: m })
@@ -1407,7 +1234,7 @@ hanbotz.sendMessage(from, { text: `Question : Can ${q}\nAnswer : ${ga}` }, { quo
 case 'how':
 if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
-				if (!text) return replay(`Use Text, Example : ${prefix + command} is my face`)
+				if (!text) return replay(`Gunakan Teks, Contoh : ${prefix + command} is my face`)
 					const gimana = [`It's Okay`, `It's Difficult Bro`, `Sorry Bot Can't Answer`, `Try Searching On Google`,`Holy Cow! Really???`,`Dizzy Ah`,`Ohhh I See:(`,`The Patient, Boss:(`,`How Are You?`]
 					const ya = gimana[Math.floor(Math.random() * gimana.length)]
 hanbotz.sendMessage(from, { text: `Question : ${q}\nAnswer : How ${ya}` }, { quoted: m })
@@ -1416,7 +1243,7 @@ hanbotz.sendMessage(from, { text: `Question : ${q}\nAnswer : How ${ya}` }, { quo
 case 'rate':
 if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
-				if (!text) return replay(`Use Text, Example : ${prefix + command} My Dp`)
+				if (!text) return replay(`Gunakan Teks, Contoh : ${prefix + command} My Dp`)
 					const ra = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41','42','43','44','45','46','47','48','49','50','51','52','53','54','55','56','57','58','59','60','61','62','63','64','65','66','67','68','69','70','71','72','73','74','75','76','77','78','79','80','81','82','83','84','85','86','87','88','89','90','91','92','93','94','95','96','97','98','99','100']
 					const te = ra[Math.floor(Math.random() * ra.length)]
 hanbotz.sendMessage(from, { text: `Rate : ${q}\nAnswer : *${te}%*` }, { quoted: m })
@@ -1425,7 +1252,7 @@ hanbotz.sendMessage(from, { text: `Rate : ${q}\nAnswer : *${te}%*` }, { quoted: 
   case 'handsomecheck':
   if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
-				if (!text) return replay(`Tag Someone, Example : ${prefix + command} @HanBotz`)
+				if (!text) return replay(`Tag Seseorang, Contoh : ${prefix + command} @HanBotz`)
 					const gan = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41','42','43','44','45','46','47','48','49','50','51','52','53','54','55','56','57','58','59','60','61','62','63','64','65','66','67','68','69','70','71','72','73','74','75','76','77','78','79','80','81','82','83','84','85','86','87','88','89','90','91','92','93','94','95','96','97','98','99','100']
 					const teng = gan[Math.floor(Math.random() * gan.length)]
 hanbotz.sendMessage(from, { text: `*${command}*\n\nName : ${q}\nAnswer : *${teng}%*` }, { quoted: m })
@@ -1434,7 +1261,7 @@ hanbotz.sendMessage(from, { text: `*${command}*\n\nName : ${q}\nAnswer : *${teng
 case 'beautifulcheck':
 if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
-				if (!text) return replay(`Tag Someone, Example : ${prefix + command} @HanBotz`)
+				if (!text) return replay(`Tag Seseorang, Contoh : ${prefix + command} @HanBotz`)
 					const can = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41','42','43','44','45','46','47','48','49','50','51','52','53','54','55','56','57','58','59','60','61','62','63','64','65','66','67','68','69','70','71','72','73','74','75','76','77','78','79','80','81','82','83','84','85','86','87','88','89','90','91','92','93','94','95','96','97','98','99','100']
 					const tik = can[Math.floor(Math.random() * can.length)]
 hanbotz.sendMessage(from, { text: `*${command}*\n\nNama : ${q}\nAnswer : *${tik}%*` }, { quoted: m })
@@ -1442,7 +1269,7 @@ hanbotz.sendMessage(from, { text: `*${command}*\n\nNama : ${q}\nAnswer : *${tik}
 					case 'charactercheck':
 					if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
-					if (!text) return replay(`Tag Someone, Example : ${prefix + command} @HanBotz`)
+					if (!text) return replay(`Tag Seseorang, Contoh : ${prefix + command} @HanBotz`)
 					const xeony =['Compassionate','Generous','Grumpy','Forgiving','Obedient','Good','Simp','Kind-Hearted','patient','UwU','top, anyway','Helpful']
 					const taky = xeony[Math.floor(Math.random() * xeony.length)]
 					hanbotz.sendMessage(from, { text: `Character Check : ${q}\nAnswer : *${taky}*` }, { quoted: m })
@@ -1459,7 +1286,7 @@ if (isBanChat) return reply(mess.banChat)
                       case 'uglycheck':
                                   	if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
-				if (!text) return replay(`Tag Someone, Example : ${prefix + command} @HanBotz`)
+				if (!text) return replay(`Tag Seseorang, Contoh : ${prefix + command} @HanBotz`)
 					const sangeh = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41','42','43','44','45','46','47','48','49','50','51','52','53','54','55','56','57','58','59','60','61','62','63','64','65','66','67','68','69','70','71','72','73','74','75','76','77','78','79','80','81','82','83','84','85','86','87','88','89','90','91','92','93','94','95','96','97','98','99','100']
 					const sange = sangeh[Math.floor(Math.random() * sangeh.length)]
 hanbotz.sendMessage(from, { text: `*${command}*\n\nName : ${q}\nAnswer : *${sange}%*` }, { quoted: m })
@@ -1582,7 +1409,7 @@ case 'dare':
     "chat random people with gheto language then ss here",
     "tell your own version of embarrassing things",
     "tag the person you hate",
-    "Pretending to be possessed, for example: possessed by dog, possessed by grasshoppers, possessed by refrigerator, etc.",
+    "Pretending to be possessed, for Contoh: possessed by dog, possessed by grasshoppers, possessed by refrigerator, etc.",
     "change name to *I AM DONKEY* for 24 hours",
     "shout *ma chuda ma chuda ma chuda* in front of your house",
     "snap/post boyfriend photo/crush",
@@ -1754,7 +1581,7 @@ case 'dare':
 case 'kapan':
 if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
-				if (!text) return replay(`Use Text, Example : ${prefix + command} will i get married `)
+				if (!text) return replay(`Gunakan Teks, Contoh : ${prefix + command} will i get married `)
 					const kapan = ['5 Hari Lagi', '10 Hari Lagi', '15 Hari Lagi','20 Hari Lagi', '25 Hari Lagi','30 Hari Lagi','35 Hari Lagi','40 Hari Lagi','  45 Hari Lagi','50 Hari Lagi','55 Hari Lagi','60 Hari Lagi','65 Hari Lagi','70 Hari Lagi','75 Hari Lagi','80 Hari Lagi','85 Lagi  Hari','90 Hari Lagi','100 Hari Lagi','5 Bulan Lagi', '10 Bulan Lagi', '15 Bulan Lagi','20 Bulan Lagi', '25 Bulan Lagi','30 Bulan Lagi'  ,'35 Bulan Lagi','40 Bulan Lagi','45 Bulan Lagi','50 Bulan Lagi','55 Bulan Lagi','60 Bulan Lagi','65 Bulan Lagi','70 Bulan Lagi','  75 Bulan Lagi','80 Bulan Lagi','85 Bulan Lagi','90 Bulan Lagi','100 Bulan Lagi','1 Tahun Lagi','2 Tahun Lagi','3 Tahun Lagi','4 Lagi  Tahun','5 Tahun Lagi','Besok','Lusa','Setelah Ini']
 					const kapankah = kapan[Math.floor(Math.random() * kapan.length)]
 hanbotz.sendMessage(from, { text: `Question : ${q}\nAnswer : *${kapankah}*` }, { quoted: m })
@@ -1762,7 +1589,7 @@ hanbotz.sendMessage(from, { text: `Question : ${q}\nAnswer : *${kapankah}*` }, {
 case 'wangy':
 if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
-              if (!text) return replay(`Use Text, Example : ${prefix + command} hinata`)
+              if (!text) return replay(`Gunakan Teks, Contoh : ${prefix + command} hinata`)
               qq = q.toUpperCase()
               awikwok = `${qq} ${qq} ${qq} ❤️ ❤️ ❤️ WANGY WANGY WANGY WANGY HU HA HU HA HU HA, aaah the smell of hair ${qq} smelly i want to smell the fragrance ${qq} AAAAAAAAH ~ Her hair.... aaah i want to stroke her hair too ~~ AAAAAH ${qq} first time out in anime is cute too ❤️ ❤️ ❤️ so AAAAAAAH ${qq} AAAAAA LUCCUUUUUUUUUUUUU............ ${qq} AAAAAAAAAAAAAAAAAAAAGH ❤️ ❤️ ❤️what ? ${qq} it's not real ? Just HELL you say ? no, no no no no no no no no no no no no no no no !! I DON'T CARE ABOUT THE REALITY, I DON'T CARE. ❤️ ❤️ ❤️ ${qq} me ... ${qq} on the laptop watching me, ${qq} .. you believe in me ? aaaaaaaaaaah thanks ${q} I don't want to give up ${qq} aaaaaah ❤️ ❤️ ❤️ YEAAAAAAAAAAAH I STILL HAVE ${qq} ALSO NOT THE SAME AAAAAAAAAAAAAAH`
              reply(awikwok)
@@ -1770,7 +1597,7 @@ if (isBanChat) return reply(mess.banChat)
 case 'checkdeath':
 if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
-             if (!text) return replay(`Use Someone's Name, Example : ${prefix + command} Bot`)
+             if (!text) return replay(`Use Someone's Name, Contoh : ${prefix + command} Bot`)
               predea = await axios.get(`https://api.agify.io/?name=${q}`)
               reply(`Name : ${predea.data.name}\n*Dead At Age :* ${predea.data.age} Year.\n\n_Quick, Quick, Repent Bro, Because No One Knows About Death_`)
               break  
@@ -1780,7 +1607,7 @@ if (isBanChat) return reply(mess.banChat)
                 if (!isCreator) return replay(`${mess.owner}`)
                 if (!text) return replay(`Enter The Group Link!`)
                 if (!isUrl(args[0]) && !args[0].includes('whatsapp.com')) return replay(`Invalid Link!`)
-                reply(mess.wait)
+                await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
                 let result = args[0].split('https://chat.whatsapp.com/')[1]
                 await hanbotz.groupAcceptInvite(result).then((res) => reply(mess.success)).catch((err) => reply(jsonformat(err)))
             }
@@ -1788,7 +1615,7 @@ if (isBanChat) return reply(mess.banChat)
                                case 'leavegc': case 'leavegroup': {
 if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
-	reply(mess.wait)
+	await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
                 if (!isCreator) return replay(`${mess.owner}`)
                 await hanbotz.groupLeave(m.chat).then((res) => reply(mess.success)).catch((err) => reply(jsonformat(err)))
             }
@@ -1797,7 +1624,7 @@ if (isBan) return reply(mess.ban)
             	if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
                if (!isCreator) return replay(`${mess.owner}`)
-               if (!text) return replay(`Example : ${prefix + command} packname|author`)
+               if (!text) return replay(`Contoh : ${prefix + command} packname|author`)
           global.packname = text.split("|")[0]
           global.author = text.split("|")[1]
           reply(`Exif Has Been Successfully Changed to\n\n${themeemoji} Packname : ${global.packname}\n${themeemoji} Author : ${global.author}`)
@@ -1943,179 +1770,8 @@ if (isBanChat) return reply(mess.banChat)
                 reply(teks)
 	    }
 	    break
-               case 'vote': {
-               	if (isBan) return reply(mess.ban)	 			
-if (isBanChat) return reply(mess.banChat)
-            if (!m.isGroup) return replay(`${mess.group}`)
-            if (m.chat in vote) replay(`_There Are Still Votes In This Chat!_\n\n*${prefix}delvote* - To Delete Vote Session`)
-            if (!text) return replay(`Enter Reason For Vote, Example: *${prefix + command} Handsome Owner*`)
-            reply(`Voting Starts!\n\n*${prefix}upvote* - For Upvote\n*${prefix}devote* - For Devote\n*${prefix}checkvote* - To Check The Vote\n*${prefix}delvote* - To Delete Vote Session`)
-            vote[m.chat] = [q, [], []]
-            await sleep(1000)
-            upvote = vote[m.chat][1]
-            devote = vote[m.chat][2]
-            teks_vote = `*「 VOTE 」*
-
-*Reason:* ${vote[m.chat][0]}
-
-┌〔 UPVOTE 〕
-│ 
-┃╠ Total: ${vote[m.chat][1].length}
-│
-│ 
-└────
-
-┌〔 DEVOTE 〕
-│ 
-┃╠ Total: ${vote[m.chat][2].length}
-│
-│ 
-└────
-
-*${prefix}delvote* - To Delete Vote Session`
-let buttonsVote = [
-  {buttonId: `${prefix}upvote`, buttonText: {displayText: 'Upvote'}, type: 1},
-  {buttonId: `${prefix}devote`, buttonText: {displayText: 'Devote'}, type: 1}
-]
-
-            let buttonMessageVote = {
-                text: teks_vote,
-                footer: hanbotz.user.name,
-                buttons: buttonsVote,
-                headerType: 1
-            }
-            hanbotz.sendMessage(m.chat, buttonMessageVote)
-	    }
-            break
-               case 'upvote': {
-               	if (isBan) return reply(mess.ban)	 			
-if (isBanChat) return reply(mess.banChat)
-            if (!m.isGroup) return replay(`${mess.group}`)
-            if (!(m.chat in vote)) return replay(`_*No Voting In This Group!*_\n\n*${prefix}vote* - To Start Voting`)
-            isVote = vote[m.chat][1].concat(vote[m.chat][2])
-            wasVote = isVote.includes(m.sender)
-            if (wasVote) replay(`You've Voted`)
-            vote[m.chat][1].push(m.sender)
-            menvote = vote[m.chat][1].concat(vote[m.chat][2])
-            teks_vote = `*「 VOTE 」*
-
-*Reason:* ${vote[m.chat][0]}
-
-┌〔 UPVOTE 〕
-│ 
-┃╠ Total: ${vote[m.chat][1].length}
-${vote[m.chat][1].map((v, i) => `┃╠ ${i + 1}. @${v.split`@`[0]}`).join('\n')}
-│ 
-└────
-
-┌〔 DEVOTE 〕
-│ 
-┃╠ Total: ${vote[m.chat][2].length}
-${vote[m.chat][2].map((v, i) => `┃╠ ${i + 1}. @${v.split`@`[0]}`).join('\n')}
-│ 
-└────
-
-*${prefix}delvote* - To Delete Vote Session`
-            let buttonsUpvote = [
-              {buttonId: `${prefix}upvote`, buttonText: {displayText: 'Upvote'}, type: 1},
-              {buttonId: `${prefix}devote`, buttonText: {displayText: 'Devote'}, type: 1}
-            ]
-
-            let buttonMessageUpvote = {
-                text: teks_vote,
-                footer: hanbotz.user.name,
-                buttons: buttonsUpvote,
-                headerType: 1,
-                mentions: menvote
-             }
-            hanbotz.sendMessage(m.chat, buttonMessageUpvote)
-	    }
-             break
-                case 'devote': {
-                	if (isBan) return reply(mess.ban)	 			
-if (isBanChat) return reply(mess.banChat)
-            if (!m.isGroup) return replay(`${mess.group}`)
-            if (!(m.chat in vote)) return replay(`_*No Voting In This Group!*_\n\n*${prefix}vote* - To Start Voting`)
-            isVote = vote[m.chat][1].concat(vote[m.chat][2])
-            wasVote = isVote.includes(m.sender)
-            if (wasVote) return replay(`You've Voted`)
-            vote[m.chat][2].push(m.sender)
-            menvote = vote[m.chat][1].concat(vote[m.chat][2])
-            teks_vote = `*「 VOTE 」*
-
-*Reason:* ${vote[m.chat][0]}
-
-┌〔 UPVOTE 〕
-│ 
-┃╠ Total: ${vote[m.chat][1].length}
-${vote[m.chat][1].map((v, i) => `┃╠ ${i + 1}. @${v.split`@`[0]}`).join('\n')}
-│ 
-└────
-
-┌〔 DEVOTE 〕
-│ 
-┃╠ Total: ${vote[m.chat][2].length}
-${vote[m.chat][2].map((v, i) => `┃╠ ${i + 1}. @${v.split`@`[0]}`).join('\n')}
-│ 
-└────
-
-*${prefix}delvote* - To Delete Vote Session`
-            let buttonsDevote = [
-              {buttonId: `${prefix}upvote`, buttonText: {displayText: 'Upvote'}, type: 1},
-              {buttonId: `${prefix}devote`, buttonText: {displayText: 'Devote'}, type: 1}
-            ]
-
-            let buttonMessageDevote = {
-                text: teks_vote,
-                footer: hanbotz.user.name,
-                buttons: buttonsDevote,
-                headerType: 1,
-                mentions: menvote
-            }
-            hanbotz.sendMessage(m.chat, buttonMessageDevote)
-	}
-            break
-                 
-case 'checkvote':
-if (isBan) return reply(mess.ban)	 			
-if (isBanChat) return reply(mess.banChat)
-if (!m.isGroup) return replay(`${mess.group}`)
-if (!(m.chat in vote)) return replay(`_*No Voting In This Group!*_\n\n*${prefix}vote* - To Start Voting`)
-teks_vote = `*「 VOTE 」*
-
-*Reason:* ${vote[m.chat][0]}
-
-┌〔 UPVOTE 〕
-│ 
-┃╠ Total: ${upvote.length}
-${vote[m.chat][1].map((v, i) => `┃╠ ${i + 1}. @${v.split`@`[0]}`).join('\n')}
-│ 
-└────
-
-┌〔 DEVOTE 〕
-│ 
-┃╠ Total: ${devote.length}
-${vote[m.chat][2].map((v, i) => `┃╠ ${i + 1}. @${v.split`@`[0]}`).join('\n')}
-│ 
-└────
-
-*${prefix}delvote* - To Delete Vote Session
-
-
-©${hanbotz.user.id}
-`
-hanbotz.sendTextWithMentions(m.chat, teks_vote, m)
-break
-		case 'deletevote': case'delvote': case 'hapusvote': {
-			if (isBan) return reply(mess.ban)	 			
-if (isBanChat) return reply(mess.banChat)
-            if (!m.isGroup) return replay(`${mess.group}`)
-            if (!(m.chat in vote)) return replay(`_*No Voting In This Group!*_\n\n*${prefix}vote* - To Start Voting`)
-            delete vote[m.chat]
-            reply('Successfully Deleted The Vote Session In This Group')
-	    }
-            break
-               case 'group': case 'grup': {
+               
+               case 'group': {
                	if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
                 if (!m.isGroup) return replay(`${mess.group}`)
@@ -2141,9 +1797,9 @@ if (isBanChat) return reply(mess.banChat)
                 if (!m.isGroup) return replay(`${mess.group}`)
                 if (!isBotAdmins) return replay(`${mess.botAdmin}`)
                 if (!isAdmins && !isCreator && !isCoowner) return replay(`${mess.admin}`)
-             if (args[0] === 'open'){
+             if (args[0] === 'enable'){
                 await hanbotz.groupSettingUpdate(m.chat, 'unlocked').then((res) => reply(`Successfully Opened Edit Group Info`)).catch((err) => reply(jsonformat(err)))
-             } else if (args[0] === 'close'){
+             } else if (args[0] === 'disable'){
                 await hanbotz.groupSettingUpdate(m.chat, 'locked').then((res) => reply(`Successfully Closed Edit Group Info`)).catch((err) => reply(jsonformat(err)))
              } else {
              let buttons = [
@@ -2229,7 +1885,7 @@ await hanbotz.updateProfilePicture(botNumber, { url: media }).catch((err) => fs.
 replay(mess.success)
 }
 break
-            case 'linkgroup': case 'linkgc': case 'gclink': case 'grouplink': {
+            case 'linkgroup': case 'linkgc': case 'gclink': case 'grouplink': case 'linkgrup': {
             	if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
                 if (!m.isGroup) return replay(`${mess.group}`)
@@ -2296,9 +1952,9 @@ if (isBanChat) return reply(mess.banChat)
             case 'delete': case 'del': {
             	if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
-                if (!m.quoted) reply(false)
+                if (!m.quoted) return reply(`reply pesan bot`)
                 let { chat, fromMe, id, isBaileys } = m.quoted
-                if (!isBaileys) return replay(`The Message Was Not Sent By A Bot!`)
+                if (!isBaileys) reply(`pesan tersebut bukan dari bot`)
                 hanbotz.sendMessage(m.chat, { delete: { remoteJid: m.chat, fromMe: true, id: m.quoted.id, participant: m.quoted.sender } })
             }
             break
@@ -2306,7 +1962,7 @@ if (isBanChat) return reply(mess.banChat)
    if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
 if (!isCreator) return replay(mess.owner)
-if (!args.join(" ")) return replay(`Where is the text?\n\nExample : ${prefix + command} ${global.ownername}`)
+if (!args.join(" ")) return replay(`Where is the text?\n\nContoh : ${prefix + command} ${global.ownername}`)
 let getGroups = await hanbotz.groupFetchAllParticipating()
 let groups = Object.entries(getGroups).slice(0).map(entry => entry[1])
 let anu = groups.map(v => v.id)
@@ -2334,7 +1990,7 @@ case 'bc': case 'broadcast': case 'bcall': {
    if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
 if (!isCreator) return replay(mess.owner)
-if (!args.join(" ")) return replay(`Where is the text??\n\nExample : ${prefix + command} ${global.ownername}`)
+if (!args.join(" ")) return replay(`Where is the text??\n\nContoh : ${prefix + command} ${global.ownername}`)
 let anu = await store.chats.all().map(v => v.id)
 replay(`Send Broadcast To ${anu.length} Chat\nTime's up ${anu.length * 1.5} second`)
 for (let yoi of anu) {
@@ -2362,7 +2018,7 @@ if (isBanChat) return reply(mess.banChat)
 if (!isCreator) return replay(mess.owner)
                 if (!/video/.test(mime) && !/image/.test(mime) && !/audio/.test(mime)) return reply(`*Send/Reply Video/Audio/Image You Want to Broadcast With Caption* ${prefix + command}`)
                 let anu = await store.chats.all().map(v => v.id)
-                let ftroli ={key: {fromMe: false,"participant":"0@s.whatsapp.net", "remoteJid": "916909137213-1604595598@g.us"}, "message": {orderMessage: {itemCount: 999999999,status: 200, thumbnail: fs.readFileSync('./XeonMedia/theme/cheemspic.jpg'), surface: 200, message: `${ownername}'s Broadcast`, orderTitle: `${botname}`, sellerJid: '0@s.whatsapp.net'}}, contextInfo: {"forwardingScore":999,"isForwarded":true},sendEphemeral: true}
+                let ftroli ={key: {fromMe: false,"participant":"0@s.whatsapp.net", "remoteJid": "916909137213-1604595598@g.us"}, "message": {orderMessage: {itemCount: 999999999,status: 200, thumbnail: fs.readFileSync('./media/theme/cheemspic.jpg'), surface: 200, message: `${ownername}'s Broadcast`, orderTitle: `${botname}`, sellerJid: '0@s.whatsapp.net'}}, contextInfo: {"forwardingScore":999,"isForwarded":true},sendEphemeral: true}
                 reply(`*Send Broadcast To* ${anu.length} *Group Chat, Time ${anu.length * 1.5} secs*`)
                 for (let i of anu) {
                     await sleep(1500)
@@ -2401,7 +2057,7 @@ case 'bcloc': {
 if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
 if (!isCreator) return replay(mess.owner)
-                if (!text) return reply(`Use ${prefix}bcloc text\n\nExample : ${prefix + command} attention everybody`)
+                if (!text) return reply(`Use ${prefix}bcloc text\n\nContoh : ${prefix + command} attention everybody`)
                 let anu = await store.chats.all().map(v => v.id)
                 let [melo, melo2] = text.split`|`
                 reply(`*Send Broadcast To* ${anu.length} Chat\nTime ${anu.length * 1.5} sec`)
@@ -2441,6 +2097,7 @@ break
 case 'listpc': {
    if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
+if (!isCreator) return replay(mess.owner)
 let anu = await store.chats.all().filter(v => v.id.endsWith('.net')).map(v => v)
 let teks = `     「 Personal Chat List 」\n\nThere are ${anu.length} users using bot in personal chat`
 for (let i of anu) {
@@ -2452,6 +2109,7 @@ break
 case 'listgc': {
    if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
+if (!isCreator) return replay(mess.owner)
 let anu = await store.chats.all().filter(v => v.id.endsWith('@g.us')).map(v => v.id)
 let teks = `     「 Group Chat 」\n\nThere are ${anu.length} users using bot in group chat`
 for (let i of anu) {
@@ -2470,6 +2128,7 @@ case 'listonline': case 'listaktif': {
    if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
 if (!m.isGroup) return replay(mess.group)
+if (!isAdmins && !isCreator && !isCoowner) return replay(`${mess.admin}`)
 let id = args && /\d+\-\d+@g.us/.test(args[0]) ? args[0] : m.chat
 let online = [...Object.keys(store.presences[id]), botNumber]
 let liston = 1
@@ -2489,20 +2148,12 @@ await fs.unlinkSync(encmedia)
 db.data.users[m.sender].limit -= 1 
 }
 break
-       case 'attp2': {
-		   if (isBan) return reply(mess.ban)	 			
-if (isBanChat) return reply(mess.banChat)
-           if (!text) return reply(`Example : ${prefix + command} text`)
-           await hanbotz.sendMedia(m.chat, `https://xteam.xyz/${command}?file&text=${text}`, 'hisoka', 'morou', m, {asSticker: true})
-
-         }
-         break
 case 'attp': case 'ttp': {
 if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
-           if (!text) reply(`Use ${prefix}attp hello\n*Example : ${prefix + command} ${ownername}*` )
-           m.reply(mess.wait)
-           await hanbotz.sendMedia(m.chat, `https://api.akuari.my.id/other/${command}?text=${text}`, 'Han', 'IG: @terserah_bomat', m, {asSticker: true}).catch((err) => reply(mess.error))
+if (!text) reply(`*Contoh : ${prefix + command} hanbotz` )
+           await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
+           await hanbotz.sendMedia(m.chat, `https://api.akuari.my.id/other/${command}?text=${text}`, 'Han', 'IG: @terserah_bomat', m, {asSticker: true}).catch((err) => reply(`Error! Gunakan kata lain / jangan menggunakan emoji!`))
          }
          break
             case 'soundcloud': case 'scdl': {               
@@ -2567,11 +2218,6 @@ break
             case 'sticker': case 's': case 'stickergif': case 'sgif': case 'stiker': {
    if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
-if (!/image/.test(mime)) {
-	reply(`Kirim Gambar/Video Dengan Caption ${prefix + command}\nDurasi Video 1-9 Detik`)
-	} else if (!/video/.test(mime)) {
-		reply(`Kirim Gambar/Video Dengan Caption ${prefix + command}\nDurasi Video 1-9 Detik`)
-		}
 if (/image/.test(mime)) {
 let media = await quoted.download()
 let encmedia = await hanbotz.sendImageAsSticker(m.chat, media, m, { packname: global.packname, author: global.author })
@@ -2581,13 +2227,15 @@ if ((quoted.msg || quoted).seconds > 11) return reply('Maximum 10 seconds!')
 let media = await quoted.download()
 let encmedia = await hanbotz.sendVideoAsSticker(m.chat, media, m, { packname: global.packname, author: global.author })
 await fs.unlinkSync(encmedia)
-} 
+} else {
+reply(`Kirim Gambar/Video Dengan Caption ${prefix + command}\nDurasi Video 1-9 Detik`)
+}
 }
 break
 case 'swm': case 'take': case 'stickerwm': {
    if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
-if (!args.join(" ")) return reply(`Example :\nswm ${global.author}|${global.packname}`)
+if (!args.join(" ")) return reply(`Contoh :\nswm ${global.author}|${global.packname}`)
 
 const swn = args.join(" ")
 const pcknm = swn.split("|")[0];
@@ -2617,7 +2265,7 @@ if (!text) return reply(`Send/Reply Photo With Caption ${prefix + command} *text
 if (text.includes('|')) return reply(`Send/Reply Photo With Caption ${prefix + command} *text*`)
 if (!/image/.test(mime)) return reply(`Send/Reply Photo With Caption ${prefix + command} *text*`)
 if (/webp/.test(mime)) return reply(`Send/Reply Photo With Caption ${prefix + command} *text*`)
-reply(mess.wait)
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
 mee = await hanbotz.downloadAndSaveMediaMessage(quoted)
 mem = await TelegraPh(mee)
 meme = `https://api.akuari.my.id/sticker/imageaddtext?text=${text}&link=${mem}`
@@ -2635,7 +2283,7 @@ if (!/image/.test(mime)) return reply(`Send/Reply Photo With Caption ${prefix + 
 if (/webp/.test(mime)) return reply(`Send/Reply Photo With Caption ${prefix + command} *text*`)
 atas = text.split('|')[0] ? text.split('|')[0] : '-'
 bawah = text.split('|')[1] ? text.split('|')[1] : '-'
-reply(mess.wait)
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
 mee = await hanbotz.downloadAndSaveMediaMessage(quoted)
 mem = await TelegraPh(mee)
 meme = `https://api.akuari.my.id/sticker/imageaddtext2?text=${atas}&text2=${bawah}&link=${mem}`
@@ -2663,29 +2311,7 @@ if (isBanChat) return reply(mess.banChat)
             reply(db)
         }
         break
-case 'bts':
-if (isBan) return reply(mess.ban)
-	if (isBanChat) return reply(mess.banChat)
-	if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
-teks = `donw banh`
-buffer = `https://api.dapuhy.xyz/api/randomimage/batues?apikey=0gly81wDky`
-hanbotz.sendMessage(from, {image:{url:buffer}, caption:"donw banh"}, {quoted:m})
-db.data.users[m.sender].limit -= 1 
-break
-case 'wallneon': case 'wallrandom': case 'wallcode': case 'wallpubg': case 'wallml': 	
-try{
-	   if (isBan) return reply(mess.ban)
-	if (isBanChat) return reply(mess.banChat)
-	if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
-reply(mess.wait)						
-nyz2 = await fetchJson(`https://myselfff.herokuapp.com/docs/wallpaper/${command}`) 
-nyz3 = await getBuffer(nyz2.list.gambar)
-hanbotz.sendMessage(from, {image : nyz3, caption:`By ${global.botname}`}, {quoted:m}) 				
-db.data.users[m.sender].limit -= 1 		
-} catch (e) {
-error("Error!")
-}
-break
+
 case 'woof':
 case '8ball':
 case 'goose':
@@ -2698,7 +2324,7 @@ case 'tickle':
    if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
 	if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
-reply(mess.wait)						
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})						
  waifudd = await axios.get(`https://nekos.life/api/v2/img/${command}`)
                            var wbuttsss = [
         {buttonId: `.${command}`, buttonText: {displayText: `Next ✨`}, type: 1},
@@ -2722,7 +2348,7 @@ if (isBan) return reply(mess.ban)
 if (isBanChat) return reply(mess.banChat)
 if (!isPremium) return m.reply(mess.premm)
 try{
-reply(mess.wait)
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
 NoHorny = await fetchJson(`https://myselfff.herokuapp.com/docs/nsfw/${command}`)
 YesHorny = await getBuffer(NoHorny.result)
 hanbotz.sendMessage(from, {image:YesHorny},{quoted:m})
@@ -2732,7 +2358,7 @@ break
       if (isBan) return reply(mess.ban)	 			
    if (isBanChat) return reply(mess.banChat)
 if (!isPremium) return m.reply(mess.premm)
-reply(mess.wait)
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
 spankd = await axios.get(`https://nekos.life/api/v2/img/spank`)                                   
   let spbuff = await getBuffer(spankd.data.url)
 let spgif = await GIFBufferToVideoBuffer(spbuff)   
@@ -2744,7 +2370,7 @@ case 'blowjobgif': case 'bj' :
    if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
 if (!isPremium) return m.reply(mess.premm)
-reply(mess.wait)
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
 bjd = await axios.get(`https://api.waifu.pics/nsfw/blowjob`)         
   let bjf = await getBuffer(bjd.data.url)
 let bjif = await GIFBufferToVideoBuffer(bjf)   
@@ -2756,7 +2382,7 @@ case 'hentaivid': case 'hentaivideo': {
 	                        	            	   if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
 if (!isPremium) return m.reply(mess.premm)
-                reply(mess.wait)
+                await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
                 anu = await hentai()
                 result912 = anu[Math.floor(Math.random(), anu.length)]
                 hanbotz.sendMessage(m.chat, { video: { url: result912.video_1 }, caption: `${themeemoji} Title : ${result912.title}\n${themeemoji} Category : ${result912.category}\n${themeemoji} Mimetype : ${result912.type}\n${themeemoji} Views : ${result912.views_count}\n${themeemoji} Shares : ${result912.share_count}\n${themeemoji} Source : ${result912.link}\n${themeemoji} Media Url : ${result912.video_1}` }, { quoted: m })
@@ -2766,7 +2392,7 @@ case 'trap' :
    if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
 if (!isPremium) return m.reply(mess.premm)
-reply(mess.wait)
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
  waifudd = await axios.get(`https://waifu.pics/api/nsfw/${command}`)       
  let trapbot = [
     {buttonId: `trap`, buttonText: {displayText: `Next ⚡`}, type: 1},
@@ -2805,7 +2431,7 @@ case 'nwaifu' :
    if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
 if (!isPremium) return m.reply(mess.premm)
-reply(mess.wait)
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
     waifudd = await axios.get(`https://waifu.pics/api/nsfw/waifu`)         
  let nwaifubot = [
     {buttonId: `.hneko`, buttonText: {displayText: `Next ⚡`}, type: 1},
@@ -2824,7 +2450,7 @@ case 'gasm':
    if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
 	if (!isPremium) return m.reply(mess.premm)
-reply(mess.wait)						
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})						
  waifudd = await axios.get(`https://nekos.life/api/v2/img/${command}`)
                            var wbuttsss = [
         {buttonId: `.${command}`, buttonText: {displayText: `Next ✨`}, type: 1},
@@ -2844,7 +2470,8 @@ case 'smug2':
     if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
 	if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
-reply(mess.wait)						
+db.data.users[m.sender].limit -= 1 
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})						
  waifudd = await axios.get(`https://nekos.life/api/v2/img/smug`)
                            var wbuttsss = [
         {buttonId: `.${command}`, buttonText: {displayText: `Next ✨`}, type: 1},
@@ -2858,14 +2485,15 @@ reply(mess.wait)
       }     
             await hanbotz.sendMessage(m.chat, button1ssMessages,{ quoted:m }).catch(err => {
                     return('Error!')
-                    db.data.users[m.sender].limit -= 1 
+                    
                 })
 break
 case 'foxgirl':
     if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
 	if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
-reply(mess.wait)						
+db.data.users[m.sender].limit -= 1 
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})						
  waifudd = await axios.get(`https://nekos.life/api/v2/img/fox_girl`)
                            var wbuttsss = [
         {buttonId: `.${command}`, buttonText: {displayText: `Next ✨`}, type: 1},
@@ -2879,7 +2507,7 @@ reply(mess.wait)
       }     
             await hanbotz.sendMessage(m.chat, button12ssMessages,{ quoted:m }).catch(err => {
                     return('Error!')
-                    db.data.users[m.sender].limit -= 1 
+                    
                 })
 break   
 case 'animenom' :
@@ -2898,14 +2526,15 @@ if (!m.isGroup) return replay(mess.group)
   }      
             await hanbotz.sendMessage(m.chat, xx1button3Messages, { quoted:m }).catch(err => {
                     return('Error!')
-                    db.data.users[m.sender].limit -= 1 
+                    
                 })
 break
 case 'waifu3':
     if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
 	if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
-reply(mess.wait)						
+db.data.users[m.sender].limit -= 1 
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})						
  waifudd = await axios.get(`https://nekos.life/api/v2/img/waifu`)
                            var wbuttsss = [
         {buttonId: `.${command}`, buttonText: {displayText: `Next ✨`}, type: 1},
@@ -2919,15 +2548,16 @@ reply(mess.wait)
       }     
             await hanbotz.sendMessage(m.chat, button112ssMessages,{ quoted:m }).catch(err => {
                     return('Error!')
-                    db.data.users[m.sender].limit -= 1 
+                    
                 })
 break
 case 'neko2':
     if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
 	if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
+db.data.users[m.sender].limit -= 1 
 	
-reply(mess.wait)						
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})						
    waifud = await axios.get('https://waifu.pics/api/sfw/neko')
                 var wbutsss = [
         {buttonId: `.neko`, buttonText: {displayText: `Next ✨`}, type: 1},
@@ -2941,14 +2571,15 @@ reply(mess.wait)
       }
             await hanbotz.sendMessage(m.chat,buttonssMessage, { quoted:m }).catch(err => {
                     return('Error!')
-                    db.data.users[m.sender].limit -= 1 
+                    
                 })               
                 break
 case 'animecuddle':
     if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
 	if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
-reply(mess.wait)						
+db.data.users[m.sender].limit -= 1 
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})						
  waifudd = await axios.get(`https://nekos.life/api/v2/img/cuddle`)
                            var wbuttsss = [
         {buttonId: `.${command}`, buttonText: {displayText: `Next ✨`}, type: 1},
@@ -2962,14 +2593,15 @@ reply(mess.wait)
       }     
             await hanbotz.sendMessage(m.chat, buttonsosMessages,{ quoted:m }).catch(err => {
                     return('Error!')
-                    db.data.users[m.sender].limit -= 1 
+                    
                 })
 break   
 case 'animeslap':
     if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
 	if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
-reply(mess.wait)						
+db.data.users[m.sender].limit -= 1 
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})						
  waifudd = await axios.get(`https://nekos.life/api/v2/img/slap`)
                            var wbuttsss = [
         {buttonId: `.${command}`, buttonText: {displayText: `Next ✨`}, type: 1},
@@ -2983,14 +2615,15 @@ reply(mess.wait)
       }     
             await hanbotz.sendMessage(m.chat, btutttonssMessages,{ quoted:m }).catch(err => {
                     return('Error!')
-                    db.data.users[m.sender].limit -= 1 
+                    
                 })
 break
 case 'animepat':
     if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
 	if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
-reply(mess.wait)						
+db.data.users[m.sender].limit -= 1 
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})						
  waifudd = await axios.get(`https://nekos.life/api/v2/img/pat`)
                            var wbuttsss = [
         {buttonId: `.${command}`, buttonText: {displayText: `Next ✨`}, type: 1},
@@ -3004,14 +2637,15 @@ reply(mess.wait)
       }     
             await hanbotz.sendMessage(m.chat, xxbuttonssMessages,{ quoted:m }).catch(err => {
                     return('Error!')
-                    db.data.users[m.sender].limit -= 1 
+                    
                 })
 break
 case 'animeneko':
     if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
 	if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
-reply(mess.wait)						
+db.data.users[m.sender].limit -= 1 
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})						
  waifudd = await axios.get(`https://nekos.life/api/v2/img/neko`)
                            var wbuttsss = [
         {buttonId: `.${command}`, buttonText: {displayText: `Next ✨`}, type: 1},
@@ -3025,14 +2659,15 @@ reply(mess.wait)
       }     
             await hanbotz.sendMessage(m.chat, buttonsTsMessages,{ quoted:m }).catch(err => {
                     return('Error!')
-                    db.data.users[m.sender].limit -= 1 
+                    
                 })
 break
 case 'animehug':
     if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
 	if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
-reply(mess.wait)						
+db.data.users[m.sender].limit -= 1 
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})						
  waifudd = await axios.get(`https://nekos.life/api/v2/img/hug`)
                            var wbuttsss = [
         {buttonId: `.${command}`, buttonText: {displayText: `Next ✨`}, type: 1},
@@ -3046,14 +2681,15 @@ reply(mess.wait)
       }     
             await hanbotz.sendMessage(m.chat, buttonussMessages,{ quoted:m }).catch(err => {
                     return('Error!')
-                    db.data.users[m.sender].limit -= 1 
+                    
                 })
 break
 case 'animekiss':
     if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
 	if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
-reply(mess.wait)						
+db.data.users[m.sender].limit -= 1 
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})						
  waifudd = await axios.get(`https://nekos.life/api/v2/img/kiss`)
                            var wbuttsss = [
         {buttonId: `.${command}`, buttonText: {displayText: `Next ✨`}, type: 1},
@@ -3067,14 +2703,15 @@ reply(mess.wait)
       }     
             await hanbotz.sendMessage(m.chat, bxxuttonssMessages,{ quoted:m }).catch(err => {
                     return('Error!')
-                    db.data.users[m.sender].limit -= 1 
+                    
                 })
 break
 case 'animewlp':
     if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
 	if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
-reply(mess.wait)						
+db.data.users[m.sender].limit -= 1 
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})						
  waifudd = await axios.get(`https://nekos.life/api/v2/img/wallpaper`)
                            var wbuttsss = [
         {buttonId: `.${command}`, buttonText: {displayText: `Next ✨`}, type: 1},
@@ -3088,14 +2725,15 @@ reply(mess.wait)
       }     
             await hanbotz.sendMessage(m.chat, buttoxnssMessages,{ quoted:m }).catch(err => {
                     return('Error!')
-                    db.data.users[m.sender].limit -= 1 
+                    
                 })
 break
 case 'animespank':
     if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
 	if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
-reply(mess.wait)						
+db.data.users[m.sender].limit -= 1 
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})						
  waifudd = await axios.get(`https://nekos.life/api/v2/img/spank`)
                            var wbuttsss = [
         {buttonId: `.${command}`, buttonText: {displayText: `Next ✨`}, type: 1},
@@ -3109,14 +2747,15 @@ reply(mess.wait)
       }     
             await hanbotz.sendMessage(m.chat, buttonssxMessages,{ quoted:m }).catch(err => {
                     return('Error!')
-                    db.data.users[m.sender].limit -= 1 
+                    
                 })
 break
 case 'animecry':
     if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
 	if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
-reply(mess.wait)						
+db.data.users[m.sender].limit -= 1 
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})						
  waifudd = await axios.get(`https://api.waifu.pics/sfw/cry`)
                            var wbutt1sss = [
         {buttonId: `.${command}`, buttonText: {displayText: `Next ✨`}, type: 1},
@@ -3130,14 +2769,15 @@ reply(mess.wait)
       }     
             await hanbotz.sendMessage(m.chat, button1ssxMessages,{ quoted:m }).catch(err => {
                     return('Error!')
-                    db.data.users[m.sender].limit -= 1 
+                    
                 })
 break
 case 'animekill':
     if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
 	if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
-reply(mess.wait)						
+db.data.users[m.sender].limit -= 1 
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})						
  waifudd = await axios.get(`https://api.waifu.pics/sfw/kill`)
                            var wbuttszzss = [
         {buttonId: `.${command}`, buttonText: {displayText: `Next ✨`}, type: 1},
@@ -3151,14 +2791,15 @@ reply(mess.wait)
       }     
             await hanbotz.sendMessage(m.chat, buttonszzsxMessages,{ quoted:m }).catch(err => {
                     return('Error!')
-                    db.data.users[m.sender].limit -= 1 
+                    
                 })
 break
 case 'animelick':
     if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
 	if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
-reply(mess.wait)						
+db.data.users[m.sender].limit -= 1 
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})						
  waifudd = await axios.get(`https://api.waifu.pics/sfw/lick`)
                            var wbuttszz12ss = [
         {buttonId: `.${command}`, buttonText: {displayText: `Next ✨`}, type: 1},
@@ -3172,14 +2813,15 @@ reply(mess.wait)
       }     
             await hanbotz.sendMessage(m.chat, buttonszzsx12Messages,{ quoted:m }).catch(err => {
                     return('Error!')
-                    db.data.users[m.sender].limit -= 1 
+                    
                 })
 break
 case 'animebite':
     if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
 	if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
-reply(mess.wait)						
+db.data.users[m.sender].limit -= 1 
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})						
  waifudd = await axios.get(`https://api.waifu.pics/sfw/bite`)
                            var wbuttszz123ss = [
         {buttonId: `.${command}`, buttonText: {displayText: `Next ✨`}, type: 1},
@@ -3193,14 +2835,15 @@ reply(mess.wait)
       }     
             await hanbotz.sendMessage(m.chat, buttonszzsx123Messages,{ quoted:m }).catch(err => {
                     return('Error!')
-                    db.data.users[m.sender].limit -= 1 
+                    
                 })
 break
 case 'animeyeet':
     if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
 	if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
-reply(mess.wait)						
+db.data.users[m.sender].limit -= 1 
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})						
  waifudd = await axios.get(`https://api.waifu.pics/sfw/yeet`)
                            var wbuttszz124ss = [
         {buttonId: `.${command}`, buttonText: {displayText: `Next ✨`}, type: 1},
@@ -3214,14 +2857,15 @@ reply(mess.wait)
       }     
             await hanbotz.sendMessage(m.chat, buttonszzsx124Messages,{ quoted:m }).catch(err => {
                     return('Error!')
-                    db.data.users[m.sender].limit -= 1 
+                    
                 })
 break
 case 'animebully':
     if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
 	if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
-reply(mess.wait)						
+db.data.users[m.sender].limit -= 1 
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})						
  waifudd = await axios.get(`https://api.waifu.pics/sfw/lick`)
                            var wbuttszz125ss = [
         {buttonId: `.${command}`, buttonText: {displayText: `Next ✨`}, type: 1},
@@ -3235,14 +2879,15 @@ reply(mess.wait)
       }     
             await hanbotz.sendMessage(m.chat, buttonszzsx125Messages,{ quoted:m }).catch(err => {
                     return('Error!')
-                    db.data.users[m.sender].limit -= 1 
+                    
                 })
 break
 case 'animebonk':
     if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
 	if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
-reply(mess.wait)						
+db.data.users[m.sender].limit -= 1 
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})						
  waifudd = await axios.get(`https://api.waifu.pics/sfw/bonk`)
                            var wbuttszz126ss = [
         {buttonId: `.${command}`, buttonText: {displayText: `Next ✨`}, type: 1},
@@ -3256,14 +2901,15 @@ reply(mess.wait)
       }     
             await hanbotz.sendMessage(m.chat, buttonszzsx126Messages,{ quoted:m }).catch(err => {
                     return('Error!')
-                    db.data.users[m.sender].limit -= 1 
+                    
                 })
 break
 case 'animewink':
     if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
 	if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
-reply(mess.wait)						
+db.data.users[m.sender].limit -= 1 
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})						
  waifudd = await axios.get(`https://api.waifu.pics/sfw/wink`)
                            var wbuttszz127ss = [
         {buttonId: `.${command}`, buttonText: {displayText: `Next ✨`}, type: 1},
@@ -3277,14 +2923,15 @@ reply(mess.wait)
       }     
             await hanbotz.sendMessage(m.chat, buttonszzsx127Messages,{ quoted:m }).catch(err => {
                     return('Error!')
-                    db.data.users[m.sender].limit -= 1 
+                    
                 })
 break
 case 'animepoke':
     if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
 	if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
-reply(mess.wait)						
+db.data.users[m.sender].limit -= 1 
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})						
  waifudd = await axios.get(`https://api.waifu.pics/sfw/poke`)
                            var wbuttszz128ss = [
         {buttonId: `.${command}`, buttonText: {displayText: `Next ✨`}, type: 1},
@@ -3298,14 +2945,15 @@ reply(mess.wait)
       }     
             await hanbotz.sendMessage(m.chat, buttonszzsx128Messages,{ quoted:m }).catch(err => {
                     return('Error!')
-                    db.data.users[m.sender].limit -= 1 
+                    
                 })
 break
 case 'animesmile':
     if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
 	if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
-reply(mess.wait)						
+db.data.users[m.sender].limit -= 1 
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})						
  waifudd = await axios.get(`https://api.waifu.pics/sfw/smile`)
                            var wbuttszz129ss = [
         {buttonId: `.${command}`, buttonText: {displayText: `Next ✨`}, type: 1},
@@ -3319,14 +2967,15 @@ reply(mess.wait)
       }     
             await hanbotz.sendMessage(m.chat, buttonszzsx129Messages,{ quoted:m }).catch(err => {
                     return('Error!')
-                    db.data.users[m.sender].limit -= 1 
+                    
                 })
 break
 case 'animewave':
     if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
 	if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
-reply(mess.wait)						
+db.data.users[m.sender].limit -= 1 
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})						
  waifudd = await axios.get(`https://api.waifu.pics/sfw/wave`)
                            var wbuttszz1210ss = [
         {buttonId: `.${command}`, buttonText: {displayText: `Next ✨`}, type: 1},
@@ -3340,14 +2989,15 @@ reply(mess.wait)
       }     
             await hanbotz.sendMessage(m.chat, buttonszzsx1210Messages,{ quoted:m }).catch(err => {
                     return('Error!')
-                    db.data.users[m.sender].limit -= 1 
+                    
                 })
 break
 case 'animeawoo':
     if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
 	if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
-reply(mess.wait)						
+db.data.users[m.sender].limit -= 1 
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})						
  waifudd = await axios.get(`https://api.waifu.pics/sfw/awoo`)
                            var wbuttszz1211ss = [
         {buttonId: `.${command}`, buttonText: {displayText: `Next ✨`}, type: 1},
@@ -3361,14 +3011,15 @@ reply(mess.wait)
       }     
             await hanbotz.sendMessage(m.chat, buttonszzsx1211Messages,{ quoted:m }).catch(err => {
                     return('Error!')
-                    db.data.users[m.sender].limit -= 1 
+                    
                 })
 break
 case 'animeblush':
     if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
 	if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
-reply(mess.wait)						
+db.data.users[m.sender].limit -= 1 
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})						
  waifudd = await axios.get(`https://api.waifu.pics/sfw/blush`)
                            var wbuttszz1212ss = [
         {buttonId: `.${command}`, buttonText: {displayText: `Next ✨`}, type: 1},
@@ -3382,14 +3033,15 @@ reply(mess.wait)
       }     
             await hanbotz.sendMessage(m.chat, buttonszzsx1212Messages,{ quoted:m }).catch(err => {
                     return('Error!')
-                    db.data.users[m.sender].limit -= 1 
+                    
                 })
 break
 case 'animesmug':
     if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
 	if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
-reply(mess.wait)						
+db.data.users[m.sender].limit -= 1 
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})						
  waifudd = await axios.get(`https://api.waifu.pics/sfw/smug`)
                            var wbuttszz1213ss = [
         {buttonId: `.${command}`, buttonText: {displayText: `Next ✨`}, type: 1},
@@ -3403,14 +3055,15 @@ reply(mess.wait)
       }     
             await hanbotz.sendMessage(m.chat, buttonszzsx1213Messages,{ quoted:m }).catch(err => {
                     return('Error!')
-                    db.data.users[m.sender].limit -= 1 
+                    
                 })
 break
 case 'animeglomp':
     if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
 	if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
-reply(mess.wait)						
+db.data.users[m.sender].limit -= 1 
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})						
  waifudd = await axios.get(`https://api.waifu.pics/sfw/glomp`)
                            var wbuttszz1214ss = [
         {buttonId: `.${command}`, buttonText: {displayText: `Next ✨`}, type: 1},
@@ -3424,14 +3077,15 @@ reply(mess.wait)
       }     
             await hanbotz.sendMessage(m.chat, buttonszzsx1214Messages,{ quoted:m }).catch(err => {
                     return('Error!')
-                    db.data.users[m.sender].limit -= 1 
+                    
                 })
 break
 case 'animehappy':
     if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
 	if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
-reply(mess.wait)						
+db.data.users[m.sender].limit -= 1 
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})						
  waifudd = await axios.get(`https://api.waifu.pics/sfw/happy`)
                            var wbuttszz1215ss = [
         {buttonId: `.${command}`, buttonText: {displayText: `Next ✨`}, type: 1},
@@ -3445,14 +3099,15 @@ reply(mess.wait)
       }     
             await hanbotz.sendMessage(m.chat, buttonszzsx1215Messages,{ quoted:m }).catch(err => {
                     return('Error!')
-                    db.data.users[m.sender].limit -= 1 
+                    
                 })
 break
 case 'animedance':
     if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
 	if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
-reply(mess.wait)						
+db.data.users[m.sender].limit -= 1 
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})						
  waifudd = await axios.get(`https://api.waifu.pics/sfw/dance`)
                            var wbuttszz1216ss = [
         {buttonId: `.${command}`, buttonText: {displayText: `Next ✨`}, type: 1},
@@ -3466,14 +3121,15 @@ reply(mess.wait)
       }     
             await hanbotz.sendMessage(m.chat, buttonszzsx1216Messages,{ quoted:m }).catch(err => {
                     return('Error!')
-                    db.data.users[m.sender].limit -= 1 
+                    
                 })
 break
 case 'animecringe':
     if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
 	if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
-reply(mess.wait)						
+db.data.users[m.sender].limit -= 1 
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})						
  waifudd = await axios.get(`https://api.waifu.pics/sfw/cringe`)
                            var wbuttszz1217ss = [
         {buttonId: `.${command}`, buttonText: {displayText: `Next ✨`}, type: 1},
@@ -3487,14 +3143,15 @@ reply(mess.wait)
       }     
             await hanbotz.sendMessage(m.chat, buttonszzsx1217Messages,{ quoted:m }).catch(err => {
                     return('Error!')
-                    db.data.users[m.sender].limit -= 1 
+                    
                 })
 break
 case 'animehighfive':
     if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
 	if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
-reply(mess.wait)						
+db.data.users[m.sender].limit -= 1 
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})						
  waifudd = await axios.get(`https://api.waifu.pics/sfw/highfive`)
                            var wbuttszz1218ss = [
         {buttonId: `.${command}`, buttonText: {displayText: `Next ✨`}, type: 1},
@@ -3508,14 +3165,15 @@ reply(mess.wait)
       }     
             await hanbotz.sendMessage(m.chat, buttonszzsx1218Messages,{ quoted:m }).catch(err => {
                     return('Error!')
-                    db.data.users[m.sender].limit -= 1 
+                    
                 })
 break
 case 'animehandhold':
     if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
 	if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
-reply(mess.wait)						
+db.data.users[m.sender].limit -= 1 
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})						
  waifudd = await axios.get(`https://api.waifu.pics/sfw/handhold`)
                            var wbuttszz1219ss = [
         {buttonId: `.${command}`, buttonText: {displayText: `Next ✨`}, type: 1},
@@ -3529,14 +3187,15 @@ reply(mess.wait)
       }     
             await hanbotz.sendMessage(m.chat, buttonszzsx1219Messages,{ quoted:m }).catch(err => {
                     return('Error!')
-                    db.data.users[m.sender].limit -= 1 
+                    
                 })
 break
 case 'animemegumin':
     if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
 	if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
-reply(mess.wait)						
+db.data.users[m.sender].limit -= 1 
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})						
  waifudd = await axios.get(`https://api.waifu.pics/sfw/megumin`)
                            var wbuttszz1220ss = [
         {buttonId: `.${command}`, buttonText: {displayText: `Next ✨`}, type: 1},
@@ -3550,14 +3209,15 @@ reply(mess.wait)
       }     
             await hanbotz.sendMessage(m.chat, buttonszzsx1220Messages,{ quoted:m }).catch(err => {
                     return('Error!')
-                    db.data.users[m.sender].limit -= 1 
+                    
                 })
 break
 case 'shinobu2':  
   if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
 	if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
-reply(mess.wait)						
+db.data.users[m.sender].limit -= 1 
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})						
                     ud = await axios.get('https://waifu.pics/api/sfw/shinobu')
 var wbutsss = [
     {buttonId: `.shinobu`, buttonText: {displayText: `Next ✨`}, type: 1},
@@ -3571,14 +3231,15 @@ var wbutsss = [
                       }
 await hanbotz.sendMessage(m.chat,buttonsesMessage, { quoted:m }).catch(err => {
      return('Error!')
-                    db.data.users[m.sender].limit -= 1 
+                    
     })               
 break
 case 'megumin2':
     if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
 	if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
-reply(mess.wait)						
+db.data.users[m.sender].limit -= 1 
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})						
                     ud = await axios.get('https://waifu.pics/api/sfw/megumin')
 var wbutsss = [
     {buttonId: `.megumin`, buttonText: {displayText: `Next ✨`}, type: 1},
@@ -3592,14 +3253,15 @@ var wbutsss = [
                       }
 await hanbotz.sendMessage(m.chat,buttonzMessage, { quoted:m }).catch(err => {
      return('Error!')
-                    db.data.users[m.sender].limit -= 1 
+                    
     })               
 break     
 case 'awoo2':
     if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
 	if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
-reply(mess.wait)						
+db.data.users[m.sender].limit -= 1 
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})						
  waifudd = await axios.get(`https://waifu.pics/api/sfw/awoo`)
  var wbuttsss = [
     {buttonId: `.${command}`, buttonText: {displayText: `Next ✨`}, type: 1},
@@ -3613,9 +3275,21 @@ reply(mess.wait)
   }       
             await hanbotz.sendMessage(m.chat, button1Messages, { quoted:m }).catch(err => {
                     return('Error!')
-                    db.data.users[m.sender].limit -= 1 
+                    
                 })
 break
+
+case 'waifu': case 'loli':
+					   if (isBan) return reply(mess.ban)
+	if (isBanChat) return reply(mess.banChat)
+	if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
+db.data.users[m.sender].limit -= 1 
+					await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
+					axios.get(`https://api.waifu.pics/sfw/waifu`)
+					.then(({data}) => {
+					hanbotz.sendImage(m.chat, data.url, mess.success, m)
+					})
+					break
 case 'cry':case 'kill':case 'hug':case 'pat':case 'lick':case 'kiss':case 'bite':case 'yeet':case 'neko':case 'bully':case 'bonk':case 'wink':case 'poke':case 'nom':case 'slap':case 'smile':case 'wave':case 'awoo':case 'blush':case 'smug':case 'glomp':case 'happy':case 'dance':case 'cringe':case 'cuddle':case 'highfive':case 'shinobu':case 'megumin':case 'handhold':
    if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
@@ -3626,19 +3300,10 @@ case 'cry':case 'kill':case 'hug':case 'pat':case 'lick':case 'kiss':case 'bite'
 						db.data.users[m.sender].limit -= 1 
 					})
 					break
-case 'waifu': case 'loli':
-					   if (isBan) return reply(mess.ban)
-	if (isBanChat) return reply(mess.banChat)
-					reply(mess.wait)
-					axios.get(`https://api.waifu.pics/sfw/waifu`)
-					.then(({data}) => {
-					hanbotz.sendImage(m.chat, data.url, mess.success, m)
-					})
-					break
 case 'naruto':
 			if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
-				reply(mess.wait)
+				await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
 			    var query = ["naruto hd","naruto boruto","naruto sasuke", "naruto aesthetic", "naruto aesthetic"]
                 var data = await pinterest(pickRandom(query))
 				var but = [{buttonId: `naruto`, buttonText: { displayText: "Next➡️" }, type: 1 }]
@@ -3647,7 +3312,7 @@ case 'naruto':
 case 'yaoi':
 			if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
-				reply(mess.wait)
+				await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
 			    var query = ["yaoi","yaoi aesthetic","yaoi hd","yaoi ganteng"]
                 var data = await pinterest(pickRandom(query))
 				var but = [{buttonId: `${command}`, buttonText: { displayText: "Next➡️" }, type: 1 }]
@@ -3783,7 +3448,7 @@ if (isBanChat) return reply(mess.banChat)
             case 'readmore': {
             if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
-                if (!text) return reply(`Example : ${prefix + command} halo gaes`)
+                if (!text) return reply(`Contoh : ${prefix + command} halo gaes`)
                 anu = await fetchJson(`https://cililitan.herokuapp.com/api/readmore?teks=${text}`)
                reply(`${anu.result}`)
             }
@@ -3804,7 +3469,7 @@ hanbotz.sendMessage(m.chat, {image: {url: anu},viewOnce : true},{quoted: m })
         case 'tinyurl': {
         	 if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
-            reply(mess.wait)
+            await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
             try {
               anu = await axios.get(`https://tinyurl.com/api-create.php?url=${q}`)
               reply(`${anu.data} donw banh`)
@@ -3817,7 +3482,7 @@ if (isBanChat) return reply(mess.banChat)
 case 'fliptext': {
    if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
-if (args.length < 1) return replay(`Example:\n${prefix}fliptext ${ownername}`)
+if (args.length < 1) return replay(`Contoh:\n${prefix}fliptext ${ownername}`)
 quere = args.join(" ")
 flipe = quere.split('').reverse().join('')
 replay(`\`\`\`「 FLIP TEXT 」\`\`\`\n*•> Normal :*\n${quere}\n*•> Flip :*\n${flipe}`)
@@ -3826,7 +3491,7 @@ break
 case 'toletter': {
    if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
-if (!Number(args[0])) return replay(`Example:\n${prefix}toletter 956`)
+if (!Number(args[0])) return replay(`Contoh:\n${prefix}toletter 956`)
 try {
 quere = args.join(" ")
 convertes = await toHur(quere)
@@ -4021,7 +3686,7 @@ case'glitch3':
 if (isBanChat) return reply(mess.banChat)
 if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
 if(!q) return reply(`Use ${prefix + command} text|text`)
-reply(mess.wait)
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
 teks1 = q.split("|")[0]
 teks2 = q.split("|")[1]
 maker.textpro("https://textpro.me/create-glitch-text-effect-style-tik-tok-983.html", [
@@ -4036,7 +3701,7 @@ case '3dbox':
 if (isBanChat) return reply(mess.banChat)
 if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
 if(!q) return reply(`Use ${prefix + command} text`)
-reply(mess.wait)
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
 maker.textpro("https://textpro.me/3d-box-text-effect-online-880.html", [
     `${q}`,])
 .then((data) => hanbotz.sendMessage(m.chat, { image: { url: data }, caption: `Made by ${global.botname}` }, { quoted: m }))
@@ -4050,7 +3715,7 @@ case 'waterdrop':
 if (isBanChat) return reply(mess.banChat)
 if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
 if(!q) return reply(`Use ${prefix + command} text`)
-reply(mess.wait)
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
  maker.textpro("https://textpro.me/dropwater-text-effect-872.html", [
      `${q}`,])
     .then((data) => hanbotz.sendMessage(m.chat, { image: { url: data }, caption: `Made by ${global.botname}` }, { quoted: m }))
@@ -4064,7 +3729,7 @@ case 'lion2':
 if (isBanChat) return reply(mess.banChat)
 if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
   if(!q) return reply(`Use ${prefix + command} text`)
-  reply(mess.wait)
+  await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
   maker.textpro("https://textpro.me/create-lion-logo-mascot-online-938.html", [
       `${q}`,])
      .then((data) => hanbotz.sendMessage(m.chat, { image: { url: data }, caption: `Made by ${global.botname}` }, { quoted: m }))
@@ -4078,7 +3743,7 @@ case 'papercut':
 if (isBanChat) return reply(mess.banChat)
 if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
       if(!q) return reply(`Use ${prefix + command} text`)
-      reply(mess.wait)
+      await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
       maker.textpro("https://textpro.me/create-art-paper-cut-text-effect-online-1022.html", [
 `${q}`,])
          .then((data) => hanbotz.sendMessage(m.chat, { image: { url: data }, caption: `Made by ${global.botname}` }, { quoted: m }))
@@ -4092,7 +3757,7 @@ case 'transformer':
 if (isBanChat) return reply(mess.banChat)
 if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
       if(!q) return reply(`Use ${prefix + command} text`)
-      reply(mess.wait)
+      await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
       maker.textpro("https://textpro.me/create-a-transformer-text-effect-online-1035.html", [
 `${q}`,])
 .then((data) => hanbotz.sendMessage(m.chat, { image: { url: data }, caption: `Made by ${global.botname}` }, { quoted: m }))
@@ -4106,7 +3771,7 @@ case 'harrypot':
 if (isBanChat) return reply(mess.banChat)
 if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
        if(!q) return reply(`Use ${prefix + command} text|text`)
-       reply(mess.wait)
+       await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
        teks1 = q.split("|")[0]
        teks2 = q.split("|")[1]
        maker.textpro("https://textpro.me/create-harry-potter-text-effect-online-1025.html", [
@@ -4122,7 +3787,7 @@ case 'neondevil':
 if (isBanChat) return reply(mess.banChat)
 if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
       if(!q) return reply(`Use ${prefix + command} text`)
-      reply(mess.wait)
+      await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
       maker.textpro("https://textpro.me/create-neon-devil-wings-text-effect-online-free-1014.html", [
 `${q}`,])
          .then((data) => hanbotz.sendMessage(m.chat, { image: { url: data }, caption: `Made by ${global.botname}` }, { quoted: m }))
@@ -4136,7 +3801,7 @@ case '3dstone':
 if (isBanChat) return reply(mess.banChat)
 if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
 if(!q) return reply(`Use ${prefix + command} text`)
-reply(mess.wait)
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
 maker.textpro("https://textpro.me/3d-stone-cracked-cool-text-effect-1029.html", [
     `${q}`,])
   .then((data) => hanbotz.sendMessage(m.chat, { image: { url: data }, caption: `Made by ${global.botname}` }, { quoted: m }))
@@ -4150,7 +3815,7 @@ case '3davengers':
 if (isBanChat) return reply(mess.banChat)
 if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
 if(!q) return reply(`Use ${prefix + command} text`)
-reply(mess.wait)
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
 maker.textpro("https://textpro.me/create-3d-avengers-logo-online-974.html", [
     `${q}`,])
   .then((data) => hanbotz.sendMessage(m.chat, { image: { url: data }, caption: `Made by ${global.botname}` }, { quoted: m }))
@@ -4164,7 +3829,7 @@ case 'thunder':
 if (isBanChat) return reply(mess.banChat)
 if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
 if(!q) return reply(`Use ${prefix + command} text`)
-reply(mess.wait)
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
 maker.textpro("https://textpro.me/online-thunder-text-effect-generator-1031.html", [
     `${q}`,])
   .then((data) => hanbotz.sendMessage(m.chat, { image: { url: data }, caption: `Made by ${global.botname}` }, { quoted: m }))
@@ -4178,7 +3843,7 @@ case 'window':
 if (isBanChat) return reply(mess.banChat)
 if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
 if(!q) return reply(`Use ${prefix + command} text`)
-reply(mess.wait)
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
 maker.textpro("https://textpro.me/write-text-on-foggy-window-online-free-1015.html", [
     `${q}`,])
   .then((data) => hanbotz.sendMessage(m.chat, { image: { url: data }, caption: `Made by ${global.botname}` }, { quoted: m }))
@@ -4190,7 +3855,7 @@ maker.textpro("https://textpro.me/write-text-on-foggy-window-online-free-1015.ht
 if (isBanChat) return reply(mess.banChat)
 if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
 if(!q) return reply(`Use ${prefix + command} text`)
-reply(mess.wait)
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
 maker.textpro("https://textpro.me/create-neon-light-blackpink-logo-text-effect-online-1081.html", [
     `${q}`,])
   .then((data) => hanbotz.sendMessage(m.chat, { image: { url: data }, caption: `Made by ${global.botname}` }, { quoted: m }))
@@ -4204,7 +3869,7 @@ case 'graffiti':
 if (isBanChat) return reply(mess.banChat)
 if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
 if(!q) return reply(`Use ${prefix + command} text|text`)
-reply(mess.wait)
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
 teks1 = q.split("|")[0]
 teks2 = q.split("|")[1]
 maker.textpro("https://textpro.me/create-a-cool-graffiti-text-on-the-wall-1010.html", [
@@ -4221,7 +3886,7 @@ case 'pornhub2':
 if (isBanChat) return reply(mess.banChat)
 if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
 if(!q) return reply(`Use ${prefix + command} text`)
-reply(mess.wait)
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
 teks1 = q.split("|")[0]
 teks2 = q.split("|")[1]
 maker.textpro("https://textpro.me/pornhub-style-logo-online-generator-free-977.html", [
@@ -4238,7 +3903,7 @@ case 'blackpink2':
 if (isBanChat) return reply(mess.banChat)
 if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
 if(!q) return reply(`Use ${prefix + command} text`)
-reply(mess.wait)
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
 maker.textpro("https://textpro.me/create-blackpink-logo-style-online-1001.html", [
     `${q}`,])
   .then((data) => hanbotz.sendMessage(m.chat, { image: { url: data }, caption: `Made by ${global.botname}` }, { quoted: m }))
@@ -4251,7 +3916,7 @@ case 'glitch':
 if (isBanChat) return reply(mess.banChat)
 if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
 if(!q) return reply(`Use ${prefix + command} text`)
-reply(mess.wait)
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
 maker.textpro("https://textpro.me/create-impressive-glitch-text-effects-online-1027.html", [
     `${q}`,])
   .then((data) => hanbotz.sendMessage(m.chat, { image: { url: data }, caption: `Made by ${global.botname}` }, { quoted: m }))
@@ -4266,7 +3931,7 @@ case 'glitch2':
 if (isBanChat) return reply(mess.banChat)
 if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
 if(!q) return reply(`Use ${prefix + command} text|text`)
-reply(mess.wait)
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
 teks1 = q.split("|")[0]
 teks2 = q.split("|")[1]
 maker.textpro("https://textpro.me/create-a-glitch-text-effect-online-free-1026.html", [
@@ -4283,7 +3948,7 @@ case 'glitch3':
 if (isBanChat) return reply(mess.banChat)
 if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
 if(!q) return reply(`Use ${prefix + command} text|text`)
-reply(mess.wait)
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
 teks1 = q.split("|")[0]
 teks2 = q.split("|")[1]
 maker.textpro("https://textpro.me/create-glitch-text-effect-style-tik-tok-983.html", [
@@ -4300,7 +3965,7 @@ case '3dspace':
 if (isBanChat) return reply(mess.banChat)
 if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
 if(!q) return reply(`Use ${prefix + command} text|text`)
-reply(mess.wait)
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
 teks1 = q.split("|")[0]
 teks2 = q.split("|")[1]
 maker.textpro("https://textpro.me/create-space-3d-text-effect-online-985.html", [
@@ -4317,7 +3982,7 @@ case 'lion':
 if (isBanChat) return reply(mess.banChat)
 if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
 if(!q) return reply(`Use ${prefix + command} text|text`)
-reply(mess.wait)
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
 teks1 = q.split("|")[0]
 teks2 = q.split("|")[1]
 maker.textpro("https://textpro.me/create-lion-logo-mascot-online-938.html", [
@@ -4334,7 +3999,7 @@ case '3dneon':
 if (isBanChat) return reply(mess.banChat)
 if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
 if(!q) return reply(`Use ${prefix + command} text`)
-reply(mess.wait)
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
 maker.textpro("https://textpro.me/create-3d-neon-light-text-effect-online-1028.html", [
     `${q}`,])
   .then((data) => hanbotz.sendMessage(m.chat, { image: { url: data }, caption: `Made by ${global.botname}` }, { quoted: m }))
@@ -4349,7 +4014,7 @@ case 'neon':
 if (isBanChat) return reply(mess.banChat)
 if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
 if(!q) return reply(`Use ${prefix + command} text`)
-reply(mess.wait)
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
 maker.textpro("https://textpro.me/neon-text-effect-online-879.html", [
     `${q}`,])
   .then((data) => hanbotz.sendMessage(m.chat, { image: { url: data }, caption: `Made by ${global.botname}` }, { quoted: m }))
@@ -4364,7 +4029,7 @@ case 'greenneon':
 if (isBanChat) return reply(mess.banChat)
 if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
 if(!q) return reply(`Use ${prefix + command} text`)
-reply(mess.wait)
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
 maker.textpro("https://textpro.me/green-neon-text-effect-874.html", [
     `${q}`,])
   .then((data) => hanbotz.sendMessage(m.chat, { image: { url: data }, caption: `Made by ${global.botname}` }, { quoted: m }))
@@ -4379,7 +4044,7 @@ case 'bokeh':
 if (isBanChat) return reply(mess.banChat)
 if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
 if(!q) return reply(`Use ${prefix + command} text`)
-reply(mess.wait)
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
 maker.textpro("https://textpro.me/bokeh-text-effect-876.html", [
     `${q}`,])
   .then((data) => hanbotz.sendMessage(m.chat, { image: { url: data }, caption: `Made by ${global.botname}` }, { quoted: m }))
@@ -4394,7 +4059,7 @@ case 'holographic':
 if (isBanChat) return reply(mess.banChat)
 if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
 if(!q) return reply(`Use ${prefix + command} text`)
-reply(mess.wait)
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
 maker.textpro("https://textpro.me/holographic-3d-text-effect-975.html", [
     `${q}`,])
   .then((data) => hanbotz.sendMessage(m.chat, { image: { url: data }, caption: `Made by ${global.botname}` }, { quoted: m }))
@@ -4409,7 +4074,7 @@ case 'bear':
 if (isBanChat) return reply(mess.banChat)
 if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
 if(!q) return reply(`Use ${prefix + command} text`)
-reply(mess.wait)
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
 teks1 = q.split("|")[0]
 teks2 = q.split("|")[1]
 maker.textpro("https://textpro.me/online-black-and-white-bear-mascot-logo-creation-1012.html", [
@@ -4426,7 +4091,7 @@ case 'wolf':
 if (isBanChat) return reply(mess.banChat)
 if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
 if(!q) return reply(`Use ${prefix + command} text`)
-reply(mess.wait)
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
 teks1 = q.split("|")[0]
 teks2 = q.split("|")[1]
 maker.textpro("https://textpro.me/create-wolf-logo-galaxy-online-936.html", [
@@ -4444,7 +4109,7 @@ case 'joker':
 if (isBanChat) return reply(mess.banChat)
 if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
 if(!q) return reply(`Use ${prefix + command} text`)
-reply(mess.wait)
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
 maker.textpro("https://textpro.me/create-logo-joker-online-934.html", [
     `${q}`,])
   .then((data) => hanbotz.sendMessage(m.chat, { image: { url: data }, caption: `Made by ${global.botname}` }, { quoted: m }))
@@ -4458,7 +4123,7 @@ case 'dropwater2':
 if (isBanChat) return reply(mess.banChat)
 if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
 if(!q) return reply(`Use ${prefix + command} text`)
-reply(mess.wait)
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
 maker.textpro("https://textpro.me/dropwater-text-effect-872.html", [
     `${q}`,])
   .then((data) => hanbotz.sendMessage(m.chat, { image: { url: data }, caption: `Made by ${global.botname}` }, { quoted: m }))
@@ -4471,7 +4136,7 @@ maker.textpro("https://textpro.me/dropwater-text-effect-872.html", [
 if (isBanChat) return reply(mess.banChat)
 if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
 if(!q) return reply(`Use ${prefix + command} text`)
-reply(mess.wait)
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
 maker.textpro("https://textpro.me/create-a-summer-neon-light-text-effect-online-1076.html", [
     `${q}`,])
   .then((data) => hanbotz.sendMessage(m.chat, { image: { url: data }, caption: `Made by ${global.botname}` }, { quoted: m }))
@@ -4484,7 +4149,7 @@ case 'neonlight2':
 if (isBanChat) return reply(mess.banChat)
 if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
 if(!q) return reply(`Use ${prefix + command} text`)
-reply(mess.wait)
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
 maker.textpro("https://textpro.me/neon-light-text-effect-with-galaxy-style-981.html", [
     `${q}`,])
   .then((data) => hanbotz.sendMessage(m.chat, { image: { url: data }, caption: `Made by ${global.botname}` }, { quoted: m }))
@@ -4497,7 +4162,7 @@ case 'thewall':
 if (isBanChat) return reply(mess.banChat)
 if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
 if(!q) return reply(`Use ${prefix + command} text`)
-reply(mess.wait)
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
 maker.textpro("https://textpro.me/break-wall-text-effect-871.html", [
     `${q}`,])
   .then((data) => hanbotz.sendMessage(m.chat, { image: { url: data }, caption: `Made by ${global.botname}` }, { quoted: m }))
@@ -4510,7 +4175,7 @@ case 'natural':
 if (isBanChat) return reply(mess.banChat)
 if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
 if(!q) return reply(`Use ${prefix + command} text`)
-reply(mess.wait)
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
 maker.textpro("https://textpro.me/natural-leaves-text-effect-931.html", [
     `${q}`,])
   .then((data) => hanbotz.sendMessage(m.chat, { image: { url: data }, caption: `Made by ${global.botname}` }, { quoted: m }))
@@ -4523,7 +4188,7 @@ case 'carbon':
 if (isBanChat) return reply(mess.banChat)
 if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
 if(!q) return reply(`Use ${prefix + command} text`)
-reply(mess.wait)
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
 maker.textpro("https://textpro.me/carbon-text-effect-833.html", [
     `${q}`,])
   .then((data) => hanbotz.sendMessage(m.chat, { image: { url: data }, caption: `Made by ${global.botname}` }, { quoted: m }))
@@ -4536,7 +4201,7 @@ case 'pencil':
 if (isBanChat) return reply(mess.banChat)
 if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
 if(!q) return reply(`Use ${prefix + command} text`)
-reply(mess.wait)
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
 maker.textpro("https://textpro.me/create-a-sketch-text-effect-online-1044.html", [
     `${q}`,])
   .then((data) => hanbotz.sendMessage(m.chat, { image: { url: data }, caption: `Made by ${global.botname}` }, { quoted: m }))
@@ -4544,21 +4209,19 @@ maker.textpro("https://textpro.me/create-a-sketch-text-effect-online-1044.html",
    db.data.users[m.sender].limit -= 1 
    break
  
-case 'candy': case 'christmas': case '3dchristmas': case 'sparklechristmas':
-case 'deepsea': case 'scifi': case 'rainbow2': case 'waterpipe': case 'spooky': 
+case 'candy': case 'christmas': case '3dchristmas': case 'sparklechristmas': case 'deepsea': case 'scifi': case 'rainbow2': case 'waterpipe': case 'spooky': 
 case 'pencil': case 'circuit': case 'discovery': case 'metalic': case 'fiction': case 'demon': 
-case 'transformer': case 'berry': case 'thunder': case '.': case '3dstone2': 
-case 'neonlight': case 'glitch': case 'harrypotter': case 'brokenglass': case 'papercut': 
+case 'transformer': case 'berry': case 'thunder': case '.': case '3dstone2': case 'neonlight': case 'glitch': case 'harrypotter': case 'brokenglass': case 'papercut': 
 case 'watercolor': case 'multicolor': case 'neondevil': case 'underwater': case 'graffitibike':
  case 'snow': case 'cloud': case 'honey': case 'ice': case 'fruitjuice': case 'biscuit': case 'wood': 
 case 'chocolate': case 'strawberry': case 'matrix': case 'blood': case 'dropwater': case 'toxic': 
 case 'lava': case 'rock': case 'bloodglas': case 'halloween': case 'darkgold': case 'joker': case 'wicker':
  case 'firework': case 'skeleton': case 'blackpink': case 'sand': case 'glue': case '1917': case 'leaves': case 'demon': {
-             if (!q) return reply(`Example : ${prefix + command} ${global.ownername}`) 
+             if (!q) return reply(`Contoh : ${prefix + command} ${global.ownername}`) 
                 if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
 if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
-             reply(mess.wait)
+             await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
              let link
              if (/candy/.test(command)) link = 'https://textpro.me/create-christmas-candy-cane-text-effect-1056.html'
              if (/christmas/.test(command)) link = 'https://textpro.me/christmas-tree-text-effect-online-free-1057.html'
@@ -4627,13 +4290,13 @@ case 'textmaker': {
    if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
 if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
-if (args.length < 1) return reply(`Example :\n${prefix + command} <name>`)
+if (args.length < 1) return reply(`Contoh :\n${prefix + command} <name>`)
 if (args[0] === 'glitch') {
-if (args.length < 2) return reply(`Example :\n${prefix + command + ' ' + args[0]} ${global.ownername}`)
+if (args.length < 2) return reply(`Contoh :\n${prefix + command + ' ' + args[0]} ${global.ownername}`)
 let teds = await thiccysapi.textpro("https://textpro.me/create-impressive-glitch-text-effects-online-1027.html", [args[1]])
 hanbotz.sendMessage(from, {image:{url:teds}, caption:"Done!"}, {quoted:m})
 } else if (args[0] === 'glow') {
-if (args.length < 2) return reply(`Example :\n${prefix + command + ' ' + args[0]} ${global.ownername}`)
+if (args.length < 2) return reply(`Contoh :\n${prefix + command + ' ' + args[0]} ${global.ownername}`)
 let teds = await thiccysapi.textpro("https://textpro.me/create-light-glow-sliced-text-effect-online-1068.html", [args[1]])
 hanbotz.sendMessage(from, {image:{url:teds}, caption:"Done!"}, {quoted:m})
 db.data.users[m.sender].limit -= 1 
@@ -5168,12 +4831,14 @@ case 'pornhub':{
 	if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
 if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
-if(!q) return reply(`Example: ${prefix + command} ajg | ea`)
-reply(mess.wait)
+if(!q) return reply(`Contoh: ${prefix + command} ajg | ea`)
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
   inilogo4 = args.join(" ")
 inilogo9 = args.join(" ")
    var logo4 = inilogo4.split('|')[0]
 var logo9 = inilogo9.split('|')[1]
+if (!logo4) return reply(`*Contoh*: Han | Botz`)
+if (!logo9) return reply(`*Contoh*: Han | Botz`)
     let anu = await textpro("https://textpro.me/pornhub-style-logo-online-generator-free-977.html", [`${logo4}`,`${logo9}`])
 console.log(anu)
 hanbotz.sendMessage(from,{image:{url:anu}, caption:"donw banh"},{quoted:m})
@@ -5184,12 +4849,14 @@ case 'retro':{
 	if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
 if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
-if(!q) return reply(`Example: ${prefix + command} ajg | ea`)
-reply(mess.wait)
+if(!q) return reply(`Contoh: ${prefix + command} ajg | ea`)
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
   inilogo4 = args.join(" ")
 inilogo9 = args.join(" ")
    var logo4 = inilogo4.split('|')[0]
 var logo9 = inilogo9.split('|')[1]
+if (!logo4) return reply(`*Contoh*: Han | Botz`)
+if (!logo9) return reply(`*Contoh*: Han | Botz`)
     let anu = await textpro("https://textpro.me/create-3d-retro-text-effect-online-free-1065.html", [`${logo4}`,`${logo9}`])
 console.log(anu)
 hanbotz.sendMessage(from,{image:{url:anu}, caption:"donw banh"},{quoted:m})
@@ -5200,12 +4867,14 @@ case 'horror':{
 	if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
 if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
-if(!q) return reply(`Example: ${prefix + command} ajg | ea`)
-reply(mess.wait)
+if(!q) return reply(`Contoh: ${prefix + command} ajg | ea`)
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
   inilogo4 = args.join(" ")
 inilogo9 = args.join(" ")
    var logo4 = inilogo4.split('|')[0]
 var logo9 = inilogo9.split('|')[1]
+if (!logo4) return reply(`*Contoh*: Han | Botz`)
+if (!logo9) return reply(`*Contoh*: Han | Botz`)
     let anu = await textpro("https://textpro.me/create-a-cinematic-horror-text-effect-1045.html", [`${logo4}`,`${logo9}`])
 console.log(anu)
 hanbotz.sendMessage(from,{image:{url:anu}, caption:"donw banh"},{quoted:m})
@@ -5216,12 +4885,14 @@ case '8bit':{
 	if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
 if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
-if(!q) return reply(`Example: ${prefix + command} ajg | ea`)
-reply(mess.wait)
+if(!q) return reply(`Contoh: ${prefix + command} ajg | ea`)
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
   inilogo4 = args.join(" ")
 inilogo9 = args.join(" ")
    var logo4 = inilogo4.split('|')[0]
 var logo9 = inilogo9.split('|')[1]
+if (!logo4) return reply(`*Contoh*: Han | Botz`)
+if (!logo9) return reply(`*Contoh*: Han | Botz`)
     let anu = await textpro("https://textpro.me/video-game-classic-8-bit-text-effect-1037.html", [`${logo4}`,`${logo9}`])
 console.log(anu)
 hanbotz.sendMessage(from,{image:{url:anu}, caption:"donw banh"},{quoted:m})
@@ -5234,7 +4905,6 @@ if (isBanChat) return reply(mess.banChat)
 if (!args.join(" ")) return reply('Where is the emoji?')
 emoji.get(args.join(" ")).then(async(emoji) => {
 let mese = await hanbotz.sendMessage(m.chat, {image:{url:emoji.images[4].url}, caption: `Made by ${global.botname}`}, {quoted:m})
-await hanbotz.sendMessage(from, {text:"reply #s to this image to make sticker"}, {quoted:mese})
 })
 }
 break
@@ -5244,49 +4914,49 @@ case 'instagramemoji':
 if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
 if (!q) return reply("Enter emoji, maximum 1 emoji, eg?" + ` ${prefix + command} 😀`)
-reply(mess.wait)
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
 emote(q, "11")
 break
 case 'iphoneemoji': 
 if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
 if (!q) return reply("Enter emoji, max 1 emoji, eg?" + ` ${prefix + command} 😀`)
-reply(mess.wait)
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
 emote(q, "0")
 break
 case 'googleemoji': 
 if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
 if (!q) return reply("Enter emoji, max 1 emoji, eg?" + ` ${prefix + command} 😀`)
-reply(mess.wait)
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
 emote(q, "1")
 break
 case 'samsungemoji': 
 if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
 if (!q) return reply("Enter emoji, max 1 emoji, eg?" + ` ${prefix + command} 😀`)
-reply(mess.wait)
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
 emote(q, "2")
 break
 case 'microsoftemoji': 
 if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
 if (!q) return reply("Enter emoji, max 1 emoji, eg?" + ` ${prefix + command} 😀`)
-reply(mess.wait)
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
 emote(q, "3")
 break
 case 'whatsappemoji': 
 if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
 if (!q) return reply("Enter emoji, max 1 emoji, eg?" + ` ${prefix + command} 😀`)
-reply(mess.wait)
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
 emote(q, "4")
 break
 case 'twitteremoji': 
 if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
 if (!q) return reply("Enter emoji, max 1 emoji, eg?" + ` ${prefix + command} 😀`)
-reply(mess.wait)
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
 emote(q, "5")
 break
 case 'facebookemoji': 
@@ -5294,41 +4964,41 @@ case 'fbemoji':
 if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
 if (!q) return reply("Enter emoji, max 1 emoji, eg?" + ` ${prefix + command} 😀`)
-reply(mess.wait)
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
 emote(q, "6")
 break
 case 'skypeemoji': 
 if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
 if (!q) return reply("Enter emoji, max 1 emoji, eg?" + ` ${prefix + command} 😀`)
-reply(mess.wait)
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
 emote(q, "7")
 break
 case 'joyemoji': 
 if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
 if (!q) return reply("Enter emoji, max 1 emoji, eg?" + ` ${prefix + command} 😀`)
-reply(mess.wait)
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
 emote(q, "8")
 break
 case 'mojiemoji': 
 if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
 if (!q) return reply("Enter emoji, max 1 emoji, eg?" + ` ${prefix + command} 😀`)
-reply(mess.wait)
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
 emote(q, "9")
 case 'pediaemoji': 
 if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
 if (!q) return reply("Enter emoji, max 1 emoji, eg?" + ` ${prefix + command} 😀`)
-reply(mess.wait)
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
 emote(q, "10")
 break
 
 case 'emojimix': {
 	   if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
-if (!q) reply(`*Example :* ${prefix + command} 🦄+🤣`)
+if (!q) reply(`*Contoh :* ${prefix + command} 🦄+🤣`)
 let [emoji1, emoji2] = q.split`+`
 let kuntuh = await fetchJson(`https://tenor.googleapis.com/v2/featured?key=AIzaSyAyimkuYQYF_FXVALexPuGQctUWRURdCYQ&contentfilter=high&media_filter=png_transparent&component=proactive&collection=emoji_kitchen_v5&q=${encodeURIComponent(emoji1)}_${encodeURIComponent(emoji2)}`)
 for (let res of kuntuh.results) {
@@ -5342,7 +5012,7 @@ break
 if (isBanChat) return reply(mess.banChat)
 if (!m.quoted) return reply('Reply Image')
 if (!/webp/.test(mime)) return reply(`Reply sticker with caption *${prefix + command}*`)
-reply(mess.wait)
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
 let media = await hanbotz.downloadAndSaveMediaMessage(quoted)
 let ran = await getRandom('.png')
 exec(`ffmpeg -i ${media} ${ran}`, (err) => {
@@ -5357,9 +5027,9 @@ break
 case 'tomp4': case 'tovideo': {
    if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
-if (!m.quoted) return reply('Reply Image')
+if (!m.quoted) return reply('Reply Sticker Gif')
 if (!/webp/.test(mime)) return reply(`Reply sticker with caption *${prefix + command}*`)
-reply(mess.wait)
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
 let { webp2mp4File } = require('./lib/uploader')
 let media = await hanbotz.downloadAndSaveMediaMessage(quoted)
 let webpToMp4 = await webp2mp4File(media)
@@ -5370,9 +5040,9 @@ break
 case 'toaud': case 'toaudio': {
    if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
-if (!/video/.test(mime) && !/audio/.test(mime)) return reply(`Send/Reply Video/Audio You Want To Use As Audio With Caption ${prefix + command}`)
 if (!m.quoted) return reply(`Send/Reply Video/Audio You Want To Use As Audio With Caption ${prefix + command}`)
-reply(mess.wait)
+if (!/video/.test(mime) && !/audio/.test(mime)) return reply(`Send/Reply Video/Audio You Want To Use As Audio With Caption ${prefix + command}`)
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
 let media = await quoted.download()
 let { toAudio } = require('./lib/converter')
 let audio = await toAudio(media, 'mp4')
@@ -5385,7 +5055,7 @@ if (isBanChat) return reply(mess.banChat)
 if (/document/.test(mime)) return reply(`Send/Reply Video/Audio You Want To Convert Into MP3 With Caption ${prefix + command}`)
 if (!/video/.test(mime) && !/audio/.test(mime)) return reply(`Send/Reply Video/Audio You Want To Convert Into MP3 With Caption ${prefix + command}`)
 if (!m.quoted) return reply(`Send/Reply Video/Audio You Want To Convert Into MP3 With Caption ${prefix + command}`)
-reply(mess.wait)
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
 let media = await quoted.download()
 let { toAudio } = require('./lib/converter')
 let audio = await toAudio(media, 'mp4')
@@ -5397,7 +5067,7 @@ case 'tovn': case 'toptt': {
 if (isBanChat) return reply(mess.banChat)
 if (!/video/.test(mime) && !/audio/.test(mime)) return reply(`Reply Video/Audio That You Want To Be VN With Caption ${prefix + command}`)
 if (!m.quoted) return reply(`Reply Video/Audio That You Want To Be VN With Caption ${prefix + command}`)
-reply(mess.wait)
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
 let media = await quoted.download()
 let { toPTT } = require('./lib/converter')
 let audio = await toPTT(media, 'mp4')
@@ -5409,7 +5079,7 @@ case 'togif': {
 if (isBanChat) return reply(mess.banChat)
 if (!m.quoted) return reply('Reply Image')
 if (!/webp/.test(mime)) return reply(`Reply sticker with caption *${prefix + command}*`)
-reply(mess.wait)
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
 let { webp2mp4File } = require('./lib/uploader')
 let media = await hanbotz.downloadAndSaveMediaMessage(quoted)
 let webpToMp4 = await webp2mp4File(media)
@@ -5420,7 +5090,7 @@ break
 	case 'tourl': {
    if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
-reply(mess.wait)
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
 let { UploadFileUgu, webp2mp4File, TelegraPh } = require('./lib/uploader')
 let media = await hanbotz.downloadAndSaveMediaMessage(quoted)
 if (/image/.test(mime)) {
@@ -5443,7 +5113,7 @@ break
 	    hmm = await './src/remobg-'+getRandom('')
 	    localFile = await hanbotz.downloadAndSaveMediaMessage(quoted, hmm)
 	    outputFile = await './src/hremo-'+getRandom('.png')
-	    reply(mess.wait)
+	    await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
 	    remobg.removeBackgroundFromImageFile({
 	      path: localFile,
 	      apiKey: apinobg,
@@ -5461,7 +5131,7 @@ break
 	case 'yts': case 'ytsearch': {
    if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
-if (!args.join(" ")) return replay(`Example : ${prefix + command} stay jb`)
+if (!args.join(" ")) return replay(`Contoh : ${prefix + command} dj tiktok`)
 let yts = require("yt-search")
 let search = await yts(args.join(" "))
 let teks = '*| YOUTUBE SEARCH |*\n\n Result From '+text+'\n\n'
@@ -5472,10 +5142,10 @@ teks += `${global.themeemoji} No : ${no++}\n${global.themeemoji} Type : ${i.type
 hanbotz.sendMessage(m.chat, { image: { url: search.all[0].thumbnail },  caption: teks }, { quoted: m })
 }
 break
-case 'google': {
+case 'googlexxx': {
    if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
-if (!args[0]) return reply(`Example: ${prefix + command} <query>\nUses : ${prefix + command} apa arti cinta`)
+if (!args[0]) return reply(`Contoh: ${prefix + command} <query>\nUses : ${prefix + command} apa arti cinta`)
 let google = require('google-it')
 google({'query': args.join(" ")}).then(res => {
 let teks = `Google Search From : ${text}\n\n`
@@ -5497,26 +5167,15 @@ gis(args.join(" "), async (error, result) => {
 n = result
 images = n[Math.floor(Math.random() * n.length)].url
 let buttons = [
-{buttonId: `gimage ${args.join(" ")}`, buttonText: {displayText: 'Next Image 👀'}, type: 1}
+{buttonId: `gimage ${args.join(" ")}`, buttonText: {displayText: 'Next Image'}, type: 1}
 ]
 let buttonMessage = {
-image: { url: images },
-caption: `*| GOOGLE IMAGE |*
-
-${global.themeemoji} Query : ${text}
-${global.themeemoji} Media Url : ${images}`,
-footer: `${global.botname}`,
-buttons: buttons,
-headerType: 4,
-contextInfo:{externalAdReply:{
-title:`HanBotz`,
-body:`WhatsApp Bot`,
-thumbnail: log0,
-mediaType:2,
-mediaUrl: `${global.websitex}`,
-sourceUrl: `{global.websitex}`
-}}
-}
+                    image: { url: images },
+                    caption: `${images}`,
+                    footer: hanbotz.user.name,
+                    buttons: buttons,
+                    headerType: 4
+                }
 hanbotz.sendMessage(m.chat, buttonMessage, { quoted: m })
 })
 }
@@ -5524,7 +5183,7 @@ break
 	case 'igstoryxx': case 'instagramstoryxx': {
    if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
-if (!args[0]) return reply(`Example :\n${prefix + command} josephxeon13`)
+if (!args[0]) return reply(`Contoh :\n${prefix + command} josephxeon13`)
 try {
 hx.igstory(args[0]).then(async(resed) => {
 ini_anu = []
@@ -5561,7 +5220,7 @@ break
 case 'igs2': case 'igstory2': case 'instagramstory2': {
 if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
-                if (!text) return reply(`Where is the username?\nExample: ${prefix}igstory josephxeon13`)
+                if (!text) return reply(`Where is the username?\nContoh: ${prefix}igstory josephxeon13`)
                 let urlnya = text
 	            hx.igstory(urlnya)
 	            .then(async(result) => {
@@ -5604,7 +5263,7 @@ case 'ig2': case 'igdl2': case 'instagram2': {
 case 'igdl': case 'instagram': case 'instagramreels': case 'igreels': {
    if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
-if (!args[0]) return reply(`Example :\n${prefix + command} https://www.instagram.com/p/CcvJGuxh9VI/?igshid=YmMyMTA2M2Y=`)
+if (!args[0]) return reply(`Contoh :\n${prefix + command} https://www.instagram.com/p/CcvJGuxh9VI/?igshid=YmMyMTA2M2Y=`)
 try {
 hx.igdl(args[0]).then(async(resed) => {
 ini_anu = []
@@ -5702,7 +5361,7 @@ if (isBanChat) return reply(mess.banChat)
             break
             case 'twitdl': case 'twitter': {
                 if (!text) throw 'Masukkan Query Link!'
-                m.reply(mess.wait)
+                await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
                 let anu = await fetchJson(`https://api.akuari.my.id/downloader/twitter?link=${text}`)
                 ction = (`${anu.desc}`)
                 let buttons = [
@@ -5720,7 +5379,7 @@ if (isBanChat) return reply(mess.banChat)
             break
             case 'twittermp3': case 'twitteraudio': {
                 if (!text) throw 'Masukkan Query Link!'
-                m.reply(mess.wait)
+                await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
                 let anu = await fetchJson(`https://api.akuari.my.id/downloader/twitter?link=${text}`)
                 hanbotz.sendMessage(m.chat, {audio: { url: anu.audio }, mimetype: 'audio/mpeg', fileName: `Twitter Audio`}, { quoted : m })
             }
@@ -5728,7 +5387,7 @@ if (isBanChat) return reply(mess.banChat)
 case 'fbdl': case 'fb': case 'facebook': case 'fbmp4': {     	    
    if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
-             if (!text) return reply(`Where is the link bro?\nExample: ${prefix}facebook https://www.facebook.com/groups/599913174599515/permalink/705467384044093/`)
+             if (!text) return reply(`Where is the link bro?\nContoh: ${prefix}facebook https://www.facebook.com/groups/599913174599515/permalink/705467384044093/`)
                 if (!isUrl(args[0]) && !args[0].includes('facebook.com')) return reply(`The link you provided is not valid`)
             let bocil = require('@bochilteam/scraper')  
                 bocil.facebookdlv2(`${text}`).then(async (data) => {                   
@@ -5751,7 +5410,7 @@ if (isBanChat) return reply(mess.banChat)
             case 'fbmp3': case 'facebookmp3': case 'facebookaudio': {
    if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
-                  if (!text) return reply(`Where is the link?\nExample: ${prefix + command} https://www.facebook.com/groups/599913174599515/permalink/705467384044093/`)
+                  if (!text) return reply(`Where is the link?\nContoh: ${prefix + command} https://www.facebook.com/groups/599913174599515/permalink/705467384044093/`)
                   if (!isUrl(args[0]) && !args[0].includes('facebook.com')) return reply(`The link you provided is not valid`)
   let noh = require('@bochilteam/scraper')                
   noh.savefrom(`${text}`).then(async (anu) => {  
@@ -5764,7 +5423,7 @@ if (isBanChat) return reply(mess.banChat)
 case 'facebookxx': case 'fbdlxxx': case 'fbmp4xxx': case 'fbxxx': {
    if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
-if (!args[0]) return reply(`Example :\n${prefix + command} https://fb.watch/cAX2dep-BZ/`)
+if (!args[0]) return reply(`Contoh :\n${prefix + command} https://fb.watch/cAX2dep-BZ/`)
 try {
 let resd = await aiovideodl(args[0])
 teks = `*| FACEBOOK DOWNLOADER |*
@@ -5825,7 +5484,7 @@ break
             case 'pinterest2': {
             	   if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
-                reply(mess.wait)
+                await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
 		let { pinterest } = require('./lib/scraper')
                 anu = await pinterest(text)
                 result = anu[Math.floor(Math.random() * anu.length)]
@@ -5836,7 +5495,7 @@ case 'webtonsearch': case 'webtoon':
    if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
                 if (!text) return reply('What Are you Looking For??')
-                await reply(mess.wait)
+                await await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
                 xeonkey.Webtoons(q).then(async data => {
                     let txt = `*------「 WEBTOONS-SEARCH 」------*\n\n`
                     for (let i of data) {
@@ -5855,7 +5514,7 @@ if (isBanChat) return reply(mess.banChat)
             case 'wattpad': {
             	            	if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
-            if (!text) return reply(`Example : ${prefix + command} love`)
+            if (!text) return reply(`Contoh : ${prefix + command} love`)
             let res = await fetchJson(`https://zenzapis.xyz/webzone/wattpad?query=$text}&apikey=hdiiofficial`)
             let { judul, dibaca, divote, bab, waktu, url, thumb, description } = res.result[0]
             let capt = `Wattpad From query\n\n`
@@ -5928,10 +5587,9 @@ break
            case 'git': case 'gitclone':
            if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
-	reply(mess.wait)
             let regex1 = /(?:https|git)(?::\/\/|@)github\.com[\/:]([^\/:]+)\/(.+)/i
-            if (!args[0]) reply(`Use ${prefix}gitclone (repo link)`)
-    if (!regex1.test(args[0])) return reply(mess.linkm)
+    if (!regex1.test(args[0])) return reply(`Contoh: ${prefix}gitclone (repo link)`)
+    await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
     let [, user, repo] = args[0].match(regex1) || []
     repo = repo.replace(/.git$/, '')
     let url = `https://api.github.com/repos/${user}/${repo}/zipball`
@@ -5951,7 +5609,9 @@ case 'lava': case 'rock': case 'bloodglas': case 'hallowen': case 'darkgold': ca
  case 'firework': case 'skeleton': case 'blackpink': case 'sand': case 'glue': case '1917': case 'leaves': {
  	   if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
-              if (!q) return reply(`Example : ${prefix + command} ${global.ownername}`) 
+              if (!q) return reply(`Contoh : ${prefix + command} ${global.ownername}`) 
+              if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
+             await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
           
              let link
              if (/candy/.test(command)) link = 'https://textpro.me/create-christmas-candy-cane-text-effect-1056.html'
@@ -6012,14 +5672,14 @@ if (isBanChat) return reply(mess.banChat)
              if (/1917/.test(command)) link = 'https://textpro.me/1917-style-text-effect-online-980.html'
                 if (/leaves/.test(command)) link = 'https://textpro.me/natural-leaves-text-effect-931.html'
              let anu = await maker.textpro(link, q)
-                hanbotz.sendMessage(m.chat, { image: { url: anu }, caption: `Made by ${global.botname},For my Darling ` }, { quoted: m })
+                hanbotz.sendMessage(m.chat, { image: { url: anu }, caption: `Made by ${global.botname}` }, { quoted: m })
              }
              break
             case 'drakorxxx':
                if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
                 if (!text) return reply('What Are You Looking For??')
-                await reply(mess.wait)
+                await await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
                 xeonkey.Drakor(`${text}`).then(async data => {
                     let txt = `*-----「 DRAKOR-SEARCH 」-----*\n\n`
                     for (let i of data) {
@@ -6037,7 +5697,7 @@ if (isBanChat) return reply(mess.banChat)
             case 'drakor': {
             	            	if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
-            if (!text) return reply(`Example : ${prefix + command} love`)
+            if (!text) return reply(`Contoh : ${prefix + command} love`)
             let res = await fetchJson(`https://zenzapis.xyz/webzone/drakor?query=${text}&apikey=hdiiofficial`)
             let capt = `Drakor Search From : ${text}\n\n`
             for (let i of res.result) {
@@ -6054,7 +5714,7 @@ if (isBanChat) return reply(mess.banChat)
             	   if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
                 if (!text) return reply(`What Anime Are You Looking For??`)
-                await reply(mess.wait)
+                await await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
                 xeonkey.Anime(q).then(async data => {
                     let txt = `*-------「 ANIME-SEARCH 」-------*\n\n`
                     for (let i of data) {
@@ -6081,7 +5741,7 @@ if (isBanChat) return reply(mess.banChat)
                if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
                 if (!text) return reply(`What Anime Character Are You Looking For??`)
-                await reply(mess.wait)
+                await await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
                 xeonkey.Character(q).then(async data => {
                     let txt = `*---「 CHARACTER-SEARCH 」---*\n\n`
                     for (let i of data) {
@@ -6107,7 +5767,7 @@ if (isBanChat) return reply(mess.banChat)
                if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
                 if (!text) return reply(`What Manga Are You Looking For??`)
-                await reply(mess.wait)
+                await await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
                 xeonkey.Manga(`${text}`).then(async data => {
                     let txt = `*------「 MANGA-SEARCH 」------*\n\n`
                     for (let i of data) {
@@ -6131,8 +5791,8 @@ if (isBanChat) return reply(mess.banChat)
                 case 'anime':
    if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
-	    if(!q) return reply(`Which anime do you want to search?\nExample ${prefix}manga naruto`)
-reply(mess.wait)						
+	    if(!q) return reply(`Which anime do you want to search?\nContoh ${prefix}manga naruto`)
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})						
 const { Anime } =require("@shineiichijo/marika")
     const client = new Anime();
      let anime = await client.searchAnime(q)
@@ -6176,10 +5836,10 @@ break
 case 'manga':
    if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
-reply(mess.wait)						
+await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})						
 const { Manga } =require("@shineiichijo/marika")
 const manga = new Manga();
-if(!q) return reply(`Which manga do you want to search?\nExample ${prefix}manga naruto`)
+if(!q) return reply(`Which manga do you want to search?\nContoh ${prefix}manga naruto`)
 let srh = await manga.searchManga(q)
     let mang = `🎀 *Title: ${srh.data[0].title}*\n`;
     mang += `📈 *Status: ${srh.data[0].status}*\n`;
@@ -6210,8 +5870,8 @@ break
 case 'lyrics': case 'lirik': {
 		            	if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
-	    if (!text) return reply(`Use example ${prefix}lyrics Despacito`)
-	reply(mess.wait)
+	    if (!text) return reply(`Contoh: ${prefix}lyrics Despacito`)
+	await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
 	const { lyrics, lyricsv2 } = require('@bochilteam/scraper')
     const result = await lyricsv2(text).catch(async _ => await lyrics(text))
     reply(`
@@ -6263,8 +5923,8 @@ break
 case 'film':
 if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
-	reply(mess.wait)
-if (!q) return reply(`What film you wanna search?\nExample: ${prefix}film Spiderman`)
+	await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
+if (!q) return reply(`What film you wanna search?\nContoh: ${prefix}film Spiderman`)
 xeonkey.Film(q)
     .then(data => {console.log(data)
     let krl = `*❒「  Film ${q} 」*\n*🌿 Author* : ${data[0].author}\n\n`
@@ -6277,7 +5937,7 @@ break
 case 'mcserver': case 'mcquery': {
    if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
-if (!args.join(" ")) return replay(`Example : \n${prefix + command} ip|port\nUses : \n${prefix + command} play.xeon.com|19132`)
+if (!args.join(" ")) return replay(`Contoh : \n${prefix + command} ip|port\nUses : \n${prefix + command} play.xeon.com|19132`)
 const Query = require("minecraft-query");
 
 const qury = args.join(" ")
@@ -6303,7 +5963,7 @@ break
 case 'mcpedl': {
    if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
-if (!args.join(" ")) return replay(`Example : ${prefix + command} shader`)
+if (!args.join(" ")) return replay(`Contoh : ${prefix + command} shader`)
 xeontod.mcpedl(args.join(" ")).then(async(res) => {
 teks = `*| MCPEDL SEARCH |*`
 for (let i of res) {
@@ -6327,7 +5987,7 @@ break
 case 'happymod': {
    if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
-if (!args.join(" ")) return replay(`Example : ${prefix + command} mobile legend`)
+if (!args.join(" ")) return replay(`Contoh : ${prefix + command} mobile legend`)
 xeontod.happymod(args.join(" ")).then(async(res) => {
 teks = '```「 HappyMod Search 」```'
 for (let i of res) {
@@ -6352,7 +6012,7 @@ break
 case 'searchgc': {
    if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
-if (args.length < 1) return replay(`Example :\n${prefix}searchgc Classy Editor`)
+if (args.length < 1) return replay(`Contoh :\n${prefix}searchgc Classy Editor`)
 nae = args.join(" ")
 hx.linkwa(nae).then(res => {
 teks = '```「 Search Group 」```'
@@ -6743,7 +6403,7 @@ break
             case 'cinemaschedule': {
             	            	if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
-            if (!text) return reply(`Example: ${prefix + command} jakarta`)
+            if (!text) return reply(`Contoh: ${prefix + command} jakarta`)
             let res = await fetchJson(`https://zenzapis.xyz/webzone/jadwalbioskop?kota=${text}&apikey=hdiiofficial`)
             let capt = `Jadwal Bioskop From : ${text}\n\n`
             for (let i of res.result){
@@ -6758,11 +6418,13 @@ break
 	    case 'couplepp':  case 'ppcouple': {
 		   if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
-                reply(mess.wait)
+if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit)
+                await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
                 let anu = await fetchJson('https://raw.githubusercontent.com/iamriz7/kopel_/main/kopel.json')
                 let random = anu[Math.floor(Math.random() * anu.length)]
                 hanbotz.sendMessage(m.chat, { image: { url: random.male }, caption: `Couple Male🙎🏻‍♂️` }, { quoted: m })
                 hanbotz.sendMessage(m.chat, { image: { url: random.female }, caption: `Couple Female🙎🏻‍♀️` }, { quoted: m })
+                db.data.users[m.sender].limit -= 1 
             }
 	    break
             case 'quotesanime': case 'quoteanime': {
@@ -6802,8 +6464,8 @@ if (args.length < 1) return reply('What Are You Looking For?? ')
 const res2 = await XeonBotIncWiki(q).catch(e => {
 return reply('_[ ! ] Error Result Not Found_') 
 }) 
-const result2 = `*Title :* ${res2[0].judul}\n*Wiki :* ${res2[0].wiki}`
-hanbotz.sendMessage(from, { image : { url : res2[0].thumb }, caption : result2}) 
+const result2 = `${res2[0].wiki}`
+hanbotz.sendMessage(from, { image : { url : res2[0].thumb }, caption : result2}, {quoted: m})
 break
             case 'wikimedia': {
             	 	if (isBan) return reply(mess.ban)
@@ -6845,7 +6507,7 @@ break
 	        case 'nomerhoki': case 'nomorhoki': {
 			   if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
-                if (!Number(text)) return reply(`Example : ${prefix + command} 916909137213`)
+                if (!Number(text)) return reply(`Contoh : ${prefix + command} 916909137213`)
                 let anu = await primbon.nomer_hoki(Number(text))
                 if (anu.status == false) return reply(anu.message)
                 hanbotz.sendText(m.chat, `${themeemoji} *Phone Number :* ${anu.message.nomer_hp}\n${themeemoji} *Shuzi Angka Figures :* ${anu.message.angka_shuzi}\n${themeemoji} *Positive Energy :*\n- Riches : ${anu.message.energi_positif.kekayaan}\n- Health : ${anu.message.energi_positif.kesehatan}\n- Love : ${anu.message.energi_positif.cinta}\n- Stability : ${anu.message.energi_positif.kestabilan}\n- Percentage : ${anu.message.energi_positif.persentase}\n${themeemoji} *Negative Energy :*\n- Dispute : ${anu.message.energi_negatif.perselisihan}\n- Lost : ${anu.message.energi_negatif.kehilangan}\n- Catastrophe : ${anu.message.energi_negatif.malapetaka}\n- Destruction : ${anu.message.energi_negatif.kehancuran}\n- Percentage : ${anu.message.energi_negatif.persentase}`, m)
@@ -6854,7 +6516,7 @@ break
             case 'artimimpi': case 'tafsirmimpi': {
             	   if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
-                if (!text) return reply(`Example : ${prefix + command} belanja`)
+                if (!text) return reply(`Contoh : ${prefix + command} belanja`)
                 let anu = await primbon.tafsir_mimpi(text)
                 if (anu.status == false) return reply(anu.message)
                 hanbotz.sendText(m.chat, `${themeemoji} *Dream :* ${anu.message.mimpi}\n${themeemoji} *Meaning :* ${anu.message.arti}\n${themeemoji} *Solution :* ${anu.message.solusi}`, m)
@@ -6863,7 +6525,7 @@ break
             case 'ramalanjodoh': case 'ramaljodoh': {
             	   if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
-                if (!text) return reply(`Example : ${prefix + command} Han, 7, 7, 2005, Novia, 16, 11, 2004`)
+                if (!text) return reply(`Contoh : ${prefix + command} Han, 7, 7, 2005, Novia, 16, 11, 2004`)
                 let [nama1, tgl1, bln1, thn1, nama2, tgl2, bln2, thn2] = text.split`,`
                 let anu = await primbon.ramalan_jodoh(nama1, tgl1, bln1, thn1, nama2, tgl2, bln2, thn2)
                 if (anu.status == false) return reply(anu.message)
@@ -6873,7 +6535,7 @@ break
             case 'ramalanjodohbali': case 'ramaljodohbali': {
             	   if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
-                if (!text) return reply(`Example : ${prefix + command} Han, 7, 7, 2005, Novia, 16, 11, 2004`)
+                if (!text) return reply(`Contoh : ${prefix + command} Han, 7, 7, 2005, Novia, 16, 11, 2004`)
                 let [nama1, tgl1, bln1, thn1, nama2, tgl2, bln2, thn2] = text.split`,`
                 let anu = await primbon.ramalan_jodoh_bali(nama1, tgl1, bln1, thn1, nama2, tgl2, bln2, thn2)
                 if (anu.status == false) return reply(anu.message)
@@ -6883,7 +6545,7 @@ break
             case 'suamiistri': {
             	   if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
-                if (!text) return reply(`Example : ${prefix + command} Han, 7, 7, 2005, Novia, 16, 11, 2004`)
+                if (!text) return reply(`Contoh : ${prefix + command} Han, 7, 7, 2005, Novia, 16, 11, 2004`)
                 let [nama1, tgl1, bln1, thn1, nama2, tgl2, bln2, thn2] = text.split`,`
                 let anu = await primbon.suami_istri(nama1, tgl1, bln1, thn1, nama2, tgl2, bln2, thn2)
                 if (anu.status == false) return reply(anu.message)
@@ -6893,7 +6555,7 @@ break
             case 'ramalancinta': case 'ramalcinta': {
             	   if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
-                if (!text) return reply(`Example : ${prefix + command} Han, 7, 7, 2005, Novia, 16, 11, 2004`)
+                if (!text) return reply(`Contoh : ${prefix + command} Han, 7, 7, 2005, Novia, 16, 11, 2004`)
                 let [nama1, tgl1, bln1, thn1, nama2, tgl2, bln2, thn2] = text.split`,`
                 let anu = await primbon.ramalan_cinta(nama1, tgl1, bln1, thn1, nama2, tgl2, bln2, thn2)
                 if (anu.status == false) return reply(anu.message)
@@ -6903,7 +6565,7 @@ break
             case 'artinama': {
             	   if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
-                if (!text) return reply(`Example : ${prefix + command} Han`)
+                if (!text) return reply(`Contoh : ${prefix + command} Han`)
                 let anu = await primbon.arti_nama(text)
                 if (anu.status == false) return reply(anu.message)
                 hanbotz.sendText(m.chat, `${themeemoji} *Name :* ${anu.message.nama}\n${themeemoji} *Meaning :* ${anu.message.arti}\n${themeemoji} *Notes :* ${anu.message.catatan}`, m)
@@ -6912,7 +6574,7 @@ break
             case 'kecocokannama': case 'cocoknama': {
             	   if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
-                if (!text) return reply(`Example : ${prefix + command} Han, 7, 7, 2005`)
+                if (!text) return reply(`Contoh : ${prefix + command} Han, 7, 7, 2005`)
                 let [nama, tgl, bln, thn] = text.split`,`
                 let anu = await primbon.kecocokan_nama(nama, tgl, bln, thn)
                 if (anu.status == false) return reply(anu.message)
@@ -6922,7 +6584,7 @@ break
             case 'kecocokanpasangan': case 'cocokpasangan': case 'pasangan': {
             	   if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
-                if (!text) return reply(`Example : ${prefix + command} Han|Novia`)
+                if (!text) return reply(`Contoh : ${prefix + command} Han|Novia`)
                 let [nama1, nama2] = text.split`|`
                 let anu = await primbon.kecocokan_nama_pasangan(nama1, nama2)
                 if (anu.status == false) return reply(anu.message)
@@ -6932,7 +6594,7 @@ break
             case 'jadianpernikahan': case 'jadiannikah': {
             	   if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
-                if (!text) return reply(`Example : ${prefix + command} 6, 12, 2020`)
+                if (!text) return reply(`Contoh : ${prefix + command} 6, 12, 2020`)
                 let [tgl, bln, thn] = text.split`,`
                 let anu = await primbon.tanggal_jadian_pernikahan(tgl, bln, thn)
                 if (anu.status == false) return reply(anu.message)
@@ -6942,7 +6604,7 @@ break
             case 'sifatusaha': {
             	   if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
-                if (!text) return reply(`Example : ${prefix+ command} 28, 12, 2021`)
+                if (!text) return reply(`Contoh : ${prefix+ command} 28, 12, 2021`)
                 let [tgl, bln, thn] = text.split`,`
                 let anu = await primbon.sifat_usaha_bisnis(tgl, bln, thn)
                 if (anu.status == false) return reply(anu.message)
@@ -6952,7 +6614,7 @@ break
             case 'rejeki': case 'rezeki': {
             	   if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
-                if (!text) return reply(`Example : ${prefix + command} 7, 7, 2005`)
+                if (!text) return reply(`Contoh : ${prefix + command} 7, 7, 2005`)
                 let [tgl, bln, thn] = text.split`,`
                 let anu = await primbon.rejeki_hoki_weton(tgl, bln, thn)
                 if (anu.status == false) return reply(anu.message)
@@ -6962,7 +6624,7 @@ break
             case 'pekerjaan': case 'kerja': {
             	   if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
-                if (!text) return reply(`Example : ${prefix + command} 7, 7, 2005`)
+                if (!text) return reply(`Contoh : ${prefix + command} 7, 7, 2005`)
                 let [tgl, bln, thn] = text.split`,`
                 let anu = await primbon.pekerjaan_weton_lahir(tgl, bln, thn)
                 if (anu.status == false) return reply(anu.message)
@@ -6972,7 +6634,7 @@ break
             case 'ramalannasib': case 'ramalnasib': case 'nasib': {
             	   if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
-                if (!text) return reply(`Example : 7, 7, 2005`)
+                if (!text) return reply(`Contoh : 7, 7, 2005`)
                 let [tgl, bln, thn] = text.split`,`
                 let anu = await primbon.ramalan_nasib(tgl, bln, thn)
                 if (anu.status == false) return reply(anu.message)
@@ -6982,7 +6644,7 @@ break
             case 'potensipenyakit': case 'penyakit': {
             	   if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
-                if (!text) return reply(`Example : ${prefix + command} 7, 7, 2005`)
+                if (!text) return reply(`Contoh : ${prefix + command} 7, 7, 2005`)
                 let [tgl, bln, thn] = text.split`,`
                 let anu = await primbon.cek_potensi_penyakit(tgl, bln, thn)
                 if (anu.status == false) return reply(anu.message)
@@ -6992,7 +6654,7 @@ break
             case 'artitarot': case 'tarot': {
             	   if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
-                if (!text) return reply(`Example : ${prefix + command} 7, 7, 2005`)
+                if (!text) return reply(`Contoh : ${prefix + command} 7, 7, 2005`)
                 let [tgl, bln, thn] = text.split`,`
                 let anu = await primbon.arti_kartu_tarot(tgl, bln, thn)
                 if (anu.status == false) return reply(anu.message)
@@ -7002,7 +6664,7 @@ break
             case 'fengshui': {
             	   if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
-                if (!text) return reply(`Example : ${prefix + command} Han, 1, 2005\n\nNote : ${prefix + command} Name, gender, tahun lahir\nGender : 1 untuk laki-laki & 2 untuk perempuan`)
+                if (!text) return reply(`Contoh : ${prefix + command} Han, 1, 2005\n\nNote : ${prefix + command} Name, gender, tahun lahir\nGender : 1 untuk laki-laki & 2 untuk perempuan`)
                 let [nama, gender, tahun] = text.split`,`
                 let anu = await primbon.perhitungan_feng_shui(nama, gender, tahun)
                 if (anu.status == false) return reply(anu.message)
@@ -7012,7 +6674,7 @@ break
             case 'haribaik': {
             	   if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
-                if (!text) return reply(`Example : ${prefix + command} 7, 7, 2005`)
+                if (!text) return reply(`Contoh : ${prefix + command} 7, 7, 2005`)
                 let [tgl, bln, thn] = text.split`,`
                 let anu = await primbon.petung_hari_baik(tgl, bln, thn)
                 if (anu.status == false) return reply(anu.message)
@@ -7022,7 +6684,7 @@ break
             case 'harisangar': case 'taliwangke': {
             	   if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
-                if (!text) return reply(`Example : ${prefix + command} 7, 7, 2005`)
+                if (!text) return reply(`Contoh : ${prefix + command} 7, 7, 2005`)
                 let [tgl, bln, thn] = text.split`,`
                 let anu = await primbon.hari_sangar_taliwangke(tgl, bln, thn)
                 if (anu.status == false) return reply(anu.message)
@@ -7030,7 +6692,7 @@ break
             }
             break
             case 'harinaas': case 'harisial': {
-                if (!text) return reply(`Example : ${prefix + command} 7, 7, 2005`)
+                if (!text) return reply(`Contoh : ${prefix + command} 7, 7, 2005`)
                 let [tgl, bln, thn] = text.split`,`
                 let anu = await primbon.primbon_hari_naas(tgl, bln, thn)
                 if (anu.status == false) return reply(anu.message)
@@ -7040,7 +6702,7 @@ break
             case 'nagahari': case 'harinaga': {
             	   if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
-                if (!text) return reply(`Example : ${prefix + command} 7, 7, 2005`)
+                if (!text) return reply(`Contoh : ${prefix + command} 7, 7, 2005`)
                 let [tgl, bln, thn] = text.split`,`
                 let anu = await primbon.rahasia_naga_hari(tgl, bln, thn)
                 if (anu.status == false) return reply(anu.message)
@@ -7050,7 +6712,7 @@ break
             case 'arahrejeki': case 'arahrezeki': {
             	   if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
-                if (!text) return reply(`Example : ${prefix + command} 7, 7, 2005`)
+                if (!text) return reply(`Contoh : ${prefix + command} 7, 7, 2005`)
                 let [tgl, bln, thn] = text.split`,`
                 let anu = await primbon.primbon_arah_rejeki(tgl, bln, thn)
                 if (anu.status == false) return reply(anu.message)
@@ -7060,7 +6722,7 @@ break
             case 'peruntungan': {
             	   if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
-                if (!text) return reply(`Example : ${prefix + command} DIka, 7, 7, 2005, 2022\n\nNote : ${prefix + command} Name, tanggal lahir, bulan lahir, tahun lahir, untuk tahun`)
+                if (!text) return reply(`Contoh : ${prefix + command} DIka, 7, 7, 2005, 2022\n\nNote : ${prefix + command} Name, tanggal lahir, bulan lahir, tahun lahir, untuk tahun`)
                 let [nama, tgl, bln, thn, untuk] = text.split`,`
                 let anu = await primbon.ramalan_peruntungan(nama, tgl, bln, thn, untuk)
                 if (anu.status == false) return reply(anu.message)
@@ -7070,7 +6732,7 @@ break
             case 'weton': case 'wetonjawa': {
             	   if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
-                if (!text) return (`Example : ${prefix + command} 7, 7, 2005`)
+                if (!text) return (`Contoh : ${prefix + command} 7, 7, 2005`)
                 let [tgl, bln, thn] = text.split`,`
                 let anu = await primbon.weton_jawa(tgl, bln, thn)
                 if (anu.status == false) return reply(anu.message)
@@ -7080,7 +6742,7 @@ break
             case 'sifat': case 'karakter': {
             	   if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
-                if (!text) return reply(`Example : ${prefix + command} Han, 7, 7, 2005`)
+                if (!text) return reply(`Contoh : ${prefix + command} Han, 7, 7, 2005`)
                 let [nama, tgl, bln, thn] = text.split`,`
                 let anu = await primbon.sifat_karakter_tanggal_lahir(nama, tgl, bln, thn)
                 if (anu.status == false) return reply(anu.message)
@@ -7090,7 +6752,7 @@ break
             case 'keberuntungan': {
             	   if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
-                if (!text) return reply(`Example : ${prefix + command} Han, 7, 7, 2005`)
+                if (!text) return reply(`Contoh : ${prefix + command} Han, 7, 7, 2005`)
                 let [nama, tgl, bln, thn] = text.split`,`
                 let anu = await primbon.potensi_keberuntungan(nama, tgl, bln, thn)
                 if (anu.status == false) return reply(anu.message)
@@ -7100,7 +6762,7 @@ break
             case 'memancing': {
             	   if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
-                if (!text) return reply(`Example : ${prefix + command} 12, 1, 2022`)
+                if (!text) return reply(`Contoh : ${prefix + command} 12, 1, 2022`)
                 let [tgl, bln, thn] = text.split`,`
                 let anu = await primbon.primbon_memancing_ikan(tgl, bln, thn)
                 if (anu.status == false) return reply(anu.message)
@@ -7110,7 +6772,7 @@ break
             case 'masasubur': {
             	   if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
-                if (!text) return (`Example : ${prefix + command} 12, 1, 2022, 28\n\nNote : ${prefix + command} First Day Of Menstruation Cycle`)
+                if (!text) return (`Contoh : ${prefix + command} 12, 1, 2022, 28\n\nNote : ${prefix + command} First Day Of Menstruation Cycle`)
                 let [tgl, bln, thn, siklus] = text.split`,`
                 let anu = await primbon.masa_subur(tgl, bln, thn, siklus)
                 if (anu.status == false) return reply(anu.message)
@@ -7120,7 +6782,7 @@ break
             case 'zodiak': case 'zodiac': {
             	   if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
-                if (!text) return reply(`Example : ${prefix+ command} 7 7 2005`)
+                if (!text) return reply(`Contoh : ${prefix+ command} 7 7 2005`)
                 let zodiak = [
                     ["capricorn", new Date(1970, 0, 1)],
                     ["aquarius", new Date(1970, 0, 20)],
@@ -7157,35 +6819,30 @@ break
             case 'shio': {
             	   if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
-                if (!text) return reply(`Example : ${prefix + command} tikus\n\nNote : For Detail https://primbon.com/shio.htm`)
+                if (!text) return reply(`Contoh : ${prefix + command} tikus\n\nNote : For Detail https://primbon.com/shio.htm`)
                 let anu = await primbon.shio(text)
                 if (anu.status == false) return reply(anu.message)
                 hanbotz.sendText(m.chat, `${themeemoji} *Results :* ${anu.message}`, m)
             }
             break
 	    case 'tiktoknowm': case 'tiktok': {
-                if (!text) throw 'Masukkan Query Link!'
-                m.reply(mess.wait)
+		if (!text) return reply(mess.linkm)
+                if (!isUrl(args[0]) && !args[0].includes('tiktok')) return reply(`Tautan yang Anda berikan tidak valid`)
+                await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
                 let anu = await fetchJson(`https://api.akuari.my.id/downloader/tiktok?link=${text}`)
-                hanbotz.sendMessage(m.chat, { video: { url: anu.respon.video }, caption: anu.caption}, { quoted: m })
+                let ana = await getBuffer(anu.respon.video)
+                hanbotz.sendMessage(m.chat, { video: ana, caption: `${text}` }, { quoted: m })
             }
             break
-            case 'tiktokwm': case 'tiktokwatermark': {
-                if (!text) throw 'Masukkan Query Link!'
-                m.reply(mess.wait)
-                let anu = await fetchJson(`https://api.akuari.my.id/downloader/tiktok?link=${text}`)
-                hanbotz.sendMessage(m.chat, { video: { url: anu.data.videoWM }, caption: anu.caption}, { quoted: m })
-            }
-            break
-  case 'tiktokaudio':
-case 'tiktokmusic':
-case 'ttaud':{
+            
+case 'tiktokmp3': case 'tiktokaudio': case 'tiktokmusic': case 'ttaud': {
 	if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
-  if (!q) return reply('Where is the audio?')
-  if (!q.includes('tiktok')) return reply(`That's not a tiktok link!`)
-   let anu = (`https://api.akuari.my.id/downloader/tiktokaudio?link=${q}`)
-    hanbotz.sendMessage(from, { audio: { url: anu }, mimetype: 'audio/mp4' }, { quoted: m })
+  if (!text) return reply(mess.linkm)
+                if (!isUrl(args[0]) && !args[0].includes('tiktok')) return reply(`Tautan yang Anda berikan tidak valid`)
+   let anu = (`https://api.akuari.my.id/downloader/tiktok?link=${q}`)
+   let ana = await getBuffer(anu.respon.audio)
+    hanbotz.sendMessage(from, { audio: ana, mimetype: 'audio/mp4' }, { quoted: m })
    }
  break
 	
@@ -7193,8 +6850,7 @@ case 'play': case 'ytplay': {
 	if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
 if (!args[0]) return reply(mess.linkm)
-                
-                m.reply(`searching...`)
+                await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
                 let yts = require("yt-search")
                 let search = await yts(text)
                 let anu = search.videos[Math.floor(Math.random() * search.videos.length)]
@@ -7225,77 +6881,44 @@ case 'ytmp3': case 'ytaudio': {
 	if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
                 let { yta } = require('./lib/y2mate')
-                if (!text) throw `Example : ${prefix + command} https://youtube.com/*** 128kbps`
-                m.reply(`searching...`)
+                if (!text) throw `Contoh : ${prefix + command} https://youtube.com/*** 128kbps`
                 let quality = args[1] ? args[1] : '128kbps'
                 let media = await yta(text, quality)
                let iniaud = await (`$media.dl_link`)
-                if (media.filesize >= 100000) return m.reply('File Melebihi Batas '+util.format(media))
-                hanbotz.sendImage(m.chat, media.thumb, `• Title : ${media.title}\n• File Size : ${media.filesizeF}\n• Url : ${isUrl(text)}\n• Ext : MP3\n• Resolusi : ${args[1] || '128kbps'}\n\n wait, the file will be sent in a few minutes`, m)
+                
+                hanbotz.sendImage(m.chat, media.thumb, `• Title : ${media.title}\n• File Size : ${media.filesizeF}\n• Url : ${isUrl(text)}\n• Ext : MP3\n• Resolusi : ${args[1] || '128kbps'}\n\n tunggu, file akan dikirim dalam beberapa menit`, m)
                 hanbotz.sendMessage(m.chat, {audio: { url: media.dl_link }, mimetype: 'audio/mpeg', fileName: `${media.title}`}, { quoted : m })
             }
             break
             case 'ytmp4': case 'ytvideo': {
                 let { ytv } = require('./lib/y2mate')
-                if (!text) throw `Example : ${prefix + command} https://youtube.com/***`
-                m.reply(`wait...`)
-                let quality = args[1] ? args[1] : '480'
+                if (!text) throw `Contoh : ${prefix + command} https://youtube.com/***`
+                await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
+                let quality = args[1] ? args[1] : '360'
                 let media = await ytv(text, quality)
-                if (media.filesize >= 100000) return m.reply('File Melebihi Batas '+util.format(media))
                 
-                hanbotz.sendMessage(m.chat, {document: { url: media.dl_link }, mimetype: 'video/mp4', fileName: `${media.title} (${args[1] || '480p'}).mp4`}, { quoted : m })
+                hanbotz.sendImage(m.chat, media.thumb, `• Title : ${media.title}\n• File Size : ${media.filesizeF}\n• Url : ${isUrl(text)}\n• Ext : MP4\n• Resolusi : ${args[1] || '360p'}\n\n tunggu, file akan dikirim dalam beberapa menit`, m)
+                hanbotz.sendMessage(m.chat, {document: { url: media.dl_link }, mimetype: 'video/mp4', fileName: `${media.title} (${args[1] || '360p'}).mp4`}, { quoted : m })
             }
             break
-            case 'ytdl': {
-            	if (isBan) return reply(mess.ban)
-	if (isBanChat) return reply(mess.banChat)
-                if (!text) return reply(mess.linkm)
-                if (!isUrl(args[0]) && !args[0].includes('youtube.com')) return reply(`The link you provided is invalid`)
-                anu = await fetchJson(`https://api.akuari.my.id/downloader/youtube?link=${text}`)        
-                if (anu.filesize_video >= 999999) return reply('*File Over Limit* '+util.format(anu))
-                tummb = await getBuffer(anu.thumb)
-                audio = await getBuffer(anu.audio)        
-                hanbotz.sendMessage(m.chat, {document: audio, mimetype: 'audio/mpeg', fileName: `${anu.title}`}, { quoted : m }).catch((err) => reply(mess.error))
-                hanbotz.sendMessage(m.chat, { video: { url: anu.video }, jpegThumbnail:tummb, caption: `${anu.title}`}, { quoted: m }).catch((err) => reply(mess.error))
-            }
-            break
-case 'ytshorts': case 'shorts': {
-   if (isBan) return reply(mess.ban)	 			
-if (isBanChat) return reply(mess.banChat)
-  if (!text) return reply(`*Use ${prefix + command} put yt shorts link*`)
-  if (!isUrl(args[0]) && !args[0].includes('youtube')) return reply(`The link you provided is not valid`)
-  xeonkey.Youtube(`${text}`).then(async (data) => {
-  if (data.medias[0].formattedSize.split('MB')[0] >= 999) return reply('*File Over Limit* '+util.format(data)) 
-  cap = `
-*YOUTUBE SHORTS*
-
-*${themeemoji}TITLE:* ${data.title}\n*${themeemoji}QUALITY:* ${data.medias[0].quality}\n*${themeemoji}SIZE:* ${data.medias[0].formattedSize}\n*${themeemoji}DURATION* ${data.duration}\n*${themeemoji}ID:* ${data.medias[0].cached}\n*${themeemoji}LINK:* ${data.url}\n\n*${botname}*`
-  buf = await getBuffer(data.thumbnail)
-  hanbotz.sendMessage(m.chat, { image: { url: data.thumbnail }, jpegThumbnail:buf, caption: `${cap}` }, { quoted: m })
-  hanbotz.sendMessage(m.chat, { video: { url: data.medias[0].url }, jpegThumbnail:buf, caption: `*${themeemoji}TITLE:* ${data.title}\n*${themeemoji}QUALITY:* ${data.medias[0].quality}\n*${themeemoji}SIZE:* ${data.medias[0].formattedSize}` }, { quoted: m })  
-                }).catch((err) => {
-                    reply(mess.reply)
-                })
-            }
-            break
+            
 case 'getmusic': {
                 let { yta } = require('./lib/y2mate')
-                if (!text) throw `Example : ${prefix + command} 1`
+                if (!text) throw `Contoh : ${prefix + command} 1`
                 if (!m.quoted) return m.reply('Reply Pesan')
                 if (!m.quoted.isBaileys) throw `Hanya Bisa Membalas Pesan Dari Bot`
-                m.reply(`wait...`)
 		let urls = quoted.text.match(new RegExp(/(?:https?:\/\/)?(?:youtu\.be\/|(?:www\.|m\.)?youtube\.com\/(?:watch|v|embed|shorts)(?:\.php)?(?:\?.*v=|\/))([a-zA-Z0-9\_-]+)/, 'gi'))
                 if (!urls) throw `Mungkin pesan yang anda reply tidak mengandung result ytsearch`
                 let quality = args[1] ? args[1] : '128kbps'
                 let media = await yta(urls[text - 1], quality)
                 if (media.filesize >= 100000) return m.reply('File Melebihi Batas '+util.format(media))
                 hanbotz.sendImage(m.chat, media.thumb, `• Title : ${media.title}\n• File Size : ${media.filesizeF}\n• Url : ${urls[text - 1]}\n• Ext : MP3\n• Resolusi : ${args[1] || '128kbps'}`, m)
-                hanbotz.sendMessage(m.chat, {document: { url: media.dl_link }, mimetype: 'audio/mpeg', fileName: `${media.title}.mp3`}, { quoted : m })
+                hanbotz.sendMessage(m.chat, {audio: { url: media.dl_link }, mimetype: 'audio/mpeg', fileName: `${media.title}`}, { quoted : m })
             }
             break
             case 'getvideo': {
                 let { ytv } = require('./lib/y2mate')
-                if (!text) throw `Example : ${prefix + command} 1`
+                if (!text) throw `Contoh : ${prefix + command} 1`
                 if (!m.quoted) return m.reply('Reply Pesan')
                 if (!m.quoted.isBaileys) throw `Hanya Bisa Membalas Pesan Dari Bot`
                 m.reply(`wait...`)
@@ -7316,23 +6939,15 @@ try {
 hx.pinterest(args.join(" ")).then(async(res) => {
 imgnyee = res[Math.floor(Math.random() * res.length)]
 let buttons = [
-{buttonId: `pinterest ${args.join(" ")}`, buttonText: {displayText: 'Next Image 👀'}, type: 1}
+{buttonId: `pinterest ${args.join(" ")}`, buttonText: {displayText: 'Next Image'}, type: 1}
 ]
 let buttonMessage = {
-image: { url: imgnyee },
-caption:  `${global.dogeemoji} Title : ` + args.join(" ") + `\n${global.dogeemoji} Media Url : `+imgnyee,
-footer: `${global.botname}`,
-buttons: buttons,
-headerType: 4,
-contextInfo:{externalAdReply:{
-title:`${global.botname}`,
-body:`${global.ownername}`,
-thumbnail: log0,
-mediaType:2,
-mediaUrl: `${global.websitex}`,
-sourceUrl: `${global.websitex}`
-}}
-}
+                    image: { url: imgnyee },
+                    caption: `${imgnyee}`,
+                    footer: hanbotz.user.name,
+                    buttons: buttons,
+                    headerType: 4
+                }
 hanbotz.sendMessage(m.chat, buttonMessage, { quoted: m })
 }).catch(_ => _)
 } catch {
@@ -7344,7 +6959,7 @@ case 'mediafire': {
 	if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
 if (!text) return reply(mess.linkm)
-if (!isUrl(args[0]) && !args[0].includes('mediafire.com')) return reply(`The link you provided is invalid`)
+if (!isUrl(args[0]) && !args[0].includes('mediafire.com')) return reply(`Tautan yang Anda berikan tidak valid`)
 const baby1 = await mediafireDl(text)
 if (baby1[0].size.split('MB')[0] >= 999) return reply('*File Over Limit* '+util.format(baby1))
 const result4 = `*MEDIAFIRE DOWNLOADER*
@@ -7362,7 +6977,7 @@ break
             case 'umma': case 'ummadl': {
             	if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
-	        if (!text) return reply(`Example : ${prefix + command} https://umma.id/channel/video/post/gus-arafat-sumber-kecewa-84464612933698`)
+	        if (!text) return reply(`Contoh : ${prefix + command} https://umma.id/channel/video/post/gus-arafat-sumber-kecewa-84464612933698`)
                 let { umma } = require('./lib/scraper')
 		let anu = await umma(isUrl(text)[0])
 		if (anu.type == 'video') {
@@ -7395,7 +7010,7 @@ To Download Media, Please Click One Of The Buttons Below Or Enter The ytmp3/ytmp
         case 'ringtone': {
         	if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
-		if (!text) return reply(`Where is the ringtone name noob?, Example : ${prefix + command} charlie puth`)
+		if (!text) return reply(`Where is the ringtone name noob?, Contoh : ${prefix + command} charlie puth`)
         let { ringtone } = require('./lib/scraper')
 		let anu = await ringtone(text)
 		let result = anu[Math.floor(Math.random() * anu.length)]
@@ -7404,7 +7019,7 @@ To Download Media, Please Click One Of The Buttons Below Or Enter The ytmp3/ytmp
 	    break
 case 'tempo': {
 if (isBan) return reply(mess.ban)
-if (!args.join(" ")) return reply(`Example: ${prefix + command} 10`)
+if (!args.join(" ")) return reply(`Contoh: ${prefix + command} 10`)
 var req = args.join(' ')
 media = await hanbotz.downloadAndSaveMediaMessage(quoted, "tempo")
 if (isQuotedAudio) {
@@ -7433,7 +7048,7 @@ break
 case 'volume': {
    if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
-if (!args.join(" ")) return reply(`Example: ${prefix + command} 10`)
+if (!args.join(" ")) return reply(`Contoh: ${prefix + command} 10`)
 media = await hanbotz.downloadAndSaveMediaMessage(quoted, "volume")
 if (isQuotedAudio) {
 rname = getRandom('.mp3')
@@ -7476,7 +7091,7 @@ break
                 if (/smooth/.test(command)) set = '-filter:v "minterpolate=\'mi_mode=mci:mc_mode=aobmc:vsbmc=1:fps=120\'"'
                 if (/tupai/.test(command)) set = '-filter:a "atempo=0.5,asetrate=65100"'
                 if (/audio/.test(mime)) {
-                reply(mess.wait)
+                await hanbotz.sendMessage(from, { react: { text: `🕒`, key: m.key }})
                 let media = await hanbotz.downloadAndSaveMediaMessage(quoted)
                 let ran = getRandom('.mp3')
                 exec(`ffmpeg -i ${media} ${set} ${ran}`, (err, stderr, stdout) => {
@@ -7550,7 +7165,7 @@ ${Object.entries(global.db.data.sticker).map(([key, value], index) => `${index +
 	if (isBanChat) return reply(mess.banChat)
 	if (!isCreator) return replay(`${mess.owner}`)
                 if (!m.quoted) return reply(`Reply Message You Want To Save In Database`)
-                if (!text) return reply(`Example : ${prefix + command} File Name`)
+                if (!text) return reply(`Contoh : ${prefix + command} File Name`)
                 let msgs = global.db.data.database
                 if (text.toLowerCase() in msgs) return reply(`'${text}' Has Been Registered In The Message List`)
                 msgs[text.toLowerCase()] = quoted.fakeObj
@@ -7565,7 +7180,7 @@ View List Of Messages With ${prefix}listmsg`)
             	if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
 	if (!isCreator) return replay(`${mess.owner}`)
-                if (!text) return reply(`Example : ${prefix + command} file name\n\nView Message List With ${prefix}listmsg`)
+                if (!text) return reply(`Contoh : ${prefix + command} file name\n\nView Message List With ${prefix}listmsg`)
                 let msgs = global.db.data.database
                 if (!(text.toLowerCase() in msgs)) return reply(`'${text}' Not Listed In The Message List`)
                 hanbotz.copyNForward(m.chat, msgs[text.toLowerCase()], true)
@@ -7671,11 +7286,18 @@ break
                 neww = performance.now()
                 oldd = performance.now()
                 respon = `
-Response Speed ${latensi.toFixed(4)} _Second_ \n ${oldd - neww} _miliseconds_\n\nRuntime : ${runtime(process.uptime())}
+*- S P E E D -*
+${latensi.toFixed(4)} Second
+${oldd - neww} Miliseconds
 
-_NodeJS Memory Usaage_
-${Object.keys(used).map((key, _, arr) => `${key.padEnd(Math.max(...arr.map(v=>v.length)),' ')}: ${formatp(used[key])}`).join('\n')}
+*- R U N T I M E -*
+${runtime(process.uptime())}
+
+*- S E R V E R -*
 RAM: ${formatp(os.totalmem() - os.freemem())} / ${formatp(os.totalmem())}
+
+*⫹⫺ NodeJS Memory Usage*
+${Object.keys(used).map((key, _, arr) => `${key.padEnd(Math.max(...arr.map(v=>v.length)),' ')}: ${formatp(used[key])}`).join('\n')}
                 `.trim()
                 reply(respon)
             }
@@ -7703,67 +7325,11 @@ RAM: ${formatp(os.totalmem() - os.freemem())} / ${formatp(os.totalmem())}
                 hanbotz.sendContact(m.chat, global.vcardowner, m)
             }
             break
-  case 'setmenu': {
-            	if (isBan) return reply(mess.ban)
-	if (isBanChat) return reply(mess.banChat)
-            if (!isCreator) return reply(mess.owner)
-            let setbot = db.data.settings[botNumber]
-               if (args[0] === 'templateImage'){
-                setbot.templateImage = true
-                setbot.templateVideo = false
-                setbot.templateGif = false
-                setbot.templateMsg = false
-                setbot.templateDocument = false
-                reply(mess.success)
-                } else if (args[0] === 'templateVideo'){
-                setbot.templateImage = false
-                setbot.templateVideo = true
-                setbot.templateGif = false
-                setbot.templateMsg = false
-                setbot.templateLocation = false
-                reply(mess.success)
-                } else if (args[0] === 'templateGif'){
-                setbot.templateImage = false
-                setbot.templateVideo = false
-                setbot.templateGif = true
-                setbot.templateMsg = false
-                setbot.templateDocument = false
-                reply(mess.success)
-                //} else if (args[0] === 'templateMessage'){
-                /////setbot.templateImage = false
-                /////setbot.templateVideo = false
-                /////setbot.templateGif = false
-                /////setbot.templateMsg = true
-                //////setbot.templateDocument = false
-                //////reply(mess.success)
-                } else if (args[0] === 'templateDocument'){
-                setbot.templateImage = false
-                setbot.templateVideo = false
-                setbot.templateGif = false
-                setbot.templateMsg = false
-                setbot.templateDocument = true
-                reply(mess.success)
-                } else {
-                let sections = [
-                {
-                title: "😛CHANGE BOT MENU😛",
-                rows: [
-                {title: "Image Menu", rowId: `setmenu templateImage`, description: `Tap to change bot menu to Image Menu`},
-                {title: "Gif Menu", rowId: `setmenu templateGif`, description: `Tap to change bot menu to Gif Menu`},
-                {title: "Video Menu", rowId: `setmenu templateVideo`, description: `Tap to change bot menu to Video Menu`},
-                ///////////////{title: "Text Menu", rowId: `setmenu templateMessage`, description: `Tap to change bot menu to Text Menu`},
-                {title: "Document Menu", rowId: `setmenu templateDocument`, description: `Tap to change bot menu to Document Menu`}
-                ]
-                },
-                ]
-                hanbotz.sendListMsg(m.chat, `Please select the menu you want to change!`, ` `, hanbotz.user.name, `Click Here`, sections, m)
-                }
-            }
-            break
+  
 case 'request': {
    if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
-if (!args.join(" ")) return replay(`Example : ${prefix + command} hello dev please add a downloader feature`)
+if (!args.join(" ")) return replay(`Contoh : ${prefix + command} hello dev please add a downloader feature`)
 teks = `*| REQUEST |*`
 teks1 = `\n\nNumber : @${m.sender.split("@")[0]}\nRequest : ${args.join(" ")}`
 teks2 = `\n\nSuccessfully sent to owner`
@@ -7776,7 +7342,7 @@ break
                     case 'bug': case 'report': {
                     	if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
-                    	if(!text) return reply(`Enter The Bug\n\nExample: ${command} (Fitur) Error`)
+                    	if(!text) return reply(`Enter The Bug\n\nContoh: ${command} (Fitur) Error`)
                     	hanbotz.sendMessage(`${owner}@s.whatsapp.net`, {text: `*Bug Report From:* wa.me/${m.sender.split("@")[0]}
 Report Message: ${text}` })
 reply(`Berhasil Dilaporkan Ke Owner\n\nPastikan Bug/Error Valid, Jika Kamu Bermain Main Dengan Ini, Kamu Pasti Akan Diblokir !`)
@@ -7788,87 +7354,139 @@ if (isBanChat) return reply(mess.banChat)
 reply(`*「 ${global.botname} Donate 」*\n\nhttps://saweria.co/HanBotz`)
 }
 break
-case 'helppp': {
-		if (isBan) return reply(mess.ban)	 			
-if (isBanChat) return reply(mess.banChat)
-hanbotz.sendMessage(from, { react: { text: `✨`, key: m.key }})
-	                let btn = [{
-                                urlButton: {
-                                    displayText: 'Join',
-                                    url: `https://chat.whatsapp.com/KBxslpQTy08Djs32qK2TJQ`
-                                }
-                            }, {
-                                quickReplyButton: {
-                                    displayText: 'All Menu',
-                                    id: 'allmenu'
-                                }
-                            }, {
-                                quickReplyButton: {
-                                    displayText: 'List Menu',
-                                    id: 'command'
-                                }  
-                            }]
-                         let setbot = db.data.settings[botNumber]
-                        if (setbot.templateImage) {
-                        hanbotz.send5ButImg(m.chat, menulist, global.botname, global.thumb, btn, global.thumb)
-                        } else if (setbot.templateGif) {
-                        hanbotz.send5ButGif(m.chat, menulist, global.botname, global.vidmenu, btn, global.thumb)
-                        } else if (setbot.templateVid) {
-                        hanbotz.send5ButVid(m.chat, anu, global.botname, global.vidmenu, btn, global.thumb)
-                        } else if (setbot.templateVideo) {
-                        hanbotz.send5ButVid(m.chat, menulist, global.botname, global.vidmenu, btn, global.thumb)
-                        /////////} else if (setbot.templateMsg) {
-                        /////////hanbotz.send5ButMsg(m.chat, menulist, global.botname, btn)
-                        } else if (setbot.templateDocument) {
-                        let buttonmenu = [
-        	{ urlButton: { displayText: `Join`, url : `https://chat.whatsapp.com/KBxslpQTy08Djs32qK2TJQ` } },
-            { urlButton: { displayText: `Donate`, url: `https://saweria.co/HanBotz` } },
-            { quickReplyButton: { displayText: `All Menu`, id: 'allmenu'} },
-            { quickReplyButton: { displayText: `List Menu`, id: 'command'} }
-        	]
-        	hanbotz.sendMessage(m.chat, { caption: menulist, document: fs.readFileSync('./XeonMedia/theme/cheems.xlsx'), mimetype: `${docs}`, fileName: `HanBotz WhatsApp Bot`, templateButtons: buttonmenu, footer: `${botname}`, mentionedJid: [m.sender] })
-                        }
-                     }
-            break
-case 'menxxxu': {
-let user = global.db.data.users[m.sender]
+
+case 'menu': {
+	if (isBan) return reply(mess.ban)
+	if (isBanChat) return reply(mess.banChat)
 const sections = [
                      {
-                    title: "Baca Sebelum Menggunakan Bot!",
+                    title: "HanBotz",
  rows: [
                           
                           {
-                            "title": "Syarat dan Ketentuan",
-                            "rowId": ".snkq",
-                            "description": "[SnK Menggunakan Bot]"
+                            "title": "PENGELOLA GRUP",
+                            "rowId": "gcmenu",
+                            "description": "Mengatur Grup"
                           },
                           {
-                            "title": "Apa Itu Limit ?",
-                            "rowId": ".apalimit",
-                            "description": "[Penjelasan Tentang Limit]"
+                            "title": "PERMAINAN",
+                            "rowId": "gemmenu",
+                            "description": "Menghilangkan Kegabutan"
+                           },
+                           {
+                            "title": "PENGUNDUH",
+                            "rowId": "downmenu",
+                            "description": "Mengunduh Media"
+                           },
+                           {
+                            "title": "MENFESS",
+                            "rowId": "menfess",
+                            "description": "mengirim media secara anonim"
+                           },
+                           {
+                            "title": "PEMBUAT LOGO",
+                            "rowId": "logomenu",
+                            "description": "Membuat Logo"
+                           },
+                           {
+                            "title": "PENCARIAN",
+                            "rowId": "scmenu",
+                            "description": "Mencari ayang"
+                           },
+                           {
+                            "title": "CONVERT",
+                            "rowId": "stikmenu",
+                            "description": "Converter"
+                           },
+                           {
+                            "title": "KATA-KATA",
+                            "rowId": "kate",
+                            "description": "Quote"
+                           },
+                           {
+                            "title": "STIKER",
+                            "rowId": "stmenu",
+                            "description": "Pembuat Stiker"
+                           },
+                           {
+                            "title": "PENGUBAH SUARA",
+                            "rowId": "audmenu",
+                            "description": "Voice Changer"
+                           },
+                           {
+                            "title": "EMOTICON",
+                            "rowId": "emomenu",
+                            "description": "Emoji Sosial Media"
+                           },
+                           {
+                            "title": "ANIME",
+                            "rowId": "animenu",
+                            "description": "Wangy Wangy"
+                           },
+                           {
+                            "title": "STIKER ANIME",
+                            "rowId": "nimenu",
+                            "description": "Stiker Anime"
+                           },
+                           {
+                            "title": "NSFW",
+                            "rowId": "nsfwmenu",
+                            "description": "(◡ ω ◡)"
+                           },
+                           {
+                            "title": "CERPEN",
+                            "rowId": "cerpenmenu",
+                            "description": "Cerita Pendek"
+                           },
+                           {
+                            "title": "SOUND",
+                            "rowId": "soundmenu",
+                            "description": "Tiktok Sound"
+                           },
+                           {
+                            "title": "BERITA",
+                            "rowId": "berita",
+                            "description": "Artikel Berita"
+                           },
+                           {
+                            "title": "PRIMBON",
+                            "rowId": "primbonmenu",
+                            "description": "Ramalan"
+                           },
+                           {
+                            "title": "DEVELOPER",
+                            "rowId": "ownermenu",
+                            "description": "Pengaturan Bot"
                            }
                            ]
                            },
                            {
-                    title: "Main",
+                    title: "_____________________________",
  rows: [
                           {
-                            "title": "AllMenu",
-                            "rowId": ".menu",
-                            "description": "[Semua Command HanBotz]"
+                            "title": "RULES",
+                            "rowId": "rulesnya",
+                            "description": "Syarat dan Ketentuan Penggunaan Bot"
+                          },
+                          {
+                            "title": "DONASI",
+                            "rowId": "donasi",
+                            "description": "Bantu HanBotz Untuk Tetap Online"
+                          },
+                          {
+                            "title": "PING",
+                            "rowId": "ping",
+                            "description": "Speed Test"
                           }]
                            },
                            ]
 
 const listMessage = {
-	text: `• *Group* : https://chat.whatsapp.com/KBxslpQTy08Djs32qK2TJQ
-• *Donate* : https://saweria.co/HanBotz\n
-
-Apabila menemukan error silahkan *#report*
-`,
-  footer: "© 2022 HanBotz",
-  title: `${ucapanWaktu} *${pushname}*`,
-  buttonText: "Tap",
+	text: `\n*Grup WhatsApp*
+https://chat.whatsapp.com/KBxslpQTy08Djs32qK2TJQ\n`,
+  footer: "© HanBotz",
+  title: `Hai *${pushname}*`,
+  buttonText: "Pilih Menu",
   sections
 }
 
@@ -7876,37 +7494,45 @@ hanbotz.sendMessage(m.chat, listMessage, {quoted: m})
 } 
 break
 
-case 'menu': case 'command': case 'help': {
+case 'menu2': {
 	   if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
-	let useq = global.db.data.users[m.sender].limit
-	//hitter
-data = await fetchJson('https://api.countapi.xyz/hit/CheemsBot/visits')
-jumlahcmd = `${data.value}`
-dataa = await fetchJson(`https://api.countapi.xyz/hit/CheemsBot${moment.tz('Asia/Kolkata').format('DDMMYYYY')}/visits`)
-jumlahharian = `${dataa.value}`
+	han_buffer = await getBuffer(`https://cililitan.herokuapp.com/api/citacita`)
+// hanbotz.sendMessage(m.chat, {audio: han_buffer, mimetype:'audio/mpeg', ptt:true }, {quoted:m})
 	// hanbotz.sendMessage(from, { react: { text: `✨`, key: m.key }})
-	const redd = `͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏͏`
-var unicorn = await getBuffer(`https://telegra.ph/file/ebb99d16484b373dcd65c.jpg`)
-let buttons = [
-{"urlButton": {"displayText": "Owner","url": "https://instagram.com/terserah_bomat"}},
-{"urlButton": {"displayText": "Join Group","url": "https://chat.whatsapp.com/KBxslpQTy08Djs32qK2TJQ"}},
-{"quickReplyButton": {"displayText": "Buat Beli Gorengan","id": 'donate'}}
-]
-
-await hanbotz.send5ButImg(from, `
-★ *User Info*
-➼ Name:  ${pushname}
-➼ Number:  wa.me/${m.sender.split("@")[0]}
-➼ Limit:  ${useq}
-➼ Status:  ${stty}
+	let data = await fetchJson('https://api.countapi.xyz/hit/CheemsBot/visits')
+let jumlahcmd = `${data.value}`
+let dataa = await fetchJson(`https://api.countapi.xyz/hit/CheemsBot${moment.tz('Asia/Kolkata').format('DDMMYYYY')}/visits`)
+let jumlahharian = `${dataa.value}`
+let copidd = await fetchJson('http://apicovid19indonesia-v2.vercel.app/api/indonesia')
+	let unicorn = await getBuffer(`https://telegra.ph/file/9106ec92b78ab870fe648.jpg`)
+	let useq = db.data.users[m.sender].limit
+menux = `★ *User Info*
+➼ Nama :  ${pushname}
+➼ Nomor :  @${m.sender.split("@")[0]}
+➼ Limit :  ${useq}
+➼ Status :  ${sttw}
 
 ★ *Bot Info*
-➼ Jam: ${jmn}
-➼ Tanggal: ${date}
-➼ Hit Today: ${jumlahharian}
-➼ Total Hit: ${jumlahcmd}
+➼ Jam : ${jmn}
+➼ Tanggal : ${date}
+➼ Hit Harian : ${jumlahharian}
+➼ Total Hit : ${jumlahcmd}
 ➼ Runtime : ${runtime(process.uptime())}
+
+★ *Covid Indonesia*
+➼ Positif : ${copidd.positif}
+➼ Dirawat : ${copidd.dirawat}
+➼ Sembuh : ${copidd.sembuh}
+➼ Meninggal : ${copidd.meninggal}
+➼ Update : ${copidd.lastUpdate}
+
+★ *Owner*
+➼ https://link.hanbotz.xyz/owner
+★ *Donate*
+➼ https://link.hanbotz.xyz/donasi
+★ *Join Grup*
+➼ https://link.hanbotz.xyz/grup
     
 ${redd}_____________________________
 
@@ -7917,7 +7543,7 @@ ${redd}_____________________________
 
 
 *🤖「 GROUP 」🤖*
-• ${prefix}grouplink
+• ${prefix}linkgc
 • ${prefix}ephemeral [option]
 • ${prefix}setgcpp [image]
 • ${prefix}setname [text]
@@ -7931,13 +7557,16 @@ ${redd}_____________________________
 • ${prefix}tagall [text]
 • ${prefix}promote [reply/tag]
 • ${prefix}demote [reply/tag]
-• ${prefix}react [reply emoji]
 
 
 *🎮「 GAME 」🎮*
 • ${prefix}tictactoe [room]
-• ${prefix}delttt
-• ${prefix}tebak [option]
+• ${prefix}deltictactoe
+• ${prefix}tebak gambar
+• ${prefix}tebak kata
+• ${prefix}tebak kalimat
+• ${prefix}tebak lagu
+• ${prefix}tebak lirik
 • ${prefix}caklontong
 • ${prefix}math [difficulty]
 • ${prefix}suitpvp [tag]
@@ -7949,16 +7578,20 @@ ${redd}_____________________________
 • ${prefix}twitter [url]
 • ${prefix}twitteraudio [url]
 • ${prefix}mediafire [url]
+• ${prefix}gitclone [url]
 
 
 *🖇️「 YOUTUBE 」🖇️*	
-• ${prefix}yts [query]
 • ${prefix}play [query]
 • ${prefix}ytmp3 [url]
 • ${prefix}ytmp4 [url]
 • ${prefix}ytsearch [query]
-• ${prefix}getmusic [query]
-• ${prefix}getvideo [query]
+
+
+*🎐「 TTS 」🎐*	
+• ${prefix}ttsid [text]
+• ${prefix}ttsen [text]
+• ${prefix}ttsjp [text]
 
 
 *☁️「 MAKER 」☁️*   Ⓛ
@@ -8083,11 +7716,11 @@ ${redd}_____________________________
 • ${prefix}manga [query]
 • ${prefix}wattpad [query]
 • ${prefix}drakor [query]
+• ${prefix}wikipedia [query]
 
 
 *⭐「 CONVERT 」⭐*
 • ${prefix}toimage [reply stick]
-• ${prefix}sticker [reply img|gif]
 • ${prefix}take [reply img|gif|stik]
 • ${prefix}tovideo [reply img]
 • ${prefix}togif [reply stick]
@@ -8124,6 +7757,7 @@ ${redd}_____________________________
 
 
 *🎊「 STICKER 」🎊*
+• ${prefix}sticker [reply]
 • ${prefix}ttp [text]
 • ${prefix}attp [text]
 • ${prefix}smeme [text]
@@ -8136,16 +7770,7 @@ ${redd}_____________________________
 • ${prefix}lovesticker  Ⓛ
 
 
-*🔢「 CALCULATE  」🔢*
-• ${prefix}akar [number]
-• ${prefix}pangkat ( ^ )
-• ${prefix}penjumlahan ( + ) [error]
-• ${prefix}pengurangan ( - )
-• ${prefix}pembagian ( : )
-• ${prefix}perkalian ( × )
-
-
-*😅「 MEME 」👆*   Ⓛ
+*😅「 MEME 」😱*   Ⓛ
 • ${prefix}darkjoke
 • ${prefix}meme 
 
@@ -8177,7 +7802,6 @@ ${redd}_____________________________
 • ${prefix}facebookemoji
 • ${prefix}samsungemoji
 • ${prefix}whatsappemoji
-• ${prefix}microsoftemoji
 • ${prefix}microsoftemoji
 
 
@@ -8474,8 +8098,6 @@ ${redd}_____________________________
 • ${prefix}cnn-news 
 • ${prefix}fajar-news 
 • ${prefix}cinemaschedule
-• ${prefix}wiki
-• ${prefix}covidindo
 • ${prefix}earthquake
 • ${prefix}tvschedule
 
@@ -8540,14 +8162,861 @@ ${redd}_____________________________
 • ${prefix}block [tag/number]
 • ${prefix}unblock [tag/number]
 
-Apabila Menemukan Error Silahkan *#report*\n` + '' + ' ', `${botname}`,unicorn, [{"urlButton": {"displayText": "Owner","url": "https://instagram.com/terserah_bomat"}},
-{"urlButton": {"displayText": "Join Group","url": "https://chat.whatsapp.com/KBxslpQTy08Djs32qK2TJQ"}},
-{"quickReplyButton": {"displayText": "Buat Beli Gorengan","id": 'donate'}}] )
-break
+Apabila Menemukan Error Silahkan *#report*\n`
+hanbotz.sendMessage(m.chat, { text: menux, mentions:[m.sender]}, {quoted:m})
 }
 break
+case 'gcmenu': {
+	if (isBan) return reply(mess.ban)
+	if (isBanChat) return reply(mess.banChat)
+	if (!m.isGroup) return replay(`${mess.group}`)
+reply(`
+*PENGELOLAAN GRUP*
+
+• *${prefix}linkgrup* : membuat link grup
+> _${prefix}linkgrup_
+
+• *${prefix}ephemeral* : pesan sementara
+> _${prefix}ephemeral enable / disable_
+
+• *${prefix}tagall* : tag seluruh user di grup
+> _${prefix}tagall Hai beban_
+
+• *${prefix}hidetag* : hiden tag seluruh user di grup
+> _${prefix}hidetag Hai beban_
+
+• *${prefix}setgcpp* : set gambar profil grup chat
+> _kirim atau balas foto dengan caption ${prefix}setgcpp_
+
+• *${prefix}setname* : set nama grup chat
+> _${prefix}setname whatsapp grup_
+
+• *${prefix}setdesc* : set deskripsi grup chat
+> _${prefix}setdesc grup tidak berguna_
+
+• *${prefix}group* : buka tutup grup
+> _${prefix}group open / close_
+
+• *${prefix}revoke* : mereset link grup
+> _${prefix}revoke_
+
+• *${prefix}editinfo* : merubah akses edit info grup
+> _${prefix}editinfo enable / disable_
+
+• *${prefix}add* : menambahkan target ke dalam grup
+> _${prefix}add nomor target dimuali dari kode negara (62)_
+
+• *${prefix}kick* : mengeluarkan target dari grup
+> _${prefix}kick @tag user yang aka di kick_
+
+• *${prefix}promote* : menjadikan user sebagai admin grup
+> _${prefix}promote @tag user yang akan di promote_
+
+• *${prefix}demote* : menjadikan admin sebagai member biasa
+> _${prefix}demote @tag user yang akan di demote_
+`)
+}
+break
+case 'gemmenu': {
+	if (isBan) return reply(mess.ban)
+	if (isBanChat) return reply(mess.banChat)
+reply(`
+*PERMAINAN*
+
+• *${prefix}tictactoe* : bermain tictactoe bersama teman
+> _${prefix}tictactoe [nama room]_
+
+• *${prefix}deltictactoe* : menghapus sesi tictactoe
+> _${prefix}deltictactoe_
+
+• *${prefix}tebak* : bermain tebak-tebakan
+> _${prefix}tebak gambar_
+> _${prefix}tebak kata_
+> _${prefix}tebak kalimat_
+> _${prefix}tebak lagu_
+> _${prefix}tebak lirik_
+
+• *${prefix}caklontong* : kuisnya cak lontong
+> _${prefix}caklontong_
+
+• *${prefix}math* : permainan matematika. tersedia beberapa mode
+> _${prefix}math noob_
+> _${prefix}math easy_
+> _${prefix}math medium_
+> _${prefix}math hard_
+> _${prefix}math extreme_
+> _${prefix}math impossible_
+> _${prefix}math impossible2_
+
+• *${prefix}suit* : bermain suit bersama teman
+> _${prefix}suit @tag temen yang ingin di ajak bermain_
+`)
+}
+break
+case 'downmenu': {
+	if (isBan) return reply(mess.ban)
+	if (isBanChat) return reply(mess.banChat)
+reply(`
+*PENGUNDUH*
+
+• *${prefix}tiktok* : mengunduh video tiktok
+> _${prefix}tiktok [url]_
+
+• *${prefix}tiktokaudio* : mengunduh audio tiktok
+> _${prefix}tiktokaudio [url]_
+
+• *${prefix}twitter* : mengunduh video twitter
+> _${prefix}twitter [url]_
+
+• *${prefix}twitteraudio* : mengunduh audio twitter
+> _${prefix}twitteraudio [url]_
+
+• *${prefix}mediafire* : mengunduh file mediafire
+> _${prefix}mediafire [url]_
+
+• *${prefix}gitclone* : mengunduh file github
+> _${prefix}gitclone [url]_
+
+• *${prefix}play* : mengunduh video / audio youtube
+> _${prefix}play dj tiktok_
+
+• *${prefix}ytmp3* : mengunduh audio youtube
+> _${prefix}ytmp3 [url]_
+
+• *${prefix}ytmp4* : mengunduh video youtube
+> _${prefix}ytmp4 [url]_
+
+• *${prefix}ytsearch* : mencari video / audio dari kata kunci
+> _${prefix}ytsearch dj tiktok_
+`)
+}
+break
+case 'logomenu': 
+if (isBan) return reply(mess.ban)
+	if (isBanChat) return reply(mess.banChat)
+reply(`
+*PEMBUAT LOGO*
+
+> _*${prefix}matrix* hanbotz_
+~> terdapat beberapa macam logo:
+
+• ${prefix}ice
+• ${prefix}watercolor
+• ${prefix}multicolor
+• ${prefix}snow
+• ${prefix}harrypot
+• ${prefix}harrypotter
+• ${prefix}brokenglass
+• ${prefix}waterpipe
+• ${prefix}spooky
+• ${prefix}circuit
+• ${prefix}metallic
+• ${prefix}demon
+• ${prefix}sparklechristmas
+• ${prefix}christmas
+• ${prefix}3dchristmas
+• ${prefix}3dbox
+• ${prefix}candy
+• ${prefix}blackpinkneon
+• ${prefix}deepsea
+• ${prefix}scifi
+• ${prefix}fiction
+• ${prefix}berry
+• ${prefix}fruitjuice
+• ${prefix}biscuit
+• ${prefix}wood
+• ${prefix}chocolate
+• ${prefix}matrix
+• ${prefix}blood
+• ${prefix}halloween
+• ${prefix}wicker
+• ${prefix}darkgold
+• ${prefix}firework
+• ${prefix}skeleton
+• ${prefix}sand
+• ${prefix}glue
+• ${prefix}leaves
+• ${prefix}magma
+• ${prefix}lava
+• ${prefix}rock
+• ${prefix}lion
+• ${prefix}3dneon
+• ${prefix}greenneon
+• ${prefix}bokeh
+• ${prefix}holographic
+• ${prefix}bear
+• ${prefix}wolf
+• ${prefix}joker
+• ${prefix}dropwater
+• ${prefix}dropwater2
+• ${prefix}thewall
+• ${prefix}neonlight
+• ${prefix}natural
+• ${prefix}carbon
+• ${prefix}pencil
+• ${prefix}blackpink2
+• ${prefix}neon
+• ${prefix}neonlight2
+• ${prefix}toxic
+• ${prefix}strawberry
+• ${prefix}discovery
+• ${prefix}1917
+• ${prefix}bloodglas
+• ${prefix}underwater
+• ${prefix}textmaker
+• ${prefix}honey
+• ${prefix}waterdrop
+• ${prefix}lion2
+• ${prefix}papercut
+• ${prefix}transformer
+• ${prefix}neondevil
+• ${prefix}3davengers
+• ${prefix}3dstone
+• ${prefix}3dstone2
+• ${prefix}summertime
+• ${prefix}thunder
+• ${prefix}window
+• ${prefix}graffiti
+• ${prefix}graffitibike
+• ${prefix}pornhub
+• ${prefix}glitch
+• ${prefix}blackpink
+• ${prefix}glitch2
+• ${prefix}glitch3
+• ${prefix}3dspace
+• ${prefix}sci_fi
+• ${prefix}ancient
+• ${prefix}fabric
+• ${prefix}hoorror
+• ${prefix}whitebear
+• ${prefix}juice
+• ${prefix}batman
+• ${prefix}multicolor
+• ${prefix}collwall
+• ${prefix}wonderful
+• ${prefix}cool
+• ${prefix}sketch
+• ${prefix}marvel
+• ${prefix}foggy
+• ${prefix}writing
+• ${prefix}halloweenfire
+• ${prefix}halloween
+• ${prefix}watercolor
+• ${prefix}classic
+`)
+break
+case 'scmenu':
+if (isBan) return reply(mess.ban)
+	if (isBanChat) return reply(mess.banChat)
+reply(`
+*PENCARIAN*
+
+• *${prefix}lyrics* : mencari lirik lagu
+> _${prefix}lyrics havana_
+
+• *${prefix}gimage* : mencari gambar dari google
+> _${prefix}gimage banana_
+
+• *${prefix}pinterest* : mencari gambar dari pinterest
+> _${prefix}pinterest banana_
+
+• *${prefix}film* : mencari film dari kata kunci
+> _${prefix}film minions_
+
+• *${prefix}anime* : mencari info anime dari kata kunci
+> _${prefix}anime naruto_
+
+• *${prefix}manga* : mencari manga dari kata kunci
+> _${prefix}manga naruto_
+
+• *${prefix}wikipedia* : mencari informasi dari wikipedia
+> _${prefix}wikipedia banana_
+`)
+break
+case 'stikmenu':
+if (isBan) return reply(mess.ban)
+	if (isBanChat) return reply(mess.banChat)
+reply(`
+*CONVERT*
+
+• *${prefix}ttsid* : membuat audio (Indonesia) dengan teks
+> _${prefix}ttsid hai_
+
+• *${prefix}ttsen* : membuat audio (Inggris) dengan teks
+> _${prefix}ttsen hai_
+
+• *${prefix}ttsjp* : membuat audio (Jepang) dengan teks
+> _${prefix}ttsjp hai_
+
+• *${prefix}toimage* : mengonversikan stiker menjadi gambar
+> _balas stiker (nonAnimasi) dengan caption ${prefix}toimage_
+
+• *${prefix}tovideo* mengonversikan stiker menjadi video
+>_balas stiker (animasi) dengan caption ${prefix}tovideo_
+
+• *${prefix}togif* : mengonversikan stiker menjadi gif
+> _balas stiker (animasi) dengan caption ${prefix}togif_
+
+• *${prefix}tovn* : mengonversikan video / audio menjadi vn
+> _balas video / audio dengan caption ${prefix}tovn_
+
+• *${prefix}toaudio* : mengonversikan video / audio menjadi audio
+> _balas video / vn dengan caption ${prefix}toaudio_
+
+• *${prefix}tourl* : membuat tautan gambar
+> _kirim / balas gambar dengan caption ${prefix}tourl_
+
+• *${prefix}tinyurl* : membuat short link 
+> _${prefix}tinyurl [url]_
+
+• *${prefix}styletext* : membuat teks unik dari kata kunci
+> _${prefix}styletext hanbotz_
+`)
+break
+case 'kate': 
+if (isBan) return reply(mess.ban)
+	if (isBanChat) return reply(mess.banChat)
+reply(`
+*QUOTES*
+
+> _*${prefix}quotefakta*_
+~> terdapat beberapa macam quote:
+
+• ${prefix}quotebijak
+• ${prefix}quotefakta
+• ${prefix}quotebacot
+• ${prefix}quoteilham
+• ${prefix}quotefakboy
+• ${prefix}quotesindiran
+`)
+break
+case 'stmenu':
+if (isBan) return reply(mess.ban)
+	if (isBanChat) return reply(mess.banChat)
+reply(`
+*STIKER*
+
+• *${prefix}sticker* : mengonversikan gambar / video menjadi stiker
+> _kirim / balas gambar / video dengan caption *${prefix}stiker_
+
+• *${prefix}ttp* : membuat teks menjadi stiker
+> _${prefix}ttp hanbotz_
+
+• *${prefix}attp* : membuat teks manjadi stiker (animasi)
+> _${prefix}attp hanbotz_
+
+• *${prefix}smeme* : membuat stiker dengan teks (bawah)
+> _kirim / balas gambar dengan caption ${prefix}smeme hai_
+
+• *${prefix}smeme2* : membuat stiker dengan teks (atas bawah)
+> _kirim / balas gambar dengan caption ${prefix}smeme2 hai | beb_
+
+• *${prefix}emoji* : membuat stiker emoji
+> _${prefix}emoji 😏_
+
+• *${prefix}emojimix* : mengkombinasikan 2 emoji menjadi stiker
+> _${prefix}emojimix 😱+😂_
+`)
+break
+case 'audmenu':
+if (isBan) return reply(mess.ban)
+	if (isBanChat) return reply(mess.banChat)
+reply(`
+*PENGUBAH SUARA*
+
+- balas audio dengan caption;
+
+• ${prefix}volume 
+• ${prefix}tempo 
+• ${prefix}bass 
+• ${prefix}blown 
+• ${prefix}deep 
+• ${prefix}earrape 
+• ${prefix}fast 
+• ${prefix}fat 
+• ${prefix}nightcore 
+• ${prefix}reverse 
+• ${prefix}robot 
+• ${prefix}slow 
+• ${prefix}squirrel
+`)
+break
+case 'emomenu':
+if (isBan) return reply(mess.ban)
+	if (isBanChat) return reply(mess.banChat)
+reply(`
+*EMOJI*
+
+> _${prefix}iphoneemoji 🥺_
+~> terdapat beberapa macam emoji;
+
+• ${prefix}joyemoji
+• ${prefix}pediaemoji
+• ${prefix}skypeemoji
+• ${prefix}twitteremoji
+• ${prefix}iphoneemoji
+• ${prefix}googleemoji
+• ${prefix}instagramemoji
+• ${prefix}facebookemoji
+• ${prefix}samsungemoji
+• ${prefix}whatsappemoji
+• ${prefix}microsoftemoji
+`)
+break
+case 'animenu':
+if (isBan) return reply(mess.ban)
+	if (isBanChat) return reply(mess.banChat)
+reply(`
+*WIBU BAU BAWANG*
+
+- gambar anime (~￣³￣)~
+
+• ${prefix}loli
+• ${prefix}animenom
+• ${prefix}goose
+• ${prefix}avatar
+• ${prefix}tickle
+• ${prefix}gecg
+• ${prefix}feed
+• ${prefix}naruto
+• ${prefix}neko2
+• ${prefix}waifu
+• ${prefix}waifu2
+• ${prefix}awoo2
+• ${prefix}shinobu
+• ${prefix}waifu3
+• ${prefix}foxgirl
+• ${prefix}megumin2
+• ${prefix}smug2
+• ${prefix}animeslap
+• ${prefix}animespank
+• ${prefix}animepat
+• ${prefix}animeneko
+• ${prefix}animekiss
+• ${prefix}animewlp
+• ${prefix}animecuddle
+• ${prefix}animecry
+• ${prefix}animekill
+• ${prefix}animelick
+• ${prefix}animebite
+• ${prefix}animeyeet
+• ${prefix}animebully
+• ${prefix}animebonk
+• ${prefix}animewink
+• ${prefix}animepoke
+• ${prefix}animesmile
+• ${prefix}animewave
+• ${prefix}animeawoo
+• ${prefix}animeblush
+• ${prefix}animesmug
+• ${prefix}animeglomp
+• ${prefix}animehappy
+• ${prefix}animedance
+• ${prefix}animecringe
+• ${prefix}animehighfive
+• ${prefix}animehandhold
+• ${prefix}animemegumin
+`)
+break
+case 'nimenu':
+if (isBan) return reply(mess.ban)
+	if (isBanChat) return reply(mess.banChat)
+reply(`
+*STIKER ANIME*
+
+- stiker (animasi) dari anime 
+
+• ${prefix}bully
+• ${prefix}cuddle
+• ${prefix}cry
+• ${prefix}hug
+• ${prefix}awoo
+• ${prefix}kiss
+• ${prefix}lick
+• ${prefix}pat
+• ${prefix}smug
+• ${prefix}bonk
+• ${prefix}yeet
+• ${prefix}blush
+• ${prefix}smile
+• ${prefix}wave
+• ${prefix}highfive
+• ${prefix}handhold
+• ${prefix}nom
+• ${prefix}glomp
+• ${prefix}bite
+• ${prefix}slap
+• ${prefix}kill
+• ${prefix}happy
+• ${prefix}wink
+• ${prefix}poke
+• ${prefix}dance
+• ${prefix}cringe
+• ${prefix}neko
+`)
+break
+case 'nsfwmenu':
+if (isBan) return reply(mess.ban)
+	if (isBanChat) return reply(mess.banChat)
+	if (!isPremium) return m.reply(mess.premm)
+reply(`
+*NSFW*
+
+- tau lah ya 😏
+
+• ${prefix}yuri
+• ${prefix}thighs
+• ${prefix}pussy
+• ${prefix}panties
+• ${prefix}orgy
+• ${prefix}ahegao
+• ${prefix}ass
+• ${prefix}bdsm
+• ${prefix}blowjob
+• ${prefix}cuckold
+• ${prefix}ero
+• ${prefix}gasm
+• ${prefix}cum
+• ${prefix}femdom
+• ${prefix}foot
+• ${prefix}gangbang
+• ${prefix}glasses
+• ${prefix}jahy
+• ${prefix}trap
+• ${prefix}spank
+• ${prefix}hneko
+• ${prefix}nwaifu
+• ${prefix}masturbation
+• ${prefix}hentaivideo
+• ${prefix}blowjobgif
+`)
+break
+case 'cerpenmenu':
+if (isBan) return reply(mess.ban)
+	if (isBanChat) return reply(mess.banChat)
+reply(`
+*CERITA PENDEK*
+
+~> terdapat beberapa kategori cerita:
+
+• ${prefix}Cerpen Anak\n• ${prefix}Cerpen Bahasa Daerah\n• ${prefix}Cerpen Bahasa Inggris\n• ${prefix}Cerpen Bahasa Jawa\n• ${prefix}Cerpen Bahasa Sunda\n• ${prefix}Cerpen Budaya\n• ${prefix}Cerpen Cinta\n• ${prefix}Cerpen Cinta Islami\n• ${prefix}Cerpen Cinta Pertama\n• ${prefix}Cerpen Cinta Romantis\n• ${prefix}Cerpen Cinta Sedih\n• ${prefix}Cerpen Cinta Segitiga\n• ${prefix}Cerpen Cinta Sejati\n• ${prefix}Cerpen Galau\n• ${prefix}Cerpen Gokil\n• ${prefix}Cerpen Inspiratif\n• ${prefix}Cerpen Jepang\n• ${prefix}Cerpen Kehidupan\n• ${prefix}Cerpen Keluarga\n• ${prefix}Cerpen Kisah Nyata\n• ${prefix}Cerpen Korea\n• ${prefix}Cerpen Kristen\n• ${prefix}Cerpen Liburan\n• ${prefix}Cerpen Lingkungan\n• ${prefix}Cerpen Lucu\n• ${prefix}Cerpen Malaysia\n• ${prefix}Cerpen Mengharukan\n• ${prefix}Cerpen Misteri\n• ${prefix}Cerpen Motivasi\n• ${prefix}Cerpen Nasihat\n• ${prefix}Cerpen Nasionalisme\n• ${prefix}Cerpen Olahraga\n• ${prefix}Cerpen Patah Hati\n• ${prefix}Cerpen Penantian\n• ${prefix}Cerpen Pendidikan\n• ${prefix}Cerpen Pengalaman Pribadi\n• ${prefix}Cerpen Pengorbanan\n• ${prefix}Cerpen Penyesalan\n• ${prefix}Cerpen Perjuangan\n• ${prefix}Cerpen Perpisahan\n• ${prefix}Cerpen Persahabatan\n• ${prefix}Cerpen Petualangan\n• ${prefix}Cerpen Ramadhan\n• ${prefix}Cerpen Remaja\n• ${prefix}Cerpen Renungan\n• ${prefix}Cerpen Rindu\n• ${prefix}Cerpen Rohani\n• ${prefix}Cerpen Romantis\n• ${prefix}Cerpen Sastra\n• ${prefix}Cerpen Sedih\n• ${prefix}Cerpen Sejarah\n• ${prefix}Cerpen Slice Of Life\n• ${prefix}Cerpen Terjemahan\n• ${prefix}Cerpen Thriller
+`)
+break
+case 'soundmenu':
+if (isBan) return reply(mess.ban)
+	if (isBanChat) return reply(mess.banChat)
+reply(`
+*SOUND*
+
+- sound tiktok random
+
+• ${prefix}sound1
+• ${prefix}sound2
+• ${prefix}sound3
+• ${prefix}sound4
+• ${prefix}sound5
+• ${prefix}sound6
+• ${prefix}sound7
+• ${prefix}sound8
+• ${prefix}sound9
+• ${prefix}sound10
+• ${prefix}sound11
+• ${prefix}sound12
+• ${prefix}sound13
+• ${prefix}sound14
+• ${prefix}sound15
+• ${prefix}sound16
+• ${prefix}sound17
+• ${prefix}sound18
+• ${prefix}sound19
+• ${prefix}sound20
+• ${prefix}sound21
+• ${prefix}sound22
+• ${prefix}sound23
+• ${prefix}sound24
+• ${prefix}sound25
+• ${prefix}sound26
+• ${prefix}sound27
+• ${prefix}sound28
+• ${prefix}sound29
+• ${prefix}sound30
+• ${prefix}sound31
+• ${prefix}sound32
+• ${prefix}sound33
+• ${prefix}sound34
+• ${prefix}sound35
+• ${prefix}sound36
+• ${prefix}sound37
+• ${prefix}sound38
+• ${prefix}sound39
+• ${prefix}sound40
+• ${prefix}sound41
+• ${prefix}sound42
+• ${prefix}sound43
+• ${prefix}sound44
+• ${prefix}sound45
+• ${prefix}sound46
+• ${prefix}sound47
+• ${prefix}sound48
+• ${prefix}sound49
+• ${prefix}sound50
+• ${prefix}sound51
+• ${prefix}sound52
+• ${prefix}sound53
+• ${prefix}sound54
+• ${prefix}sound55
+• ${prefix}sound56
+• ${prefix}sound57
+• ${prefix}sound58
+• ${prefix}sound59
+• ${prefix}sound60
+• ${prefix}sound61
+• ${prefix}sound62
+• ${prefix}sound63
+• ${prefix}sound64
+• ${prefix}sound65
+• ${prefix}sound66
+• ${prefix}sound67
+• ${prefix}sound68
+• ${prefix}sound69
+• ${prefix}sound70
+• ${prefix}sound71
+• ${prefix}sound72
+• ${prefix}sound73
+• ${prefix}sound74
+• ${prefix}sound75
+• ${prefix}sound76
+• ${prefix}sound77
+• ${prefix}sound78
+• ${prefix}sound79
+• ${prefix}sound80
+• ${prefix}sound81
+• ${prefix}sound82
+• ${prefix}sound83
+• ${prefix}sound84
+• ${prefix}sound85
+• ${prefix}sound86
+• ${prefix}sound87
+• ${prefix}sound88
+• ${prefix}sound89
+• ${prefix}sound90
+• ${prefix}sound91
+• ${prefix}sound92
+• ${prefix}sound93
+• ${prefix}sound94
+• ${prefix}sound95
+• ${prefix}sound96
+• ${prefix}sound97
+• ${prefix}sound98
+• ${prefix}sound99
+• ${prefix}sound100
+• ${prefix}sound101
+• ${prefix}sound102
+• ${prefix}sound103
+• ${prefix}sound104
+• ${prefix}sound105
+• ${prefix}sound106
+• ${prefix}sound107
+• ${prefix}sound108
+• ${prefix}sound109
+• ${prefix}sound110
+• ${prefix}sound111
+• ${prefix}sound112
+• ${prefix}sound113
+• ${prefix}sound114
+• ${prefix}sound115
+• ${prefix}sound116
+• ${prefix}sound117
+• ${prefix}sound118
+• ${prefix}sound119
+• ${prefix}sound120
+• ${prefix}sound121
+• ${prefix}sound122
+• ${prefix}sound123
+• ${prefix}sound124
+• ${prefix}sound125
+• ${prefix}sound126
+• ${prefix}sound127
+• ${prefix}sound128
+• ${prefix}sound129
+• ${prefix}sound130
+• ${prefix}sound131
+• ${prefix}sound132
+• ${prefix}sound133
+• ${prefix}sound134
+• ${prefix}sound135
+• ${prefix}sound136
+• ${prefix}sound137
+• ${prefix}sound138
+• ${prefix}sound139
+• ${prefix}sound140
+• ${prefix}sound141
+• ${prefix}sound142
+• ${prefix}sound143
+• ${prefix}sound144
+• ${prefix}sound145
+• ${prefix}sound146
+• ${prefix}sound147
+• ${prefix}sound148
+• ${prefix}sound149
+• ${prefix}sound150
+• ${prefix}sound151
+• ${prefix}sound152
+• ${prefix}sound153
+• ${prefix}sound154
+• ${prefix}sound155
+• ${prefix}sound156
+• ${prefix}sound157
+• ${prefix}sound158
+• ${prefix}sound159
+• ${prefix}sound160
+• ${prefix}sound161
+`)
+break
+case 'berita':
+if (isBan) return reply(mess.ban)
+	if (isBanChat) return reply(mess.banChat)
+reply(`
+*BERITA*
+
+- artikel berita
+
+• ${prefix}jalantikus-meme
+• ${prefix}merdeka-news 
+• ${prefix}kontan-news 
+• ${prefix}cnbc-news 
+• ${prefix}tribun-news 
+• ${prefix}indozone-news 
+• ${prefix}kompas-news 
+• ${prefix}detik-news 
+• ${prefix}daily-news 
+• ${prefix}inews-news 
+• ${prefix}okezone-news 
+• ${prefix}sindo-news 
+• ${prefix}tempo-news 
+• ${prefix}antara-news 
+• ${prefix}cnn-news 
+• ${prefix}fajar-news 
+• ${prefix}cinemaschedule
+• ${prefix}earthquake
+• ${prefix}tvschedule
+`)
+break
+case 'primbonmenu':
+if (isBan) return reply(mess.ban)
+	if (isBanChat) return reply(mess.banChat)
+reply(`
+*PRIMBON*
+
+- ramalan
+
+• ${prefix}tarot 
+• ${prefix}fengshui 
+• ${prefix}haribaik 
+• ${prefix}harisangar 
+• ${prefix}harisial
+• ${prefix}nagahari
+• ${prefix}arahrezeki
+• ${prefix}peruntungan 
+• ${prefix}weton 
+• ${prefix}karakter
+• ${prefix}keberuntungan
+• ${prefix}memancing
+• ${prefix}masasubur
+• ${prefix}zodiak
+• ${prefix}shio
+• ${prefix}nomorhoki
+• ${prefix}artimimpi 
+• ${prefix}artinama 
+• ${prefix}ramaljodoh 
+• ${prefix}ramaljodohbali 
+• ${prefix}suamiistri 
+• ${prefix}ramalcinta 
+• ${prefix}cocoknama 
+• ${prefix}pasangan 
+• ${prefix}jadiannikah 
+• ${prefix}sifatusaha 
+• ${prefix}rezeki 
+• ${prefix}pekerjaan 
+• ${prefix}nasib 
+• ${prefix}penyakit 
+`)
+break
+case 'ownermenu':
+if (isBan) return reply(mess.ban)
+	if (isBanChat) return reply(mess.banChat)
+reply(`
+*DEVELOPER*
+
+- pengaturan bot
+
+• ${prefix}self
+• ${prefix}public
+• ${prefix}ban
+• ${prefix}banchat
+• ${prefix}setcmd
+• ${prefix}listcmd
+• ${prefix}delcmd
+• ${prefix}lockcmd
+• ${prefix}addmsg
+• ${prefix}listmsg
+• ${prefix}getmsg
+• ${prefix}delmsg
+• ${prefix}join
+• ${prefix}leavegc
+• ${prefix}setbio
+• ${prefix}bcgroup
+• ${prefix}bcall
+• ${prefix}bcimage
+• ${prefix}bcvideo
+• ${prefix}bcaudio 
+• ${prefix}bcloc 
+• ${prefix}setppbot
+• ${prefix}setexif
+• ${prefix}block
+• ${prefix}unblock 
+`)
+break
+case 'menfess':
+if (isBan) return reply(mess.ban)
+	if (isBanChat) return reply(mess.banChat)
+	if (m.isGroup) return replay(mess.privatee)
+reply(`
+*MENFESS*
+
+• *${prefix}menfesstext* : mengirim teks secara rahasia
+> _${prefix}menfesstext 6285807149213 | seseorang | hai_
+
+• *${prefix}menfessimage* : mengirim gambar secara rahasia
+> _balas / kirim gambar dengan caption_\n_${prefix}menfessimage Nomor Target | Dari | Pesan_\n_Contoh : *${prefix}menfessimage 6285807149213 | seseorang | hai*_
+
+• *${prefix}menfessvideo* : mengirim video secara rahasia
+> _balas / kirim video dengan caption_\n_${prefix}menfessvideo Nomor Target | Dari | Pesan_\n_Contoh : *${prefix}menfessvideo 6285807149213 | seseorang | hai*_
+
+• *${prefix}menfessaudio* : mengirim audio secara rahasia
+> _balas audio dengan caption_\n_${prefix}menfessaudio Nomor Target | Dari | Pesan_\n_Contoh : *${prefix}menfessaudio 6285807149213 | seseorang | hai*_
+`)
+break
+case 'rulesnya':
+reply(`
+Dengan menggunakan bot ini maka anda *setuju* dengan syarat dan kondisi sebagai berikut:
+
+- Beri jeda waktu untuk mengirim perintah kepada bot.
+- Data dan privasi anda terjaga dan aman.
+- Data gambar, video, file, audio, dan dokumen yang anda kirim akan otomatis terhapus saat anda mengirim perintah lain.
+- Kami tidak menyimpan data pribadi anda di server.
+- Kami tidak bertanggung jawab atas perintah anda kepada bot ini.
+- Developer bot berhak memblokir nomor anda jika anda melakukan aktifitas yang merugikan kepada bot ini.
+
+
+Dev by *_Han_* | Find Me On instagram.com/terserah_bomat
+`)
+break
+case 'script':
+reply (`Mau Ngapain 🤨`)
+break
 case 'owner': 
-reply(`https://instagram.com/terserah_bomat`)
+await hanbotz.sendMessage(m.chat, { text: 'https://instagram.com/terserah_bomat' }, { quoted: m })
 break
 case 'backup':
   if (!isCreator) return m.reply(mess.owner)
@@ -8555,7 +9024,7 @@ case 'backup':
   break
 case 'limit': case 'ceklimit':
 let userrr = global.db.data.users[m.sender]
-m.reply(`Limit Kamu :*${userrr.limit}*`)
+m.reply(`Limit Kamu : *${userrr.limit}*`)
 break
 case 'cerpen':{
 	if (isBan) return reply(mess.ban)	 			
@@ -8572,7 +9041,7 @@ if (isBan) return reply(mess.ban)
 if (isBanChat) return reply(mess.banChat)
 m.reply(`• ${prefix}Cerpen Anak\n• ${prefix}Cerpen Bahasa Daerah\n• ${prefix}Cerpen Bahasa Inggris\n• ${prefix}Cerpen Bahasa Jawa\n• ${prefix}Cerpen Bahasa Sunda\n• ${prefix}Cerpen Budaya\n• ${prefix}Cerpen Cinta\n• ${prefix}Cerpen Cinta Islami\n• ${prefix}Cerpen Cinta Pertama\n• ${prefix}Cerpen Cinta Romantis\n• ${prefix}Cerpen Cinta Sedih\n• ${prefix}Cerpen Cinta Segitiga\n• ${prefix}Cerpen Cinta Sejati\n• ${prefix}Cerpen Galau\n• ${prefix}Cerpen Gokil\n• ${prefix}Cerpen Inspiratif\n• ${prefix}Cerpen Jepang\n• ${prefix}Cerpen Kehidupan\n• ${prefix}Cerpen Keluarga\n• ${prefix}Cerpen Kisah Nyata\n• ${prefix}Cerpen Korea\n• ${prefix}Cerpen Kristen\n• ${prefix}Cerpen Liburan\n• ${prefix}Cerpen Lingkungan\n• ${prefix}Cerpen Lucu\n• ${prefix}Cerpen Malaysia\n• ${prefix}Cerpen Mengharukan\n• ${prefix}Cerpen Misteri\n• ${prefix}Cerpen Motivasi\n• ${prefix}Cerpen Nasihat\n• ${prefix}Cerpen Nasionalisme\n• ${prefix}Cerpen Olahraga\n• ${prefix}Cerpen Patah Hati\n• ${prefix}Cerpen Penantian\n• ${prefix}Cerpen Pendidikan\n• ${prefix}Cerpen Pengalaman Pribadi\n• ${prefix}Cerpen Pengorbanan\n• ${prefix}Cerpen Penyesalan\n• ${prefix}Cerpen Perjuangan\n• ${prefix}Cerpen Perpisahan\n• ${prefix}Cerpen Persahabatan\n• ${prefix}Cerpen Petualangan\n• ${prefix}Cerpen Ramadhan\n• ${prefix}Cerpen Remaja\n• ${prefix}Cerpen Renungan\n• ${prefix}Cerpen Rindu\n• ${prefix}Cerpen Rohani\n• ${prefix}Cerpen Romantis\n• ${prefix}Cerpen Sastra\n• ${prefix}Cerpen Sedih\n• ${prefix}Cerpen Sejarah\n• ${prefix}Cerpen Slice Of Life\n• ${prefix}Cerpen Terjemahan\n• ${prefix}Cerpen Thriller`)
 break
-case 'quotefakta' :
+case 'quotefakta': case 'quotesfakta':
 if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
                 if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) 
@@ -8580,7 +9049,7 @@ if (isBanChat) return reply(mess.banChat)
                     m.reply(get_result.hasil)
                     db.data.users[m.sender].limit -= 1 
                     break
-case 'quoteilham':
+case 'quoteilham': case 'quotesilham':
 if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
                 if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) 
@@ -8588,7 +9057,7 @@ if (isBanChat) return reply(mess.banChat)
                     m.reply(get_result.hasil.result)
                     db.data.users[m.sender].limit -= 1 
                     break
-case 'quotebijak':
+case 'quotebijak': case 'quotesbijak':
 if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
                 if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) 
@@ -8596,7 +9065,7 @@ if (isBanChat) return reply(mess.banChat)
                     m.reply(`*"${get_result.hasil.quotes}"*\n\n• *Author*: ${get_result.hasil.author}`)
                     db.data.users[m.sender].limit -= 1 
                     break
-case 'quotebacot':
+case 'quotebacot': case 'quotesbacot':
 if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
                 if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) 
@@ -8604,7 +9073,7 @@ if (isBanChat) return reply(mess.banChat)
                     m.reply(get_result.hasil.result)
                     db.data.users[m.sender].limit -= 1 
                     break
-case 'quotesindiran':
+case 'quotesindiran': case 'quotessindiran':
 if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
                 if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) 
@@ -8612,7 +9081,7 @@ if (isBanChat) return reply(mess.banChat)
                     m.reply(get_result.hasil.result)
                     db.data.users[m.sender].limit -= 1 
                     break
-case 'quotefakboy':
+case 'quotefakboy': case 'quotesfakboy':
 if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
                 if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) 
@@ -8624,7 +9093,7 @@ case 'nuliskiri': case 'nuliskanan': case 'foliokiri': case 'foliokanan':
 if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
 if (!isPremium && global.db.data.users[m.sender].limit < 1) return m.reply(mess.endLimit) 
-                    if (args.length == 0) return m.reply(`Example: ${prefix + command} HanBotz`)
+                    if (args.length == 0) return m.reply(`Contoh: ${prefix + command} HanBotz`)
                     m.reply(`_Loading..._`)
                     ini_txt = args.join(" ")
                     htr = (`https://hardianto.xyz/api/${command}?text=${ini_txt}&apikey=hardianto`)
@@ -8707,21 +9176,13 @@ if (isBanChat) return reply(mess.banChat)
 	m.reply(`${anu.cnt}`)
 	}
 	break
-case 'me': case 'profil': case 'profile': {
+case 'ava': case 'pp': {
 	if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
-	try {
-ppuser = await hanbotz.profilePictureUrl(m.sender, 'image')
-                } catch {
-                    ppuser = 'https://i0.wp.com/www.gambarunik.id/wp-content/uploads/2019/06/Top-Gambar-Foto-Profil-Kosong-Lucu-Tergokil-.jpg'
-                }
-                usek = global.db.data.users[m.sender]
-                capnya = `
-• Name:  ${pushname}
-• Limit:  ${usek.limit}
-• Status:  ${sttw}
-`
-                hanbotz.sendMessage(m.chat, { image: { url: ppuser }, caption: capnya }, { quoted: m })
+if (!m.isGroup) return replay(mess.group)
+if (!m.mentionedJid[0]) return reply(`tag orangnya`)
+ppuser = await hanbotz.profilePictureUrl(m.mentionedJid[0], 'image')
+                hanbotz.sendMessage(m.chat, { image: { url: ppuser }}, { quoted: m })
                 }
                 break
 case 'infogc': case 'infogrup': case 'infogroup': {
@@ -8751,7 +9212,7 @@ ppuser = await hanbotz.profilePictureUrl(m.chat, 'image')
                 }
                 break
 case 'iqra': {
-		oh = `Example : ${prefix + command} 3\n\nIQRA Yang tersedia : 1,2,3,4,5,6`
+		oh = `Contoh : ${prefix + command} 3\n\nIQRA Yang tersedia : 1,2,3,4,5,6`
 		if (!text) throw oh
 		yy = await getBuffer(`https://islamic-api-indonesia.herokuapp.com/api/data/pdf/iqra${text}`)
 		hanbotz.sendMessage(m.chat, {document: yy, mimetype: 'application/pdf', fileName: `iqra${text}.pdf`}, {quoted:m}).catch ((err) => m.reply(oh))
@@ -8771,7 +9232,7 @@ case 'iqra': {
 		
 		hanbotz.sendMessage(m.chat, {document: {url: 'https://fatiharridho.my.id/database/islam/juz-amma-arab-latin-indonesia.xlsx'}, mimetype: 'application/vnd.openxmlformats-officedocument.sprem.replyheetml.sheet', fileName: 'juz-amma-arab-latin-indonesia.xlsx'}, {quoted:m})
 		} else {
-		m.reply(`Mau format apa ? Example : ${prefix + command} pdf
+		m.reply(`Mau format apa ? Contoh : ${prefix + command} pdf
 
 Format yang tersedia : pdf, docx, pptx, xlsx`)
 		}
@@ -8844,12 +9305,11 @@ case 'menfesstext':  case 'menfessteks': {
 if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
 if (m.isGroup) return replay(mess.privatee)
-if (!q) throw `Format : Nomor Target | Dari | Untuk | Pesan\n\nContoh : ${prefix + command} 6285807149213 | seseorang | crush | hai`
-let [fess1, fess2, fess3, fess4] = text.split`|`
-		if (!fess1) throw `Format : Nomor Target | Dari | Untuk | Pesan\n\nContoh : ${prefix + command} 6285807149213 | seseorang | crush | hai`
-		if (!fess2) throw `Format : Nomor Target | Dari | Untuk | Pesan\n\nContoh : ${prefix + command} 6285807149213 | seseorang | crush | hai`
-		if (!fess3) throw `Format : Nomor Target | Dari | Untuk | Pesan\n\nContoh : ${prefix + command} 6285807149213 | seseorang | crush | hai`
-		if (!fess4) throw `Format : Nomor Target | Dari | Untuk | Pesan\n\nContoh : ${prefix + command} 6285807149213 | seseorang | crush | hai`
+if (!q) throw `Format : Nomor Target | Dari | Pesan\n\nContoh : *${prefix + command} 6285807149213 | seseorang | hai*`
+let [fess1, fess2, fess3] = text.split`|`
+		if (!fess1) throw `Format : Nomor Target | Dari | Pesan\n\nContoh : *${prefix + command} 6285807149213 | seseorang | hai*`
+		if (!fess2) throw `Format : Nomor Target | Dari | Pesan\n\nContoh : *${prefix + command} 6285807149213 | seseorang | hai*`
+		if (!fess3) throw `Format : Nomor Target | Dari | Pesan\n\nContoh : *${prefix + command} 6285807149213 | seseorang | hai*`
 		
 		let users = fess1.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
 		if (fess1.startsWith('0')) {
@@ -8858,36 +9318,27 @@ let [fess1, fess2, fess3, fess4] = text.split`|`
 				reply(`Pesan telah terkirim`)
 				}
 		
-const templateButtons = [
-    {"quickReplyButton": {"displayText": "Kirim Pesan Anonymous","id": 'menfess'}}
-]
-const templateMessage = {
-    text: `*Hai, kamu menerima pesan rahasia*
+    textt = `*Hai, kamu menerima pesan rahasia*
     
 Dari : ${fess2}
-Untuk : ${fess3}
+Pesan : ${fess3}`
     
-Pesan : ${fess4}`,
-    footer: '© HanBotz',
-    templateButtons: templateButtons
-}
-hanbotz.sendMessage(users, templateMessage)
+    hanbotz.sendText(users, textt)
 }
 break
 		case 'menfessgambar': case 'menfesspicture': case 'menfessimage': {
 			if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
 if (m.isGroup) return replay(mess.privatee)
-if (!quoted) throw `_Reply/Kirim Gambar Dengan Caption:_\nFormat : Nomor Target | Dari | Untuk | Pesan\n\nContoh : ${prefix + command} 6285807149213 | seseorang | crush | hai`
+if (!quoted) throw `_Reply/Kirim Gambar Dengan Caption:_\nFormat : Nomor Target | Dari | Pesan\n\nContoh : *${prefix + command} 6285807149213 | seseorang | hai*`
 
-if (!/image/.test(mime)) throw `_Reply/Kirim Gambar Dengan Caption:_\nFormat : Nomor Target | Dari | Untuk | Pesan\n\nContoh : ${prefix + command} 6285807149213 | seseorang | crush | hai`
- if (/webp/.test(mime)) throw `_Reply/Kirim Gambar Dengan Caption:_\nFormat : Nomor Target | Dari | Untuk | Pesan\n\nContoh : ${prefix + command} 6285807149213 | seseorang | crush | hai`
+if (!/image/.test(mime)) throw `_Reply/Kirim Gambar Dengan Caption:_\nFormat : Nomor Target | Dari | Pesan\n\nContoh : *${prefix + command} 6285807149213 | seseorang | hai*`
+ if (/webp/.test(mime)) throw `_Reply/Kirim Gambar Dengan Caption:_\nFormat : Nomor Target | Dari | Pesan\n\nContoh : *${prefix + command} 6285807149213 | seseorang | hai*`
  
-let [fess1, fess2, fess3, fess4] = text.split`|`
-		if (!fess1) throw `_Reply/Kirim Gambar Dengan Caption:_\nFormat : Nomor Target | Dari | Untuk | Pesan\n\nContoh : ${prefix + command} 6285807149213 | seseorang | crush | hai`
-		if (!fess2) throw `_Reply/Kirim Gambar Dengan Caption:_\nFormat : Nomor Target | Dari | Untuk | Pesan\n\nContoh : ${prefix + command} 6285807149213 | seseorang | crush | hai`
-		if (!fess3) throw `_Reply/Kirim Gambar Dengan Caption:_\nFormat : Nomor Target | Dari | Untuk | Pesan\n\nContoh : ${prefix + command} 6285807149213 | seseorang | crush | hai`
-		if (!fess4) throw `_Reply/Kirim Gambar Dengan Caption:_\nFormat : Nomor Target | Dari | Untuk | Pesan\n\nContoh : ${prefix + command} 6285807149213 | seseorang | crush | hai`
+let [fess1, fess2, fess3] = text.split`|`
+		if (!fess1) throw `Format : Nomor Target | Dari | Pesan\n\nContoh : *${prefix + command} 6285807149213 | seseorang | hai*`
+		if (!fess2) throw `Format : Nomor Target | Dari | Pesan\n\nContoh : *${prefix + command} 6285807149213 | seseorang | hai*`
+		if (!fess3) throw `Format : Nomor Target | Dari | Pesan\n\nContoh : *${prefix + command} 6285807149213 | seseorang | hai*`
 		
 		let users = fess1.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
 		if (fess1.startsWith('0')) {
@@ -8896,38 +9347,27 @@ let [fess1, fess2, fess3, fess4] = text.split`|`
 				reply(`Pesan telah terkirim`)
 				}
 			let media = await hanbotz.downloadAndSaveMediaMessage(quoted)
-			let buttons = [
-                    {buttonId: `menfess`, buttonText: {displayText: 'Kirim Chat Anonymous'}, type: 1}
-                ]
-                let buttonMessage = {
-                    image: { url: media },
-                    caption: `*Hai, kamu menerima pesan rahasia*
+                    captionn =`*Hai, kamu menerima pesan rahasia*
     
 Dari : ${fess2}
-Untuk : ${fess3}
-    
-Pesan : ${fess4}`,
-                    footer: hanbotz.user.name,
-                    buttons: buttons,
-                    headerType: 4
-                }
-                hanbotz.sendMessage(users, buttonMessage)
+Pesan : ${fess3}`
+                
+                hanbotz.sendMessage(users, { image: { url: media }, caption: captionn })
             }
             break
 case 'menfessvideo': case 'menfessvid': {
 			if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
 if (m.isGroup) return replay(mess.privatee)
-if (!quoted) throw `_Reply/Kirim Video Dengan Caption:_\nFormat : Nomor Target | Dari | Untuk | Pesan\n\nContoh : ${prefix + command} 6285807149213 | seseorang | crush | hai`
+if (!quoted) throw `_Reply/Kirim Video Dengan Caption:_\nFormat : Nomor Target | Dari | Pesan\n\nContoh : *${prefix + command} 6285807149213 | seseorang | hai*`
 if ((quoted.msg || quoted).seconds > 300) return m.reply('Maksimal Video 5 Menit!')
-if (!/video/.test(mime)) throw `_Reply/Kirim Video Dengan Caption:_\nFormat : Nomor Target | Dari | Untuk | Pesan\n\nContoh : ${prefix + command} 6285807149213 | seseorang | crush | hai`
- if (/webp/.test(mime)) throw `_Reply/Kirim Video Dengan Caption:_\nFormat : Nomor Target | Dari | Untuk | Pesan\n\nContoh : ${prefix + command} 6285807149213 | seseorang | crush | hai`
+if (!/video/.test(mime)) throw `_Reply/Kirim Video Dengan Caption:_\nFormat : Nomor Target | Dari | Pesan\n\nContoh : *${prefix + command} 6285807149213 | seseorang | hai*`
+ if (/webp/.test(mime)) throw `_Reply/Kirim Video Dengan Caption:_\nFormat : Nomor Target | Dari | Pesan\n\nContoh : *${prefix + command} 6285807149213 | seseorang | hai*`
  
-let [fess1, fess2, fess3, fess4] = text.split`|`
-		if (!fess1) throw `_Reply/Kirim Video Dengan Caption:_\nFormat : Nomor Target | Dari | Untuk | Pesan\n\nContoh : ${prefix + command} 6285807149213 | seseorang | crush | hai`
-		if (!fess2) throw `_Reply/Kirim Video Dengan Caption:_\nFormat : Nomor Target | Dari | Untuk | Pesan\n\nContoh : ${prefix + command} 6285807149213 | seseorang | crush | hai`
-		if (!fess3) throw `_Reply/Kirim Video Dengan Caption:_\nFormat : Nomor Target | Dari | Untuk | Pesan\n\nContoh : ${prefix + command} 6285807149213 | seseorang | crush | hai`
-		if (!fess4) throw `_Reply/Kirim Video Dengan Caption:_\nFormat : Nomor Target | Dari | Untuk | Pesan\n\nContoh : ${prefix + command} 6285807149213 | seseorang | crush | hai`
+let [fess1, fess2, fess3] = text.split`|`
+		if (!fess1) throw `Format : Nomor Target | Dari | Pesan\n\nContoh : *${prefix + command} 6285807149213 | seseorang | hai*`
+		if (!fess2) throw `Format : Nomor Target | Dari | Pesan\n\nContoh : *${prefix + command} 6285807149213 | seseorang | hai*`
+		if (!fess3) throw `Format : Nomor Target | Dari | Pesan\n\nContoh : *${prefix + command} 6285807149213 | seseorang | hai*`
 		
 		let users = fess1.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
 		if (fess1.startsWith('0')) {
@@ -8936,36 +9376,69 @@ let [fess1, fess2, fess3, fess4] = text.split`|`
 				reply(`Pesan telah terkirim`)
 				}
 			let media = await hanbotz.downloadAndSaveMediaMessage(quoted)
-			let buttons = [
-                    {buttonId: `menfess`, buttonText: {displayText: 'Kirim Chat Anonymous'}, type: 1}
-                ]
-                let buttonMessage = {
-                    video: { url: media },
-                    caption: `*Hai, kamu menerima pesan rahasia*
+                    captionn =`*Hai, kamu menerima pesan rahasia*
     
 Dari : ${fess2}
-Untuk : ${fess3}
-    
-Pesan : ${fess4}`,
-                    footer: hanbotz.user.name,
-                    buttons: buttons,
-                    headerType: 4
-                }
-                hanbotz.sendMessage(users, buttonMessage)
+Pesan : ${fess3}`
+                
+                hanbotz.sendMessage(users, { video: { url: media }, caption: captionn })
             }
             break
-case 'menfess':
-reply(`
-*👻「 MENFESS 」👻*
-• ${prefix}menfesstext
-• ${prefix}menfessimage
-• ${prefix}menfessvideo
-`)
+case 'menfessaudio': case 'menfessaud': {
+			if (isBan) return reply(mess.ban)	 			
+if (isBanChat) return reply(mess.banChat)
+if (m.isGroup) return replay(mess.privatee)
+if (!quoted) throw `_Reply Audio Dengan Caption:_\nFormat : Nomor Target | Dari | Pesan\n\nContoh : *${prefix + command} 6285807149213 | seseorang | hai*`
+if (!/audio/.test(mime)) throw `_Reply Audio Dengan Caption:_\nFormat : Nomor Target | Dari | Pesan\n\nContoh : *${prefix + command} 6285807149213 | seseorang | hai*`
+ 
+let [fess1, fess2, fess3] = text.split`|`
+		if (!fess1) throw `Format : Nomor Target | Dari | Pesan\n\nContoh : *${prefix + command} 6285807149213 | seseorang | hai*`
+		if (!fess2) throw `Format : Nomor Target | Dari | Pesan\n\nContoh : *${prefix + command} 6285807149213 | seseorang | hai*`
+		if (!fess3) throw `Format : Nomor Target | Dari | Pesan\n\nContoh : *${prefix + command} 6285807149213 | seseorang | hai*`
+		
+		let users = fess1.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
+		if (fess1.startsWith('0')) {
+			reply(`Gunakan kode negara\nContoh : 6285807149213`)
+			} else {
+				reply(`Pesan telah terkirim`)
+				}
+			let media = await hanbotz.downloadAndSaveMediaMessage(quoted)
+                    captionn =`*Hai, kamu menerima pesan rahasia*
+    
+Dari : ${fess2}
+Pesan : ${fess3}`
+                
+  let kirimm = await hanbotz.sendMessage(users, { audio: { url: media }, mimetype: 'audio/mp4' })
+  await hanbotz.sendMessage(users, {text: captionn }, {quoted: kirimm})
+            }
+            break
+case 'ttsid': {
+	if (isBan) return reply(mess.ban)	 			
+if (isBanChat) return reply(mess.banChat)
+if (!text) reply (`teks nya?`)
+media = await fetchJson(`https://api.akuari.my.id/texttovoice/texttosound_id?query=${text}`)
+audio = await getBuffer(media.result)
+hanbotz.sendMessage(m.chat, {audio: audio, mimetype:'audio/mpeg', ptt:true }, {quoted:m})
+	}
 break
-
-
-
-
+case 'ttsen': {
+	if (isBan) return reply(mess.ban)	 			
+if (isBanChat) return reply(mess.banChat)
+if (!text) reply (`teks nya?`)
+media = await fetchJson(`https://api.akuari.my.id/texttovoice/texttosound_english?query=${text}`)
+audio = await getBuffer(media.result)
+hanbotz.sendMessage(m.chat, {audio: audio, mimetype:'audio/mpeg', ptt:true }, {quoted:m})
+	}
+break
+case 'ttsjp': {
+	if (isBan) return reply(mess.ban)	 			
+if (isBanChat) return reply(mess.banChat)
+if (!text) reply (`teks nya?`)
+media = await fetchJson(`https://api.akuari.my.id/texttovoice/texttosound_japan?query=${text}`)
+audio = await getBuffer(media.result)
+hanbotz.sendMessage(m.chat, {audio: audio, mimetype:'audio/mpeg', ptt:true }, {quoted:m})
+	}
+break 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
             default:
                 if (budy.startsWith('=>')) {
