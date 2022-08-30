@@ -2,10 +2,10 @@
   "name": "HanBotz-MD",
   "version": "4.0.0",
   "description": "Automated whatsapp md bot created using nodejs",
-  "main": "botz.js",
+  "main": "xeon.js",
   "type": "commonjs",
   "scripts": {
-    "start": "node botz.js"
+    "start": "node xeon.js"
   },
   "keywords": [
     "termux",
