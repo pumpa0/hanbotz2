@@ -1,6 +1,6 @@
 
 const fs = require('fs')
-import chalk from ('chalk')
+import chalk from 'chalk'
 
 //Api Website\\
 global.APIs = {
